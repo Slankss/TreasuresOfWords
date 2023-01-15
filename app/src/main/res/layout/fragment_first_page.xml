@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".View.LoginAndRegister.FirstPageFragment">
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="75dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="25dp"
+        android:orientation="vertical"
+        android:weightSum="10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:src="@drawable/welcome_image" />
+
+        <TextView
+            android:id="@+id/txt_app_name"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:elegantTextHeight="false"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="@string/app_name_upper"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/txt_beginning_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:autoText="false"
+            android:elegantTextHeight="false"
+            android:text="@string/beginning_text"
+            android:textAlignment="center"
+            android:textColor="@color/text_color"
+            android:textSize="16sp"
+            app:autoSizeTextType="none"
+            app:lineHeight="25dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_weight="1"
+            android:background="@drawable/login_background"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnGoRegister"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/register_background"
+                android:text="@string/register"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                app:backgroundTint="@color/orange"
+                tools:ignore="NestedWeights" />
+
+            <Button
+                android:id="@+id/btnGoLogin"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/login_background"
+                android:text="@string/login"
+                app:backgroundTint="@color/button_black" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtChangeLanguage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:text="@string/change_language"
+            android:textColor="@color/text_color"
+            android:textSize="16sp" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

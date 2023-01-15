@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Treasures of Words</string>
+    <string name="app_name_upper">TREASURES OF WORDS</string>
+
+    <string name="register">Kayıt Ol</string>
+    <string name="login">Giriş yap</string>
+    <string name="beginning_text">Treasures of Words programına
+\nHoş Geldiniz.\n
+Bu program sizi kelime öğretmeye zorlayacak.\n
+Bir dil için en önemli şey\n
+onun kelime dağarcığıdır.\n
+İstediğiniz dilleri seçin ve öğrenmeye başlayın.</string>
+    <string name="change_language">Dil Değiştir</string>
+    <string name="turkish">Türkçe</string>
+    <string name="english">İngilizce</string>
+
+</resources>

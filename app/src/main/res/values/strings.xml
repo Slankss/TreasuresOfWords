@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Treasures of Words</string>
+    <string name="app_name_upper">TREASURES OF WORDS</string>
+    <string name="register">Register</string>
+    <string name="login">Log in</string>
+    <string name="beginning_text">Welcome to our Treasures of Words \nFriendly program.\nThis program will force you to teach vocabulary.\nThe most important thing for a language\nis its vocabulary.\nChoose the languages you want and start learning</string>
+    <string name="change_language">Change Language</string>
+    <string name="turkish">Turkish</string>
+    <string name="english">English</string>
+
+</resources>
