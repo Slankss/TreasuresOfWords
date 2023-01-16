@@ -9,6 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.treaasuresofwords.R
 import com.example.treaasuresofwords.databinding.FragmentFirstPageBinding
@@ -53,9 +55,11 @@ class FirstPageFragment : Fragment() {
             findNavController().navigate(action)
         }
 
-        binding.btnGoRegister.setOnClickListener {
+        binding.btnGoRegister.setOnClickListener { btn ->
+
             val action = FirstPageFragmentDirections.actionFirstPageFragmentToRegisterFragment()
             findNavController().navigate(action)
+
         }
 
 

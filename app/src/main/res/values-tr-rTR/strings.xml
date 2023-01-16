@@ -14,5 +14,20 @@ onun kelime dağarcığıdır.\n
     <string name="change_language">Dil Değiştir</string>
     <string name="turkish">Türkçe</string>
     <string name="english">İngilizce</string>
+    <string name="dont_have_an_account">Hesabın yok mu?</string>
+    <string name="sign_in">Giriş yap</string>
+    <string name="hint_email">Email*</string>
+    <string name="hint_password">Şifre*</string>
+    <string name="hint_password_again">Tekrar Şifre*</string>
+    <string name="do_you_have_an_account">Hesabın var mı?</string>
+
+    <string name="first_page">first_page</string>
+    <string name="login_page">login_page</string>
+    <string name="register_page">register_page</string>
+
+    <string name="create_user_message">Başarıyla kayıt oldunuz. Lütfen mailinizden hesabınızı onaylayın.</string>
+
+
+
 
 </resources>

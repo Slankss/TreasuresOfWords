@@ -1,23 +1,110 @@
 package com.example.treaasuresofwords.View.LoginAndRegister.Register
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import com.example.treaasuresofwords.Model.User
 import com.example.treaasuresofwords.R
 import com.example.treaasuresofwords.databinding.FragmentLoginBinding
 import com.example.treaasuresofwords.databinding.FragmentRegisterBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 
 class RegisterFragment : Fragment() {
 
     private var _binding : FragmentRegisterBinding? = null
     private val binding get() = _binding!!
+    private lateinit var auth : FirebaseAuth
+    private lateinit var db : FirebaseFirestore
+    private lateinit var viewModel : RegisterViewModel
+    private var current_language = "en"
+
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        activity?.let {
+
+            it.getSharedPreferences("User_Local_Data", Context.MODE_PRIVATE)
+                ?.let {
+                     it.getString("current_language","en")?.let { language ->
+                         current_language = language
+                    }
+
+                }
+
+
+        }
+
+        binding.btnBack.setOnClickListener {
+            val action = RegisterFragmentDirections.actionRegisterFragmentToFirstPageFragment()
+            findNavController().navigate(action)
+        }
+
+        binding.txtSignIn.setOnClickListener {
+            val action = RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
+            findNavController().navigate(action)
+        }
+
+        binding.btnRegister.setOnClickListener {
+            register()
+        }
+
+        viewModel.is_succesfull.observe(viewLifecycleOwner){ isSuccesful ->
+            if(isSuccesful){
+                val action = RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
+                findNavController().navigate(action)
+            }
+        }
+
+    }
+
+    fun register(){
+
+        binding.apply {
+            val email = editTextEmail.text.toString().trim()
+            val password = editTextPassword.text.toString().trim()
+            val passwordAgain = editTextPasswordAgain.text.toString().trim()
+
+            var result = check(email,password,passwordAgain)
+
+            if(result){
+                // name,surname,numner is empty
+                // empty langauges list
+                val emptyList = arrayListOf<HashMap<String,Any>>()
+                var user = User("","",email,"",false,current_language,emptyList)
+                viewModel.register(user,password)
+            }
+
+        }
+
+
+    }
+
+    fun check(email : String,password : String,passwordAgain : String) : Boolean
+    {
+        if(email.isNotEmpty() && password.isNotEmpty() && passwordAgain.isNotEmpty()){
+            if(password == passwordAgain){
+                return true // true is mean not empty
+            }
+        }
+
+        return false
     }
 
     override fun onCreateView(
@@ -26,6 +113,11 @@ class RegisterFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentRegisterBinding.inflate(inflater,container,false)
+        auth = FirebaseAuth.getInstance()
+        db = FirebaseFirestore.getInstance()
+        context?.let {
+            viewModel = RegisterViewModel(auth,db,it)
+        }
         return binding.root
     }
 
