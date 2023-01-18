@@ -13,9 +13,13 @@ import com.google.firebase.firestore.FirebaseFirestore
 class RegisterViewModel(val auth : FirebaseAuth,val db : FirebaseFirestore,val mContext : Context) : ViewModel() {
 
     var is_succesfull = MutableLiveData<Boolean>()
+    var is_complete = MutableLiveData<Boolean>()
+
+
 
     init {
         is_succesfull.value = false
+        is_complete.value = true
     }
 
 
@@ -36,6 +40,7 @@ class RegisterViewModel(val auth : FirebaseAuth,val db : FirebaseFirestore,val m
                             it.sendEmailVerification()
                             Toast.makeText(mContext,mContext.getString(R.string.create_user_message),Toast.LENGTH_LONG).show()
                             is_succesfull.value = true
+                            is_complete.value = true
                         }
                     }
 
@@ -43,6 +48,19 @@ class RegisterViewModel(val auth : FirebaseAuth,val db : FirebaseFirestore,val m
 
 
             }
+        }.addOnFailureListener { exception ->
+            is_complete.value = true
+
+            val errorMessage = when(exception.localizedMessage){
+                mContext.getString(R.string.f_e_email_already_in_use) -> mContext.getString(R.string.email_already_in_use)
+                mContext.getString(R.string.f_e_weak_password) -> mContext.getString(R.string.weak_password)
+                else -> {
+                    exception.localizedMessage
+                }
+            }
+
+            Toast.makeText(mContext,errorMessage,Toast.LENGTH_SHORT).show()
+
         }
 
     }

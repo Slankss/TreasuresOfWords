@@ -3,7 +3,7 @@
     <string name="app_name_upper">TREASURES OF WORDS</string>
     <string name="register">Register</string>
     <string name="login">Log in</string>
-    <string name="beginning_text">Welcome to our Treasures of Words \nFriendly program.\nThis program will force you to teach vocabulary.\nThe most important thing for a language\nis its vocabulary.\nChoose the languages you want and start learning</string>
+    <string name="beginning_text">Welcome to our Treasures of Words \nFriendly program.\nThis program will force you to teach vocabulary.\nThe most important thing for a language\nis its vocabulary.\nChoose the languages you want and start learning.</string>
     <string name="change_language">Change Language</string>
     <string name="turkish">Turkish</string>
     <string name="english">English</string>
@@ -17,7 +17,28 @@
     <string name="first_page">first_page</string>
     <string name="login_page">login_page</string>
     <string name="register_page">register_page</string>
-    <string name="create_user_message">You have successfully registered. Please confirm your account from your e-mail.</string>
+    <string name="create_user_message">You have successfully registered.</string>
+    <string name="verification_message">Please, confirm your account from your email.</string>
+
+    <string name="weak_password">The password must be 6 characters long or more.</string>
+    <string name="email_already_in_use">The email address is already in use by another account.</string>
+    <string name="user_not_found">User not found</string>
+    <string name="wrong_password">Wrong password</string>
+    <string name="send_verification_message">Send email</string>
+    <string name="send_verification_message_time">to resend</string>
+    <string name="verification_succesfull">Your account has been verified.</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_word">My Words</string>
+
+    <string name="menu_quiz">Quiz</string>
+    <string name="menu_profile">Profile</string>
+    <string name="menu_settings">Settings</string>
+
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

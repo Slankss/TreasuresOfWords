@@ -25,7 +25,30 @@ onun kelime dağarcığıdır.\n
     <string name="login_page">login_page</string>
     <string name="register_page">register_page</string>
 
-    <string name="create_user_message">Başarıyla kayıt oldunuz. Lütfen mailinizden hesabınızı onaylayın.</string>
+    <string name="create_user_message">Başarıyla kayıt oldunuz.</string>
+    <string name="verification_message">Lütfen, mailinize gelen linkten hesabınızı onaylayın.</string>
+
+
+    <string name="weak_password" >Parola 6 karakter veya daha uzun olmalıdır.</string>
+    <string name="email_already_in_use" >E-posta adresi zaten başka bir hesap tarafından kullanılıyor.</string>
+    <string name="user_not_found" >Kullanıcı bulunamadı.</string>
+    <string name="wrong_password" >Yanlış şifre.</string>
+
+    <string name="send_verification_message">Mail gönder</string>
+    <string name="send_verification_message_time">tekrar göndermek için  </string>
+    <string name="verification_succesfull">Hesabınız onaylandı.</string>
+
+    <string name="menu_home">Ana Sayfa</string>
+    <string name="menu_word">Kelimelerim</string>
+    <string name="menu_quiz">Mini sınav</string>
+    <string name="menu_profile">Profil</string>
+    <string name="menu_settings">Ayarlar</string>
+
+    <string name="open">Açık</string>
+    <string name="close">Kapalı</string>
+
+
+
 
 
 

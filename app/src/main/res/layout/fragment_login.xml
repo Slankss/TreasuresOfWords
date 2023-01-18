@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -58,22 +59,41 @@
                 android:maxHeight="48dp"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"
-                android:textColor="@color/text_color"
-                android:textColorHint="@color/text_color" />
+                android:textColor="@color/edit_text_box_text_color"
+                android:textColorHint="@color/edit_text_box_text_color" />
 
-            <EditText
-                android:id="@+id/editTextPassword"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="50dp"
                 android:background="@drawable/custom_text_box"
-                android:ems="10"
-                android:hint="@string/hint_password"
-                android:inputType="textPassword"
-                android:paddingStart="15dp"
-                android:paddingEnd="15dp"
-                android:textColor="@color/text_color"
-                android:textColorHint="@color/text_color" />
+                >
+
+                <EditText
+                    android:id="@+id/editTextPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:ems="10"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/hint_password"
+                    android:inputType="textPassword"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:layout_toStartOf="@id/btn_visibility"
+                    android:textColor="@color/edit_text_box_text_color"
+                    android:textColorHint="@color/edit_text_box_text_color" />
+
+                <ImageView
+                    android:id="@+id/btn_visibility"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="20dp"
+                    android:src="@drawable/ic_visibility_on"/>
+
+            </RelativeLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -89,7 +109,7 @@
                     android:layout_weight="1"
                     android:text="@string/dont_have_an_account"
                     android:textAlignment="viewEnd"
-                    android:textColor="@color/text_bold_gray_color" />
+                    android:textColor="@color/text_color" />
 
                 <TextView
                     android:id="@+id/txtRegister"
@@ -108,9 +128,9 @@
                 android:layout_height="70dp"
                 android:background="@drawable/radius_button"
                 android:text="@string/sign_in"
-                android:textColor="#000000"
+                android:textColor="#D8D8D8"
                 android:textSize="16sp"
-                app:backgroundTint="@color/orange" />
+                app:backgroundTint="@color/login_button_color" />
         </LinearLayout>
 
     </LinearLayout>

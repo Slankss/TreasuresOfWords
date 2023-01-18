@@ -73,7 +73,7 @@
                 android:text="@string/register"
                 android:textColor="#000000"
                 android:textSize="16sp"
-                app:backgroundTint="@color/orange"
+                app:backgroundTint="@color/register_button_color"
                 tools:ignore="NestedWeights" />
 
             <Button
@@ -83,7 +83,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/login_background"
                 android:text="@string/login"
-                app:backgroundTint="@color/button_black" />
+                app:backgroundTint="@color/login_button_color" />
 
         </LinearLayout>
 

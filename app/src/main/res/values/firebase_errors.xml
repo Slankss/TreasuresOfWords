@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="f_e_weak_password" translatable="false">The password must be 6 characters long or more.</string>
+    <string name="f_e_email_already_in_use" translatable="false">The email address is already in use by another account.</string>
+    <string name="f_e_email_badly_formatted" translatable="false">The email address is badly formatted.</string>
+    <string name="f_e_user_not_found" translatable="false">There is no user record corresponding to this identifier. The user may have been deleted.</string>
+
+    <string name="f_e_wrong_password" translatable="false">The password is invalid or the user does not have a password.</string>
+
+
+
+
+</resources>
