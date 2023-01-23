@@ -1,20 +1,27 @@
 package com.example.treaasuresofwords.View.LoginAndRegister.Login
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.treaasuresofwords.Model.LoadingDialog
 import com.example.treaasuresofwords.R
 import com.example.treaasuresofwords.View.LoginAndRegister.Verification.VerificationActivity
 import com.example.treaasuresofwords.View.Main.MainActivity
 import com.example.treaasuresofwords.View.SelectLangues.SelectLanguesActivity
 import com.example.treaasuresofwords.databinding.FragmentLoginBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import java.time.LocalDateTime
 
 
 class LoginFragment : Fragment() {
@@ -24,6 +31,8 @@ class LoginFragment : Fragment() {
     private lateinit var auth : FirebaseAuth
     private lateinit var viewModel : LoginViewModel
     private var passwordVisibility = false
+    private lateinit var db : FirebaseFirestore
+    private lateinit var loadingDialog : LoadingDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +41,10 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.editTextEmail.setText("dogunigar@hotmail.com")
+        binding.editTextPassword.setText("predatoor")
 
+        loadingDialog = LoadingDialog(this.requireActivity())
 
         //Show Password
         binding.btnVisibility.setOnClickListener {
@@ -67,6 +79,11 @@ class LoginFragment : Fragment() {
             login()
         }
 
+        binding.btnForgotPassword.setOnClickListener {
+            val action = LoginFragmentDirections.actionLoginFragmentToPasswordResetFragment()
+            findNavController().navigate(action)
+        }
+
         viewModel.isSuccesfull.observe(viewLifecycleOwner){ isSuccesfull ->
             if(isSuccesfull){
                 activity?.let {
@@ -74,13 +91,11 @@ class LoginFragment : Fragment() {
                     currentUser?.let { current ->
                         if(current.isEmailVerified){
                             // email verified go main page
-                            startActivity(Intent(it.applicationContext,MainActivity::class.java))
-                            it.finish()
+                            isFirstTime(it)
                         }
                         else{
                             // email not verified go verification page
                             startActivity(Intent(it.applicationContext,VerificationActivity::class.java))
-
                         }
 
                     }
@@ -90,6 +105,37 @@ class LoginFragment : Fragment() {
             }
         }
 
+        viewModel.isComplete.observe(viewLifecycleOwner){ isComplete ->
+            if(isComplete){
+                loadingDialog.dismissDialog()
+            }
+        }
+
+
+    }
+
+    fun isFirstTime(mActivity : Activity){
+
+        auth.currentUser?.let {
+            var uid = it.uid
+
+            db.collection("User").document(uid).get().addOnCompleteListener { task ->
+                if(task.isSuccessful){
+                    var item = task.result
+
+                    var languages = item.get("languages") as ArrayList<*>
+                    if(languages.isEmpty()){
+                        startActivity(Intent(mActivity.applicationContext,SelectLanguesActivity::class.java))
+                        mActivity.finish()
+                    }
+                    else{
+                        startActivity(Intent(mActivity.applicationContext,MainActivity::class.java))
+                        mActivity.finish()
+                    }
+
+                }
+            }
+        }
 
     }
 
@@ -99,6 +145,7 @@ class LoginFragment : Fragment() {
         val password = binding.editTextPassword.text.toString().trim()
 
         if(email.isNotEmpty() && password.isNotEmpty()){
+            loadingDialog.startLoadingDialog()
             viewModel.login(email,password)
 
         }
@@ -111,6 +158,7 @@ class LoginFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         auth = FirebaseAuth.getInstance()
+        db = FirebaseFirestore.getInstance()
         context?.let {
             viewModel = LoginViewModel(auth,it)
         }

@@ -16,7 +16,7 @@ onun kelime dağarcığıdır.\n
     <string name="english">İngilizce</string>
     <string name="dont_have_an_account">Hesabın yok mu?</string>
     <string name="sign_in">Giriş yap</string>
-    <string name="hint_email">Email*</string>
+    <string name="hint_email">Eposta*</string>
     <string name="hint_password">Şifre*</string>
     <string name="hint_password_again">Tekrar Şifre*</string>
     <string name="do_you_have_an_account">Hesabın var mı?</string>
@@ -26,7 +26,7 @@ onun kelime dağarcığıdır.\n
     <string name="register_page">register_page</string>
 
     <string name="create_user_message">Başarıyla kayıt oldunuz.</string>
-    <string name="verification_message">Lütfen, mailinize gelen linkten hesabınızı onaylayın.</string>
+    <string name="verification_message">Lütfen, eposta adresinize gelen linkten hesabınızı onaylayın.</string>
 
 
     <string name="weak_password" >Parola 6 karakter veya daha uzun olmalıdır.</string>
@@ -34,7 +34,7 @@ onun kelime dağarcığıdır.\n
     <string name="user_not_found" >Kullanıcı bulunamadı.</string>
     <string name="wrong_password" >Yanlış şifre.</string>
 
-    <string name="send_verification_message">Mail gönder</string>
+    <string name="send_verification_message">Eposta gönder</string>
     <string name="send_verification_message_time">tekrar göndermek için  </string>
     <string name="verification_succesfull">Hesabınız onaylandı.</string>
 
@@ -46,6 +46,44 @@ onun kelime dağarcığıdır.\n
 
     <string name="open">Açık</string>
     <string name="close">Kapalı</string>
+
+    <string name="reset_password">Parolanızı sıfırlamak için eposta adresinizi girin.</string>
+    <string name="reset_password_time_message">Tekrar göndermek için gereken süre : </string>
+    <string name="second">saniye</string>
+    <string name="reset_password_toast_message">Lütfen, eposta adresinizi kontrol ediniz.</string>
+    <string name="password_reset_page_name">Şifre Değiştir</string>
+    <string name="forgot_password">Parolanızı mı unuttunuz?</string>
+
+    <string name="email_is_empty">Lütfen, eposta adresinizi giriniz.</string>
+    <string name="language_to_translated">Çevrilecek dil</string>
+    <string name="translated_language">Çevrilen dil</string>
+
+    <string name="add_text">Ekle</string>
+    <string name="continue_text">Devam et</string>
+    <string name="same_language_error_message">Farklı diller seçin</string>
+    <string name="has_already_error_message">Zaten oluşturulmuş</string>
+
+    <string name="selected_languages_is_empty">Lütfen, dil seçin</string>
+    <string name="this_week">Bu Hafta</string>
+    <string name="this_month">Bu Ay</string>
+    <string name="three_months">3 Ay</string>
+    <string name="all_time">Tüm Zamanlar</string>
+    <string name="all_words">Tüm Kelimeler</string>
+
+    <string name="log_out">Çıkış Yap</string>
+    <string name="settings">Ayarlar</string>
+    <string name="help">Yardım</string>
+    <string name="sign_out_message">Çıkış yapmak istediğinizden emin misiniz?</string>
+    <string name="yes">Evet</string>
+    <string name="no">Hayır</string>
+    <string name="learned_words">Öğrenilen Kelimeler</string>
+
+    <string name="sign_in_different_account">Başka bir hesapla giriş yap.</string>
+    <string name="has_already_chosed">Zaten seçili</string>
+    <string name="email_send_message">Eposta gönderildi.</string>
+    <string name="loading">İşlem devam ediyor, lütfen bekleyiniz.</string>
+
+
 
 
 

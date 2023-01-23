@@ -9,6 +9,7 @@ import com.example.treaasuresofwords.Model.User
 import com.example.treaasuresofwords.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.muhammed.toastoy.Toastoy
 
 class RegisterViewModel(val auth : FirebaseAuth,val db : FirebaseFirestore,val mContext : Context) : ViewModel() {
 
@@ -28,6 +29,7 @@ class RegisterViewModel(val auth : FirebaseAuth,val db : FirebaseFirestore,val m
 
     fun register(user : User,password : String){
 
+
         auth.createUserWithEmailAndPassword(user.email,password).addOnCompleteListener { authTask ->
             if(authTask.isSuccessful){
 
@@ -37,8 +39,7 @@ class RegisterViewModel(val auth : FirebaseAuth,val db : FirebaseFirestore,val m
 
                     db.collection("User").document(user_id).set(user).addOnCompleteListener { profile_task ->
                         if(profile_task.isSuccessful){
-                            it.sendEmailVerification()
-                            Toast.makeText(mContext,mContext.getString(R.string.create_user_message),Toast.LENGTH_LONG).show()
+                            Toastoy.showSuccessToast(mContext,mContext.getString(R.string.create_user_message))
                             is_succesfull.value = true
                             is_complete.value = true
                         }
@@ -49,6 +50,7 @@ class RegisterViewModel(val auth : FirebaseAuth,val db : FirebaseFirestore,val m
 
             }
         }.addOnFailureListener { exception ->
+
             is_complete.value = true
 
             val errorMessage = when(exception.localizedMessage){
@@ -59,7 +61,7 @@ class RegisterViewModel(val auth : FirebaseAuth,val db : FirebaseFirestore,val m
                 }
             }
 
-            Toast.makeText(mContext,errorMessage,Toast.LENGTH_SHORT).show()
+            Toastoy.showErrorToast(mContext,errorMessage)
 
         }
 

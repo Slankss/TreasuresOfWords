@@ -6,13 +6,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.treaasuresofwords.R
 import com.google.firebase.auth.FirebaseAuth
+import com.muhammed.toastoy.Toastoy
 
 class LoginViewModel(var auth : FirebaseAuth,var mContext : Context) : ViewModel() {
 
     var isSuccesfull = MutableLiveData<Boolean>()
+    var isComplete = MutableLiveData<Boolean>()
 
     init {
         isSuccesfull.value = false
+        isComplete.value = false
     }
 
     fun login(email : String,password : String){
@@ -25,6 +28,7 @@ class LoginViewModel(var auth : FirebaseAuth,var mContext : Context) : ViewModel
 
                 currentUser?.let {
                     isSuccesfull.value = true
+                    isComplete.value = true
                 }
             }
         }.addOnFailureListener {  exception ->
@@ -36,8 +40,8 @@ class LoginViewModel(var auth : FirebaseAuth,var mContext : Context) : ViewModel
                     exception.localizedMessage
                 }
             }
-
-            Toast.makeText(mContext,errorMessage,Toast.LENGTH_SHORT).show()
+            isComplete.value = true
+            Toastoy.showErrorToast(mContext,errorMessage)
 
         }
 

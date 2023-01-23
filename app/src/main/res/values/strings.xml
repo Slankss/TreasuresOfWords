@@ -7,8 +7,8 @@
     <string name="change_language">Change Language</string>
     <string name="turkish">Turkish</string>
     <string name="english">English</string>
-    <string name="dont_have_an_account">Don\'t have an account</string>
-    <string name="sign_in">Sign in</string>
+    <string name="dont_have_an_account">Don\'t have an account?</string>
+    <string name="sign_in">SIGN IN</string>
     <string name="hint_email">Email*</string>
     <string name="hint_password">Password*</string>
     <string name="hint_password_again">Confirm Password*</string>
@@ -37,8 +37,43 @@
 
     <string name="open">Open</string>
     <string name="close">Close</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="reset_password">Enter your e-mail address to reset your password.</string>
+    <string name="reset_password_time_message">Time to resend : </string>
+    <string name="second">second</string>
+    <string name="reset_password_toast_message">Please, check your email.</string>
+    <string name="password_reset_page_name">Password Reset</string>
+    <string name="forgot_password">Forgot password?</string>
+
+    <string name="email_is_empty">Please, enter Email address.</string>
+    <string name="language_to_translated">Language to be translated</string>
+    <string name="translated_language">Translated language</string>
+
+    <string name="add_text">Add</string>
+    <string name="continue_text">Continue</string>
+    <string name="same_language_error_message">Select different language</string>
+    <string name="has_already_error_message">Already created</string>
+
+    <string name="selected_languages_is_empty">Please, select languages </string>
+    <string name="this_week">This Week</string>
+    <string name="this_month">This Month</string>
+    <string name="three_months">3 Months</string>
+    <string name="all_time">All Time</string>
+    <string name="all_words">All Words</string>
+
+    <string name="log_out">Sign Out</string>
+    <string name="settings">Settings</string>
+    <string name="help">Help</string>
+    <string name="sign_out_message">Are you sure you want to sign out?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="learned_words">Learned Words</string>
+
+    <string name="sign_in_different_account">Sign in with different account.</string>
+    <string name="has_already_chosed">Has already chosed</string>
+    <string name="email_send_message">Email sended.</string>
+    <string name="loading">Process in progress, please wait</string>
+
 
 
 </resources>

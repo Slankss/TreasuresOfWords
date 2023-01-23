@@ -1,9 +1,12 @@
 package com.example.treaasuresofwords.View.LoginAndRegister
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,8 +16,12 @@ import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.treaasuresofwords.R
+import com.example.treaasuresofwords.View.Main.MainActivity
+import com.example.treaasuresofwords.View.SelectLangues.SelectLanguesActivity
 import com.example.treaasuresofwords.databinding.FragmentFirstPageBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
 
 
@@ -23,6 +30,8 @@ class FirstPageFragment : Fragment() {
     private var _binding : FragmentFirstPageBinding? = null
     private val binding get() = _binding!!
     private lateinit var dialog : BottomSheetDialog
+    private lateinit var auth : FirebaseAuth
+    private lateinit var db : FirebaseFirestore
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,8 +51,6 @@ class FirstPageFragment : Fragment() {
                         changeLanguage(current)
                     }
                 }
-
-
         }
 
 
@@ -72,6 +79,8 @@ class FirstPageFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentFirstPageBinding.inflate(inflater,container,false)
+        auth = FirebaseAuth.getInstance()
+        db = FirebaseFirestore.getInstance()
         return binding.root
     }
 
@@ -108,6 +117,7 @@ class FirstPageFragment : Fragment() {
 
 
     }
+
 
     fun changeLanguage(language : String){
         activity?.let {

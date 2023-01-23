@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="15dp"
+    android:weightSum="10">
+
+    <TextView
+        android:id="@+id/txtSelectedLanguage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="English -> Turkish"
+        android:layout_gravity="center"
+        android:textSize="22sp"
+        android:textColor="@color/text_color"
+        android:layout_weight="8"
+        />
+
+    <ImageView
+        android:id="@+id/btnDelete"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_clear_24"
+        android:layout_weight="2"
+        />
+
+</LinearLayout>
