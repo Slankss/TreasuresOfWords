@@ -71,6 +71,8 @@
         android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:animateLayoutChanges="true"
+        android:elevation="10dp"
+        android:translationZ="100dp"
         android:background="@drawable/top_menu_background"
         android:orientation="vertical"
         android:padding="30dp"
