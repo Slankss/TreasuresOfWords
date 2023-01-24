@@ -64,7 +64,7 @@
     <string name="log_out">Sign Out</string>
     <string name="settings">Settings</string>
     <string name="help">Help</string>
-    <string name="sign_out_message">Are you sure you want to sign out?</string>
+    <string name="sign_out_message">Are you sure you want to sign out of the account?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="learned_words">Learned Words</string>
@@ -73,6 +73,10 @@
     <string name="has_already_chosed">Has already chosed</string>
     <string name="email_send_message">Email sended.</string>
     <string name="loading">Process in progress, please wait</string>
+    <string name="app_leave_out_message">Are you sure you want to exit the application?</string>
+    <string name="search">Search</string>
+    <string name="add_word">Add Word</string>
+
 
 
 

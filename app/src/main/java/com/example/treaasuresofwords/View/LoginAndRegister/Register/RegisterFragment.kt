@@ -112,7 +112,6 @@ class RegisterFragment : Fragment() {
 
         viewModel.is_succesfull.observe(viewLifecycleOwner){ isSuccesful ->
             if(isSuccesful){
-
                 activity?.let {
                     startActivity(Intent(it.applicationContext,VerificationActivity::class.java))
                 }

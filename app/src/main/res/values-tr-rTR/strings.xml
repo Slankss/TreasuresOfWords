@@ -73,7 +73,7 @@ onun kelime dağarcığıdır.\n
     <string name="log_out">Çıkış Yap</string>
     <string name="settings">Ayarlar</string>
     <string name="help">Yardım</string>
-    <string name="sign_out_message">Çıkış yapmak istediğinizden emin misiniz?</string>
+    <string name="sign_out_message">Hesaptan çıkış yapmak istediğinize emin misiniz?</string>
     <string name="yes">Evet</string>
     <string name="no">Hayır</string>
     <string name="learned_words">Öğrenilen Kelimeler</string>
@@ -82,6 +82,9 @@ onun kelime dağarcığıdır.\n
     <string name="has_already_chosed">Zaten seçili</string>
     <string name="email_send_message">Eposta gönderildi.</string>
     <string name="loading">İşlem devam ediyor, lütfen bekleyiniz.</string>
+    <string name="app_leave_out_message">Çıkış yapmak istediğinizden emin misiniz?</string>
+    <string name="search">Ara</string>
+    <string name="add_word">Kelime Ekle</string>
 
 
 

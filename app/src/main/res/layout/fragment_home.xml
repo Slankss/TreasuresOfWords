@@ -71,7 +71,7 @@
         android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:animateLayoutChanges="true"
-        android:elevation="10dp"
+        android:elevation="20dp"
         android:translationZ="100dp"
         android:background="@drawable/top_menu_background"
         android:orientation="vertical"
@@ -204,13 +204,6 @@
             tools:ignore="TouchTargetSizeCheck" />
     </RadioGroup>
 
-    <FrameLayout
-        android:layout_width="409dp"
-        android:layout_height="330dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="400dp">
-
-    </FrameLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

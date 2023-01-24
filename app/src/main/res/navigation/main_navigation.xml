@@ -13,13 +13,29 @@
     <fragment
         android:id="@+id/addWordFragment"
         android:name="com.example.treaasuresofwords.View.Main.AddWord.AddWordFragment"
-        android:label="fragment_add_word"
-        tools:layout="@layout/fragment_add_word" />
+        android:label="@string/add_word"
+        tools:layout="@layout/fragment_add_word">
+        <action
+            android:id="@+id/action_addWordFragment_to_wordFragment"
+            app:destination="@id/wordFragment"
+            app:enterAnim="@anim/anim_slide_in_right"
+            app:exitAnim="@anim/anim_slide_out_right"
+            app:popEnterAnim="@anim/anim_slide_in_left"
+            app:popExitAnim="@anim/anim_slide_out_left" />
+    </fragment>
     <fragment
         android:id="@+id/wordFragment"
         android:name="com.example.treaasuresofwords.View.Main.Word.WordFragment"
         android:label="@string/menu_word"
-        tools:layout="@layout/fragment_word" />
+        tools:layout="@layout/fragment_word" >
+        <action
+            android:id="@+id/action_wordFragment_to_addWordFragment"
+            app:destination="@id/addWordFragment"
+            app:enterAnim="@anim/anim_slide_in_left"
+            app:exitAnim="@anim/anim_slide_out_left"
+            app:popEnterAnim="@anim/anim_slide_in_right"
+            app:popExitAnim="@anim/anim_slide_out_right" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.treaasuresofwords.View.Main.Profile.ProfileFragment"

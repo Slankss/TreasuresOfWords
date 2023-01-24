@@ -38,4 +38,9 @@
     <color name="top_menu_bg_color">#76849C</color>
     <color name="top_menu_text_color">#FFFFFF</color>
 
+    <color name="word_add_btn_color">#009688</color>
+    <color name="word_delete_btn_color">#A81006</color>
+
+
+
 </resources>

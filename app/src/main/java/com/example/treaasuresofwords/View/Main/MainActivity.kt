@@ -1,8 +1,13 @@
 package com.example.treaasuresofwords.View.Main
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.content.DialogInterface
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.KeyEvent
 import android.view.MenuItem
 import androidx.annotation.StringRes
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -14,6 +19,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.treaasuresofwords.R
+import com.example.treaasuresofwords.View.LoginAndRegister.LoginAndRegisterActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
@@ -65,14 +71,37 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
 
-        navController.previousBackStackEntry?.let { it ->
-            val destinationFragment = it.destination.id
+        val previous = navController.previousBackStackEntry
+        if(previous != null){
+
+            val destinationFragment = previous.destination.id
             if(childFragmentList.contains(destinationFragment)){
+                Log.w("araba",destinationFragment.toString())
                 NavigationView.menu[childFragmentMenuList[childFragmentList.indexOf(destinationFragment)]].isChecked = true
             }
+            else{
+                Log.w("araba",destinationFragment.toString())
+            }
+            super.onBackPressed()
+        }
+        else{
+            Log.w("araba","dialogBuilder GIRDI")
+            val dialogBuilder = AlertDialog.Builder(this)
+            dialogBuilder.setMessage(R.string.app_leave_out_message)
+                .setPositiveButton(R.string.yes, DialogInterface.OnClickListener { dialog, id ->
+                    finish()
+                })
+                .setNegativeButton(R.string.no, DialogInterface.OnClickListener {
+                        dialog, id -> dialog.cancel()
+                })
+            val alert = dialogBuilder.create()
+            alert.setTitle(R.string.log_out)
+            alert.show()
+
         }
 
-        super.onBackPressed()
     }
+
+
 
 }

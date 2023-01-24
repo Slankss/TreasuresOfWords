@@ -20,16 +20,13 @@ class RegisterViewModel(val auth : FirebaseAuth,val db : FirebaseFirestore,val m
 
     init {
         is_succesfull.value = false
-        is_complete.value = true
+        is_complete.value = false
     }
 
 
-    // EthhskxDhOVSiPZA8KXBUiOgwln1
-    // EthhskxDhOVSiPZA8KXBUiOgwln1
-
     fun register(user : User,password : String){
 
-
+        is_complete.value = false
         auth.createUserWithEmailAndPassword(user.email,password).addOnCompleteListener { authTask ->
             if(authTask.isSuccessful){
 

@@ -21,7 +21,7 @@ class LoginViewModel(var auth : FirebaseAuth,var mContext : Context) : ViewModel
     fun login(email : String,password : String){
 
 
-
+        isComplete.value = false
         auth.signInWithEmailAndPassword(email,password).addOnCompleteListener { task ->
             if(task.isSuccessful){
                 val currentUser = auth.currentUser

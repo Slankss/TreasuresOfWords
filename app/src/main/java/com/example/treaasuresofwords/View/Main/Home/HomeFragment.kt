@@ -102,11 +102,13 @@ class HomeFragment : Fragment() {
                     translationWidth = -topMenuWidth
                     binding.topMenu.animate().translationX(translationWidth.toFloat()).setDuration(500)
                     isTopMenuOpen = true
+                    changeRadioButtonClickable(false)
                 }
                 true -> {
                     translationWidth = topMenuWidth
                     binding.topMenu.animate().translationX(translationWidth.toFloat()).setDuration(500)
                     isTopMenuOpen = false
+                    changeRadioButtonClickable(true)
                 }
             }
         }
@@ -115,6 +117,7 @@ class HomeFragment : Fragment() {
                 translationWidth = topMenuWidth
                 binding.topMenu.animate().translationX(translationWidth.toFloat()).setDuration(500)
                 isTopMenuOpen = false
+                changeRadioButtonClickable(true)
             }
         }
 
@@ -137,33 +140,11 @@ class HomeFragment : Fragment() {
         }
     }
 
-
-    fun changeFilterBackground(mContext : Context,activeTextView : TextView){
-        /*
-        val active = R.drawable.words_filter_active_background
-        var inActive = R.drawable.words_filter__inactive_background
-
-        val activeText = ContextCompat.getColor(mContext,R.color.word_filter_active_text_color)
-        var inActiveText = ContextCompat.getColor(mContext,R.color.words_filter_text_color)
-
-        binding.apply {
-
-            btnFilterThisWeek.setBackgroundResource(inActive)
-            btnFilterThisMonth.setBackgroundResource(inActive)
-            btnFilterThreeMonths.setBackgroundResource(inActive)
-            btnFilterAllTime.setBackgroundResource(inActive)
-
-            btnFilterThisWeek.setTextColor(inActiveText)
-            btnFilterThisMonth.setTextColor(inActiveText)
-            btnFilterThreeMonths.setTextColor(inActiveText)
-            btnFilterAllTime.setTextColor(inActiveText)
-
-
-            activeTextView.setTextColor(activeText)
-            activeTextView.setBackgroundResource(active)
-        }
-
-         */
+    fun changeRadioButtonClickable(state : Boolean){
+        binding.radioBtnThisWeek.isClickable = state
+        binding.radioBtnThisMonth.isClickable = state
+        binding.radioBtnThreeMonths.isClickable = state
+        binding.radioBtnAllTime.isClickable = state
     }
 
 
