@@ -1,6 +1,5 @@
 package com.example.treaasuresofwords.View.LoginAndRegister.Register
 
-import android.R
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
@@ -13,15 +12,18 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.translation.Translator
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.treaasuresofwords.Model.LoadingDialog
 import com.example.treaasuresofwords.Model.User
+import com.example.treaasuresofwords.R
 import com.example.treaasuresofwords.View.LoginAndRegister.Verification.VerificationActivity
 import com.example.treaasuresofwords.databinding.FragmentRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.muhammed.toastoy.Toastoy
 import java.time.LocalDateTime
 
 
@@ -33,8 +35,6 @@ class RegisterFragment : Fragment() {
     private lateinit var db : FirebaseFirestore
     private lateinit var viewModel : RegisterViewModel
     private var current_language = "en"
-    private var passwordVisibility = false
-    private var passwordConfirmVisibility = false
     private lateinit var loadingDialog : LoadingDialog
 
 
@@ -48,40 +48,6 @@ class RegisterFragment : Fragment() {
 
         loadingDialog = LoadingDialog(this.requireActivity())
 
-        binding.btnPasswordVisibility.setOnClickListener {
-            when(passwordVisibility){
-                false -> {
-                    binding.editTextPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance())
-                    binding.btnPasswordVisibility.setImageResource(com.example.treaasuresofwords.R.drawable.ic_visibility_off)
-                    passwordVisibility = true
-
-                }
-                else ->{
-                    binding.editTextPassword.setTransformationMethod(PasswordTransformationMethod.getInstance())
-                    binding.btnPasswordVisibility.setImageResource(com.example.treaasuresofwords.R.drawable.ic_visibility_on)
-                    passwordVisibility = false
-
-                }
-            }
-        }
-
-        binding.btnPasswordConfirmVisibility.setOnClickListener {
-            when(passwordConfirmVisibility){
-                false -> {
-                    binding.editTextPasswordAgain.setTransformationMethod(HideReturnsTransformationMethod.getInstance())
-                    binding.btnPasswordConfirmVisibility.setImageResource(com.example.treaasuresofwords.R.drawable.ic_visibility_off)
-                    passwordConfirmVisibility = true
-
-                }
-                else ->{
-                    binding.editTextPasswordAgain.setTransformationMethod(PasswordTransformationMethod.getInstance())
-                    binding.btnPasswordConfirmVisibility.setImageResource(com.example.treaasuresofwords.R.drawable.ic_visibility_on)
-                    passwordConfirmVisibility = false
-
-                }
-            }
-        }
-
 
         activity?.let {
             it.getSharedPreferences("User_Local_Data", Context.MODE_PRIVATE)
@@ -90,6 +56,24 @@ class RegisterFragment : Fragment() {
                          current_language = language
                     }
                 }
+        }
+
+        binding.editTextEmail.setOnFocusChangeListener { v, hasFocus ->
+            if(hasFocus){
+                binding.TextEmailInputLayout.error = null
+            }
+        }
+
+        binding.editTextPassword.setOnFocusChangeListener { v, hasFocus ->
+            if(hasFocus){
+                binding.passwordInputLayout.error = null
+            }
+        }
+
+        binding.editTextPasswordAgain.setOnFocusChangeListener { v, hasFocus ->
+            if(hasFocus){
+                binding.passwordAgainInputLayout.error = null
+            }
         }
 
 
@@ -158,10 +142,28 @@ class RegisterFragment : Fragment() {
 
     fun check(email : String,password : String,passwordAgain : String) : Boolean
     {
+        binding.TextEmailInputLayout.error = null
+        binding.passwordInputLayout.error = null
+        binding.passwordAgainInputLayout.error = null
+
         if(email.isNotEmpty() && password.isNotEmpty() && passwordAgain.isNotEmpty()){
             if(password == passwordAgain){
                 return true // true is mean not empty
             }
+        }
+
+        binding.apply {
+
+            if(email.isEmpty()){ TextEmailInputLayout.error = "error" }
+            if(password.isEmpty()) { passwordInputLayout.error = "error" }
+            if(passwordAgain.isEmpty()) { passwordAgainInputLayout.error = "error"}
+            if(password != passwordAgain) {
+                passwordAgainInputLayout.error = "error"
+                activity?.let {
+                    Toast.makeText(it,getString(R.string.passwords_not_match),Toast.LENGTH_SHORT).show()
+                }
+            }
+
         }
 
         return false

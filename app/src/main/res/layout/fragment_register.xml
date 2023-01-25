@@ -47,86 +47,102 @@
             android:layout_height="0dp"
             android:layout_weight="4">
 
-            <EditText
-                android:id="@+id/editTextEmail"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/TextEmailInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
+                android:layout_height="60dp"
                 android:layout_marginBottom="35dp"
-                android:background="@drawable/custom_text_box"
-                android:ems="10"
+                app:boxBackgroundColor="@color/edit_text_box_bg_color"
+                app:boxCornerRadiusBottomStart="14dp"
+                app:boxCornerRadiusBottomEnd="14dp"
+                app:boxCornerRadiusTopEnd="14dp"
+                app:boxCornerRadiusTopStart="14dp"
                 android:hint="@string/hint_email"
-                android:inputType="textEmailAddress"
-                android:maxHeight="48dp"
-                android:paddingStart="15dp"
-                android:paddingEnd="15dp"
-                android:textColor="@color/edit_text_box_text_color"
-                android:textColorHint="@color/edit_text_box_text_color" />
+                android:textColorHint="@color/edit_text_box_text_color"
+                app:boxStrokeColor="#2196F3"
+                app:boxStrokeErrorColor="#FF0000"
+                app:endIconMode="password_toggle"
+                app:errorTextColor="#FF0000"
+                app:helperText=""
+                app:hintTextColor="@color/edit_text_box_text_color">
 
-            <RelativeLayout
-                android:id="@+id/editTextPasswordRelativeLayout"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:paddingStart="20dp"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/edit_text_box_text_color"
+                    android:textColorHighlight="#FF9800"
+                    tools:ignore="RtlSymmetry" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/passwordInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/editTextEmail"
+                android:layout_below="@id/TextEmailInputLayout"
+                android:layout_height="60dp"
+                app:boxBackgroundColor="@color/edit_text_box_bg_color"
+                app:boxCornerRadiusBottomStart="14dp"
+                app:boxCornerRadiusBottomEnd="14dp"
+                app:boxCornerRadiusTopEnd="14dp"
+                app:boxCornerRadiusTopStart="14dp"
                 android:layout_marginBottom="35dp"
-                android:background="@drawable/custom_text_box">
+                android:hint="@string/hint_password"
+                android:textColorHint="@color/edit_text_box_text_color"
+                app:boxStrokeColor="#2196F3"
+                app:boxStrokeErrorColor="#FF0000"
+                app:endIconMode="password_toggle"
+                app:errorTextColor="#FF0000"
+                app:helperText=""
+                app:hintTextColor="@color/edit_text_box_text_color">
 
-                <EditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextPassword"
                     android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_toStartOf="@id/btn_password_visibility"
-                    android:background="@android:color/transparent"
-                    android:ems="10"
-                    android:hint="@string/hint_password"
-                    android:inputType="textPassword"
-                    android:paddingStart="15dp"
-                    android:paddingEnd="15dp"
-                    android:textColor="@color/edit_text_box_text_color"
-                    android:textColorHint="@color/edit_text_box_text_color" />
-
-                <ImageView
-                    android:id="@+id/btn_password_visibility"
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="20dp"
-                    android:src="@drawable/ic_visibility_on" />
+                    android:inputType="textPassword"
+                    android:paddingStart="20dp"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/edit_text_box_text_color"
+                    android:textColorHighlight="#FF9800"
+                    tools:ignore="RtlSymmetry" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/editTextPasswordAgainRelativeLayout"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/passwordAgainInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/editTextPasswordRelativeLayout"
-                android:layout_marginBottom="25dp"
-                android:background="@drawable/custom_text_box">
+                android:layout_height="60dp"
+                app:boxBackgroundColor="@color/edit_text_box_bg_color"
+                app:boxCornerRadiusBottomStart="14dp"
+                android:layout_below="@id/passwordInputLayout"
+                app:boxCornerRadiusBottomEnd="14dp"
+                app:boxCornerRadiusTopEnd="14dp"
+                app:boxCornerRadiusTopStart="14dp"
+                android:hint="@string/hint_password_again"
+                android:textColorHint="@color/edit_text_box_text_color"
+                app:boxStrokeColor="#2196F3"
+                app:boxStrokeErrorColor="#FF0000"
+                app:endIconMode="password_toggle"
+                app:errorTextColor="#FF0000"
+                app:helperText=""
+                app:hintTextColor="@color/edit_text_box_text_color">
 
-                <EditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextPasswordAgain"
                     android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_toStartOf="@id/btn_password_confirm_visibility"
-                    android:background="@android:color/transparent"
-                    android:ems="10"
-                    android:hint="@string/hint_password_again"
-                    android:inputType="textPassword"
-                    android:paddingStart="15dp"
-                    android:paddingEnd="15dp"
-                    android:textColor="@color/edit_text_box_text_color"
-                    android:textColorHint="@color/edit_text_box_text_color" />
-
-                <ImageView
-                    android:id="@+id/btn_password_confirm_visibility"
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="20dp"
-                    android:src="@drawable/ic_visibility_on" />
-
-            </RelativeLayout>
+                    android:inputType="textPassword"
+                    android:paddingStart="20dp"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/edit_text_box_text_color"
+                    android:textColorHighlight="#FF9800"
+                    tools:ignore="RtlSymmetry" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
                 android:id="@+id/linearLayoutGoLogin"

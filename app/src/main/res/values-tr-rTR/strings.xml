@@ -85,6 +85,7 @@ onun kelime dağarcığıdır.\n
     <string name="app_leave_out_message">Çıkış yapmak istediğinizden emin misiniz?</string>
     <string name="search">Ara</string>
     <string name="add_word">Kelime Ekle</string>
+    <string name="passwords_not_match">Şifreler uyuşmuyor</string>
 
 
 

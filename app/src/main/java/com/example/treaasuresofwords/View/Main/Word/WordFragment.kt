@@ -55,8 +55,9 @@ class WordFragment : Fragment() {
         // Inflate the layout for this fragment
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
-        _binding = FragmentWordBinding.inflate(inflater,container,false)
         viewModel = WordFragmentViewModel(auth,db)
+        _binding = FragmentWordBinding.inflate(inflater,container,false)
+
         return binding.root
     }
 
@@ -82,7 +83,7 @@ class WordFragment : Fragment() {
                 currentLanguages = hashMapOf<String,String>()
                 currentLanguages!!.put("languageToTranslated",languageList.get(position)["languageToTranslated"].toString())
                 currentLanguages!!.put("translatedLanguage",languageList.get(position)["translatedLanguage"].toString())
-                
+
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {

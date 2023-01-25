@@ -30,7 +30,6 @@ class LoginFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var auth : FirebaseAuth
     private lateinit var viewModel : LoginViewModel
-    private var passwordVisibility = false
     private lateinit var db : FirebaseFirestore
     private lateinit var loadingDialog : LoadingDialog
 
@@ -46,23 +45,6 @@ class LoginFragment : Fragment() {
 
         loadingDialog = LoadingDialog(this.requireActivity())
 
-        //Show Password
-        binding.btnVisibility.setOnClickListener {
-            when(passwordVisibility){
-                false -> {
-                    binding.editTextPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance())
-                    binding.btnVisibility.setImageResource(R.drawable.ic_visibility_off)
-                    passwordVisibility = true
-
-                }
-                else ->{
-                    binding.editTextPassword.setTransformationMethod(PasswordTransformationMethod.getInstance())
-                    binding.btnVisibility.setImageResource(R.drawable.ic_visibility_on)
-                    passwordVisibility = false
-
-                }
-            }
-        }
 
         binding.btnBack.setOnClickListener {
 
@@ -82,6 +64,18 @@ class LoginFragment : Fragment() {
         binding.btnForgotPassword.setOnClickListener {
             val action = LoginFragmentDirections.actionLoginFragmentToPasswordResetFragment()
             findNavController().navigate(action)
+        }
+
+        binding.editTextEmail.setOnFocusChangeListener { v, hasFocus ->
+            if(hasFocus){
+                binding.textEmailInputLayout.error = null
+            }
+        }
+
+        binding.editTextPassword.setOnFocusChangeListener { v, hasFocus ->
+            if(hasFocus){
+                binding.passwordInputLayout.error = null
+            }
         }
 
         viewModel.isSuccesfull.observe(viewLifecycleOwner){ isSuccesfull ->
@@ -149,6 +143,19 @@ class LoginFragment : Fragment() {
             viewModel.login(email,password)
 
         }
+
+        binding.apply {
+            textEmailInputLayout.error = null
+            passwordInputLayout.error = null
+            if(email.isEmpty()){
+                textEmailInputLayout.error = "error"
+            }
+
+            if(password.isEmpty()){
+                passwordInputLayout.error = "error"
+            }
+        }
+
 
     }
 

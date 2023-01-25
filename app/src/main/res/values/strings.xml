@@ -76,7 +76,7 @@
     <string name="app_leave_out_message">Are you sure you want to exit the application?</string>
     <string name="search">Search</string>
     <string name="add_word">Add Word</string>
-
+    <string name="passwords_not_match">Passwords not match</string>
 
 
 
