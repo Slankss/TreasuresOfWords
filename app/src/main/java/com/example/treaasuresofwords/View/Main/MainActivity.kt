@@ -42,6 +42,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        try {
+            this.supportActionBar!!.hide()
+        } catch (e: NullPointerException) {
+        }
 
         NavigationView = findViewById(R.id.adminBottomNavigationView)
         navController = findNavController(R.id.nav_host_fragment)

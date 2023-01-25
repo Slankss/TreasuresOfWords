@@ -43,6 +43,10 @@ class SelectLanguesActivity : AppCompatActivity() {
 
         loadingDialog = LoadingDialog(this)
 
+        try {
+            this.supportActionBar!!.hide()
+        } catch (e: NullPointerException) {
+        }
         createAdapter()
 
         fillSpinner(applicationContext)

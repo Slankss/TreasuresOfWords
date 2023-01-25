@@ -53,6 +53,11 @@ class VerificationActivity : AppCompatActivity()  {
         auth = FirebaseAuth.getInstance()
         val currentUser = auth.currentUser
 
+        try {
+            this.supportActionBar!!.hide()
+        } catch (e: NullPointerException) {
+        }
+
         checkVerified(auth)
 
         binding.btnSignInDifferentLanguage.setOnClickListener {

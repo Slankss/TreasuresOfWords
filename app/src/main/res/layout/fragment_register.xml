@@ -168,8 +168,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_weight="1"
+                    android:capitalize="characters"
                     android:text="@string/sign_in"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="@color/edit_text_box_text_color" />
 
             </LinearLayout>
 

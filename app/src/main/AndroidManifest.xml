@@ -16,6 +16,7 @@
         <activity
             android:name=".View.SplashActivity"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"
             android:exported="true">
 
             <intent-filter>
@@ -30,7 +31,7 @@
         </activity>
         <activity
             android:screenOrientation="portrait"
-
+            android:windowSoftInputMode="adjustPan"
             android:name=".View.Main.MainActivity"
             android:exported="false">
             <meta-data
@@ -39,6 +40,7 @@
         </activity>
         <activity
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"
 
             android:name=".View.LoginAndRegister.Verification.VerificationActivity"
             android:exported="false">
@@ -48,6 +50,7 @@
         </activity>
         <activity
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"
 
             android:name=".View.SelectLangues.SelectLanguesActivity"
             android:exported="false">
@@ -57,6 +60,7 @@
         </activity>
         <activity
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"
 
             android:name=".View.LoginAndRegister.LoginAndRegisterActivity"
             android:exported="false">

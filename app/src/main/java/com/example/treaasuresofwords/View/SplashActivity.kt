@@ -35,6 +35,11 @@ class SplashActivity : AppCompatActivity() {
 
         val currentUser = auth.currentUser
 
+        try {
+            this.supportActionBar!!.hide()
+        } catch (e: NullPointerException) {
+        }
+
 
 
         getSharedPreferences("User_Local_Data", Context.MODE_PRIVATE)
