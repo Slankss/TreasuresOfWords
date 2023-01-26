@@ -77,6 +77,10 @@
     <string name="search">Search</string>
     <string name="add_word">Add Word</string>
     <string name="passwords_not_match">Passwords not match</string>
+    <string name="word_added">Word added.</string>
+    <string name="empty_message">Can not be empty!</string>
+    <string name="word">Word</string>
+    <string name="translate">Translate</string>
 
 
 

@@ -82,7 +82,7 @@
             android:textStyle="bold" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/LanguageToTranslatedInputLayout"
+            android:id="@+id/word_input_layout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -100,7 +100,7 @@
             app:hintTextColor="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextLanguageToTranslated"
+                android:id="@+id/edit_text_word"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
@@ -126,7 +126,7 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/TranslatedLanguageInputLayout"
+            android:id="@+id/translate_input_layout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -145,7 +145,7 @@
             app:hintTextColor="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextTranslatedLanguage"
+                android:id="@+id/edit_text_translate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
@@ -157,6 +157,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
+            android:id="@+id/btnWordAdd"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginEnd="100dp"

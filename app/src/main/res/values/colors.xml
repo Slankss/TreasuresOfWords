@@ -41,6 +41,9 @@
     <color name="word_add_btn_color">#084C61</color>
     <color name="word_delete_btn_color">#DB504A</color>
 
+    <color name="word_row_first_color">#ECF0F1</color>
+    <color name="word_row_second_color">#F1E8DF</color>
+
 
 
 </resources>

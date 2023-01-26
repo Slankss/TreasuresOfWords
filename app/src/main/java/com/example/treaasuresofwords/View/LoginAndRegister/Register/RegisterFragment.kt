@@ -154,11 +154,11 @@ class RegisterFragment : Fragment() {
 
         binding.apply {
 
-            if(email.isEmpty()){ TextEmailInputLayout.error = "error" }
-            if(password.isEmpty()) { passwordInputLayout.error = "error" }
-            if(passwordAgain.isEmpty()) { passwordAgainInputLayout.error = "error"}
+            if(email.isEmpty()){ TextEmailInputLayout.error = getString(R.string.empty_message) }
+            if(password.isEmpty()) { passwordInputLayout.error = getString(R.string.empty_message) }
+            if(passwordAgain.isEmpty()) { passwordAgainInputLayout.error = getString(R.string.empty_message)}
             if(password != passwordAgain) {
-                passwordAgainInputLayout.error = "error"
+                passwordAgainInputLayout.error = getString(R.string.empty_message)
                 activity?.let {
                     Toast.makeText(it,getString(R.string.passwords_not_match),Toast.LENGTH_SHORT).show()
                 }

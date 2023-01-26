@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+    android:padding="5dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <CheckBox
+        android:id="@+id/checkBoxWord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/wordLinearLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:orientation="horizontal"
+        android:background="@drawable/word_row_background"
+        android:weightSum="2"
+        android:paddingStart="10dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/checkBoxWord"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/checkBoxWord"
+        app:layout_constraintTop_toTopOf="@+id/checkBoxWord"
+        tools:ignore="RtlSymmetry">
+
+        <TextView
+            android:id="@+id/txtWord"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/word"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            android:textColor="@color/text_color"/>
+
+        <TextView
+            android:id="@+id/txtTranlate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/translate"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            android:textColor="@color/text_color"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

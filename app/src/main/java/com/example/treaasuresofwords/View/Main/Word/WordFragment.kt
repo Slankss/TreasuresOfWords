@@ -2,6 +2,7 @@ package com.example.treaasuresofwords.View.Main.Word
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.treaasuresofwords.Model.User
 import com.example.treaasuresofwords.R
 import com.example.treaasuresofwords.databinding.FragmentWordBinding
@@ -25,6 +27,7 @@ class WordFragment : Fragment() {
     private lateinit var viewModel : WordFragmentViewModel
     private var currentUser : User? = null
     private var currentLanguages : HashMap<String,String>? = null
+    private lateinit var adapter : WordAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +47,16 @@ class WordFragment : Fragment() {
         binding.btnGoAdd.setOnClickListener {
             val action = WordFragmentDirections.actionWordFragmentToAddWordFragment()
             findNavController().navigate(action)
+        }
+
+        viewModel.wordList.observe(viewLifecycleOwner) { wordList ->
+            //wordList.forEachIndexed { index, word ->
+            //    Log.w("aaa",word.word)
+            //}
+            val layoutManager = LinearLayoutManager(view.context)
+            binding.recyclerView.layoutManager = layoutManager
+            adapter= WordAdapter(wordList,view.context)
+            binding.recyclerView.adapter = adapter
         }
 
     }

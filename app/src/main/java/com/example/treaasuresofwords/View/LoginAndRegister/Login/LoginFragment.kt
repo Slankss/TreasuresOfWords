@@ -111,13 +111,13 @@ class LoginFragment : Fragment() {
     fun isFirstTime(mActivity : Activity){
 
         auth.currentUser?.let {
-            var uid = it.uid
+            val uid = it.uid
 
             db.collection("User").document(uid).get().addOnCompleteListener { task ->
                 if(task.isSuccessful){
-                    var item = task.result
+                    val item = task.result
 
-                    var languages = item.get("languages") as ArrayList<*>
+                    val languages = item.get("languages") as ArrayList<*>
                     if(languages.isEmpty()){
                         startActivity(Intent(mActivity.applicationContext,SelectLanguesActivity::class.java))
                         mActivity.finish()
@@ -148,11 +148,11 @@ class LoginFragment : Fragment() {
             textEmailInputLayout.error = null
             passwordInputLayout.error = null
             if(email.isEmpty()){
-                textEmailInputLayout.error = "error"
+                textEmailInputLayout.error = getString(R.string.empty_message)
             }
 
             if(password.isEmpty()){
-                passwordInputLayout.error = "error"
+                passwordInputLayout.error = getString(R.string.empty_message)
             }
         }
 

@@ -86,6 +86,10 @@ onun kelime dağarcığıdır.\n
     <string name="search">Ara</string>
     <string name="add_word">Kelime Ekle</string>
     <string name="passwords_not_match">Şifreler uyuşmuyor</string>
+    <string name="word_added">Kelime eklendi.</string>
+    <string name="empty_message">Boş olamaz!</string>
+    <string name="word">Kelime</string>
+    <string name="translate">Çevirisi</string>
 
 
 
