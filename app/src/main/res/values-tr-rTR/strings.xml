@@ -90,6 +90,13 @@ onun kelime dağarcığıdır.\n
     <string name="empty_message">Boş olamaz!</string>
     <string name="word">Kelime</string>
     <string name="translate">Çevirisi</string>
+    <string name="words_deleted">Kelimeler silindi</string>
+    <string name="word_deleted">Kelime silindi</string>
+    <string name="word_delete_message">Seçilen kelimeleri silmek istediğinizden emin misiniz?</string>
+    <string name="word_delete">Kelime silme</string>
+
+    <string name="sign_in_text">Giriş Yap</string>
+
 
 
 

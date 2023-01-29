@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/app_background_color"
+    android:background="@drawable/bg_not_image"
     tools:context=".View.SelectLangues.SelectLanguesActivity">
 
     <LinearLayout
@@ -25,11 +25,11 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:background="@drawable/custom_text_box"
-            android:padding="15dp"
             android:layout_height="0dp"
             android:layout_marginBottom="25dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="@drawable/custom_text_box"
+            android:padding="15dp" />
 
         <LinearLayout
             android:layout_width="match_parent"

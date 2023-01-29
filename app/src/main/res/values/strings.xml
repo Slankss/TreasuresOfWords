@@ -81,6 +81,12 @@
     <string name="empty_message">Can not be empty!</string>
     <string name="word">Word</string>
     <string name="translate">Translate</string>
+    <string name="words_deleted">Words Deleted</string>
+    <string name="word_deleted">Word Deleted</string>
+    <string name="word_delete_message">Are you sure you want to delete the selected words?</string>
+    <string name="word_delete">Word delete</string>
+
+    <string name="sign_in_text">Sign in</string>
 
 
 

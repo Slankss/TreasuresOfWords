@@ -40,8 +40,8 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.editTextEmail.setText("dogunigar@hotmail.com")
-        binding.editTextPassword.setText("predatoor")
+        binding.editTextEmail.setText("okankukull@gmail.com")
+        binding.editTextPassword.setText("123456")
 
         loadingDialog = LoadingDialog(this.requireActivity())
 

@@ -11,7 +11,7 @@
 
 
     <color name="app_background_color">#FFFFFF</color>
-    <color name="bottom_sheet_background_color">#084C61</color>
+    <color name="bottom_sheet_background_color">#292F36</color>
 
 
 
@@ -19,23 +19,23 @@
 
 
     <color name="edit_text_box_bg_color">#F2F2F2</color>
-    <color name="edit_text_box_text_color">#2c3e50</color>
-    <color name="text_color">#474747</color>
+    <color name="edit_text_box_text_color">#292F36</color>
+    <color name="text_color">#FFFFFF</color>
 
-    <color name="login_button_color">#084C61</color>
+    <color name="login_button_color">#292F36</color>
     <color name="login_button_text_color">#FFFFFF</color>
     <color name="register_button_text_color">#FFFFFF</color>
     <color name="register_button_color">#DB504A</color>
-    <color name="bottom_menu_bg_color">#084C61</color>
+    <color name="bottom_menu_bg_color">#292F36</color>
 
     <color name="words_filter_bg_color_active">#DB504A</color>
     <color name="words_filter_bg_color_inactive">#00474747</color>
     <color name="words_filter_text_color">#000000</color>
     <color name="word_filter_active_text_color">#FFFFFF</color>
-    <color name="progress_bar_all_color">#084C61</color>
+    <color name="progress_bar_all_color">#292F36</color>
     <color name="progress_bar_progress_color">#DB504A</color>
 
-    <color name="top_menu_bg_color">#084C61</color>
+    <color name="top_menu_bg_color">#292F36</color>
     <color name="top_menu_text_color">#FFFFFF</color>
 
     <color name="word_add_btn_color">#084C61</color>

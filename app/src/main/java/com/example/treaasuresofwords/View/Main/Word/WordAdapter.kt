@@ -1,11 +1,13 @@
 package com.example.treaasuresofwords.View.Main.Word
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import androidx.recyclerview.widget.RecyclerView
 import com.example.treaasuresofwords.Model.Word
 import com.example.treaasuresofwords.R
@@ -14,7 +16,7 @@ import com.example.treaasuresofwords.databinding.WordRowBinding
 class WordAdapter(private val wordList : ArrayList<Word>,private var mContext : Context) :
     RecyclerView.Adapter<WordAdapter.Holder>() {
 
-    var selectClick : (String) -> Unit = {}
+    var selectWord = arrayListOf<Word>()
 
     class Holder(val binding : WordRowBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -27,27 +29,50 @@ class WordAdapter(private val wordList : ArrayList<Word>,private var mContext : 
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        Log.w("position",position.toString())
         holder.binding.apply {
             val word = wordList[position]
-            if(position == 0){
-                wordLinearLayout.setBackgroundColor(Color.TRANSPARENT)
-                checkBoxWord.visibility = View.INVISIBLE
-                checkBoxWord.isClickable = false
+
+            checkBoxWord.isChecked = when(selectWord.contains(word)){
+                true -> true
+                false -> false
+            }
+            if(position % 2 == 0){
+                wordLinearLayout.setBackgroundColor(mContext.getColor(R.color.word_row_second_color))
             }
             else{
-                if(position % 2 == 0){
-                    wordLinearLayout.setBackgroundColor(mContext.getColor(R.color.word_row_second_color))
-                }
-                else{
-                    wordLinearLayout.setBackgroundColor(mContext.getColor(R.color.word_row_first_color))
+                wordLinearLayout.setBackgroundColor(mContext.getColor(R.color.word_row_first_color))
+            }
+            txtWord.setText(word.word)
+            txtTranlate.setText(word.translate)
 
-                }
-                txtWord.setText(word.word)
-                txtTranlate.setText(word.translate)
+            checkBoxWord.setOnCheckedChangeListener { buttonView, isChecked ->
+                    if(isChecked){
+                        if(!selectWord.contains(word)){
+                            selectWord.add(word)
+                        }
+                    }
+                    else{
+                        selectWord.remove(word)
+                    }
             }
         }
     }
+
+    fun getSelectedWord() : ArrayList<Word>{
+        return selectWord
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun selectAll(state : Boolean){
+        selectWord.clear()
+        if(state){
+            selectWord.addAll(wordList)
+        }
+
+        notifyDataSetChanged()
+    }
+
+
 
     override fun getItemCount(): Int {
         return wordList.size

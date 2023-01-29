@@ -157,9 +157,10 @@
             android:layout_height="wrap_content"
             android:background="@drawable/filter_radio_button"
             android:button="@color/transparant"
+            android:checked="true"
             android:padding="10dp"
             android:text="@string/this_week"
-            android:textColor="@color/words_filter_text_color"
+            android:textColor="#FFFFFF"
             android:textSize="12sp"
             tools:ignore="TouchTargetSizeCheck" />
 
