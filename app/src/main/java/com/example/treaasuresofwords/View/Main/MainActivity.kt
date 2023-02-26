@@ -33,8 +33,7 @@ class MainActivity : AppCompatActivity() {
     private val childFragmentList = arrayOf(
         R.id.homeFragment,
         R.id.wordFragment,
-        R.id.quizFragment,
-        R.id.profileFragment
+        R.id.quizFragment
     )
     private val childFragmentMenuList = arrayOf(0,1,1)
 
@@ -55,8 +54,7 @@ class MainActivity : AppCompatActivity() {
             setOf(
                 R.id.homeFragment,
                 R.id.wordFragment,
-                R.id.quizFragment,
-                R.id.profileFragment
+                R.id.quizFragment
             )
         )
         setupActionBarWithNavController(navController,appBarConfiguration)
@@ -80,16 +78,13 @@ class MainActivity : AppCompatActivity() {
 
             val destinationFragment = previous.destination.id
             if(childFragmentList.contains(destinationFragment)){
-                Log.w("araba",destinationFragment.toString())
                 NavigationView.menu[childFragmentMenuList[childFragmentList.indexOf(destinationFragment)]].isChecked = true
             }
             else{
-                Log.w("araba",destinationFragment.toString())
             }
             super.onBackPressed()
         }
         else{
-            Log.w("araba","dialogBuilder GIRDI")
             val dialogBuilder = AlertDialog.Builder(this)
             dialogBuilder.setMessage(R.string.app_leave_out_message)
                 .setPositiveButton(R.string.yes, DialogInterface.OnClickListener { dialog, id ->

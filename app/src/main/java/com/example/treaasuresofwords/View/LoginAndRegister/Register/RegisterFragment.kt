@@ -127,10 +127,7 @@ class RegisterFragment : Fragment() {
             if(result){
                 loadingDialog.startLoadingDialog()
                 btnRegister.isClickable = false
-                // name,surname,numner is empty
-                // empty langauges list
-                val emptyList = arrayListOf<HashMap<String,Any>>()
-                var user = User("",email,"",false,current_language,emptyList)
+                var user = User("",email,"",false,current_language)
                 viewModel.register(user,password)
             }
 

@@ -4,6 +4,7 @@ package com.example.treaasuresofwords.View.Main.AddWord
 import android.R.layout.simple_spinner_dropdown_item
 import android.annotation.SuppressLint
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,15 +13,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import androidx.navigation.fragment.findNavController
+import android.widget.Toast
+import androidx.annotation.RequiresApi
 import com.example.treaasuresofwords.Model.LoadingDialog
 import com.example.treaasuresofwords.Model.User
 import com.example.treaasuresofwords.Model.Word
 import com.example.treaasuresofwords.R
-import com.example.treaasuresofwords.View.Main.Word.WordAdapter
 import com.example.treaasuresofwords.databinding.FragmentAddWordBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.muhammed.toastoy.Toastoy
+import java.sql.Timestamp
+import java.time.Instant
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -33,7 +41,6 @@ class AddWordFragment : Fragment() {
     private lateinit var db : FirebaseFirestore
     private lateinit var viewModel : AddWordFragmentViewModel
     private var currentUser : User? = null
-    private var currentLanguages : HashMap<String,String>? = null
     private lateinit var loadingDialog : LoadingDialog
 
 
@@ -42,18 +49,12 @@ class AddWordFragment : Fragment() {
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SuspiciousIndentation")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         loadingDialog = LoadingDialog(this.requireActivity())
-
-        viewModel.userProfile.observe(viewLifecycleOwner){ user ->
-            if(user != null){
-                currentUser = user
-                fillSpinner(view.context)
-            }
-        }
 
         binding.apply {
 
@@ -69,6 +70,9 @@ class AddWordFragment : Fragment() {
                 }
             }
 
+
+
+
             btnWordAdd.setOnClickListener {
             val word = binding.editTextWord.text.toString().trim()
             val translate = binding.editTextTranslate.text.toString().trim()
@@ -76,15 +80,27 @@ class AddWordFragment : Fragment() {
                 if(check(word,translate)){
                     val lower_word = word.lowercase()
                     val lower_translate = translate.lowercase()
-                    if(currentLanguages != null){
-                        loadingDialog.startLoadingDialog()
-                        val languageToTranslated = currentLanguages!!["languageToTranslated"].toString()
-                        val translatedLanguage = currentLanguages!!["translatedLanguage"].toString()
-                        val word = Word(languageToTranslated,translatedLanguage,lower_word,lower_translate,0)
 
-                        viewModel.addWord(word)
+                    loadingDialog.startLoadingDialog()
+
+                    val currentDate = LocalDateTime.now()
+                    val day = currentDate.dayOfMonth.toString()
+                    val month = currentDate.monthValue.toString()
+                    val year = currentDate.year.toString()
+
+                    val dayString = when(day.length){
+                        1 -> "0$day"
+                        else -> { day}
                     }
+                    val monthString = when(month.length){
+                        1 -> "0$month"
+                        else -> { month}
+                    }
+                    val dateString = "$dayString-$monthString-$year"
 
+                    val word = Word(lower_word,lower_translate,0,dateString,"","")
+
+                    viewModel.addWord(word)
                 }
             }
 
@@ -92,8 +108,8 @@ class AddWordFragment : Fragment() {
 
         viewModel.isSuccesfull.observe(viewLifecycleOwner) { isSuccesfull ->
             if(isSuccesfull){
-                val action = AddWordFragmentDirections.actionAddWordFragmentToWordFragment()
-                findNavController().navigate(action)
+                binding.editTextWord.setText("")
+                binding.editTextTranslate.setText("")
             }
         }
 
@@ -140,41 +156,5 @@ class AddWordFragment : Fragment() {
         _binding = null
     }
 
-    fun fillSpinner(mContext : Context){
-
-        val languageList = currentUser!!.languages
-        val languageStringList = arrayListOf<String>()
-        languageList.forEachIndexed { index, hashMap ->
-            var text = hashMap["languageToTranslated"].toString() + " -> " + hashMap["translatedLanguage"].toString()
-            languageStringList.add(text)
-        }
-
-        val arrayAdapter = ArrayAdapter<String>(mContext,
-            simple_spinner_dropdown_item,languageStringList)
-
-        binding.spinnerSelectLanguage.adapter = arrayAdapter
-        binding.spinnerSelectLanguage.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                currentLanguages = hashMapOf<String,String>()
-                currentLanguages!!.put("languageToTranslated",languageList.get(position)["languageToTranslated"].toString())
-                currentLanguages!!.put("translatedLanguage",languageList.get(position)["translatedLanguage"].toString())
-
-                binding.lblLanguageToTranslated.setText(currentLanguages!!["languageToTranslated"].toString())
-                binding.lblTranslatedLanguage.setText(currentLanguages!!["translatedLanguage"].toString())
-
-
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
-        }
-
-    }
 
 }

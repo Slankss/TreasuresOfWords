@@ -1,6 +1,5 @@
-package com.example.treaasuresofwords.View.Main.Word
+package com.example.treaasuresofwords.View.Main.Home
 
-import android.content.Context
 import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
@@ -8,25 +7,25 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.treaasuresofwords.Model.User
 import com.example.treaasuresofwords.Model.Word
-import com.example.treaasuresofwords.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.muhammed.toastoy.Toastoy
 import java.time.LocalDate
-import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
 
 @RequiresApi(Build.VERSION_CODES.O)
-class WordFragmentViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore, var mContext : Context) : ViewModel() {
+class HomeFragmentViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore) : ViewModel(){
 
-    var allWordList = arrayListOf<Word>()
-    var wordList = MutableLiveData<ArrayList<Word>>()
-    var userProfile = MutableLiveData<User>()
+    var user = MutableLiveData<User>()
     var currentUser : FirebaseUser? = null
+    var learnedWord = MutableLiveData<Int>()
+    var allWordList = arrayListOf<Word>()
+    var userProfile = MutableLiveData<User>()
+    var wordList = MutableLiveData<ArrayList<Word>>()
+
 
     init {
+        learnedWord.value = 0
         getCurrentUser()
     }
 
@@ -51,7 +50,7 @@ class WordFragmentViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore,
 
                         userProfile.value = user
 
-                        getWordList()
+                        getWordList(null)
                     }
 
                 }
@@ -63,7 +62,7 @@ class WordFragmentViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore,
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun getWordList(){
+    fun getWordList(filterDate : LocalDate?){
 
         if(currentUser != null){
 
@@ -75,8 +74,10 @@ class WordFragmentViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore,
                 else{
                     val document = value
                     val wordListArray = arrayListOf<Word>()
+                    wordList.value?.clear()
+                    learnedWord.value = 0
+                    var learned = 0
                     if(document != null && document.data != null && document.exists()){
-
                         val wordListInDb = document.get("wordList") as ArrayList<HashMap<String,Any>>
                         wordListInDb.forEach {
                             val word_name = it["word"].toString()
@@ -85,84 +86,48 @@ class WordFragmentViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore,
                             val date = it["date"].toString()
                             val quizTime = it["quizTime"].toString()
                             val quizTimeHour = it["quizTimeHour"].toString()
+
                             val word = Word(word_name,translate,repeatTime,date,quizTime,quizTimeHour)
 
-                            wordListArray.add(word)
-                        }
-                        wordListArray.reverse()
-                    }
-                    allWordList = wordListArray.map { it } as ArrayList<Word>
-                    wordList.value = wordListArray
-                }
-            }
 
-        }
-    }
-
-
-
-    fun deleteWord(selectedWords : ArrayList<Word>){
-        currentUser?.let { current ->
-            val uid = current.uid
-            if(wordList.value != null){
-                val wordListArray = wordList.value
-            if (wordListArray!!.size == selectedWords.size) {
-                db.collection("Word").document(uid).delete()
-                    .addOnCompleteListener { deleteTask ->
-                        if (deleteTask.isSuccessful) {
-                            Toastoy.showInfoToast(mContext,mContext.getString(R.string.words_deleted))
-                        }
-                    }
-            }
-            else{
-                selectedWords.forEachIndexed { index, word ->
-                    if(wordListArray.contains(word)){
-                        wordListArray.remove(word)
-                    }
-                }
-
-                db.collection("Word").document(uid).update("wordList", wordListArray)
-                    .addOnCompleteListener { updateTask ->
-                        if (updateTask.isSuccessful) {
-                            var message = ""
-                            if(selectedWords.size > 1){
-                                message = mContext.getString(R.string.words_deleted)
+                            if(filterDate == null){
+                                wordListArray.add(word)
+                                if(word.repeatTime >= 3){
+                                    learned++
+                                }
                             }
                             else{
-                                message = mContext.getString(R.string.word_deleted)
+
+                                val day = it["date"].toString().subSequence(0,2).toString()
+                                val month = it["date"].toString().subSequence(3,5).toString()
+                                val year = it["date"].toString().subSequence(6,10).toString()
+
+                                var date = LocalDate.of(year.toInt(),month.toInt(),day.toInt())
+
+                                if(date.isAfter(filterDate))
+                                {
+                                    wordListArray.add(word)
+                                    if(word.repeatTime >= 5){
+                                    learned++
+                                    }
+                                }
+
                             }
-                            Toastoy.showInfoToast(mContext,message)
+
+
+
                         }
+                        learnedWord.value = learned
+                        wordListArray.reverse()
+
                     }
-                }
-                allWordList.clear()
-                allWordList = wordListArray.map { it } as ArrayList<Word>
-            }
-        }
-    }
-
-    fun searchWord(searchedWord : String){
-
-        currentUser?.let {  current ->
-            var uid = current.uid
-            if(searchedWord.isNotEmpty()){
-                if(allWordList.isNotEmpty()){
-
-                    val searchedWordList = arrayListOf<Word>()
-                    allWordList.forEach { word ->
-                        if(word.word.startsWith(searchedWord)){
-                            searchedWordList.add(word)
-                        }
-                    }
-                    wordList.value!!.clear()
-                    wordList.value = searchedWordList
+                    allWordList = wordListArray.map { it } as ArrayList<Word>
+                    wordList.value = wordListArray.map { it } as ArrayList<Word>
 
                 }
             }
+
         }
     }
-
-
-
 
 }

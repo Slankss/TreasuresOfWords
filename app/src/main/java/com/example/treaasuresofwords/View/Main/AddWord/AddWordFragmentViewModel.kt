@@ -40,9 +40,8 @@ class AddWordFragmentViewModel(var auth : FirebaseAuth,var db : FirebaseFirestor
                         val number = document.getString("number") as String
                         val selectedLanguageState = document.getBoolean("selectedLanguageState") as Boolean
                         val pageLanguage = document.getString("pageLanguage") as String
-                        val languages = document.get("languages") as ArrayList<HashMap<String,Any>>
 
-                        val user = User(username,email,number,selectedLanguageState,pageLanguage,languages)
+                        val user = User(username,email,number,selectedLanguageState,pageLanguage)
 
                         userProfile.value = user
                     }
@@ -58,15 +57,14 @@ class AddWordFragmentViewModel(var auth : FirebaseAuth,var db : FirebaseFirestor
     fun addWord(word : Word){
 
         if(currentUser != null){
-            var uid = currentUser!!.uid
+            val uid = currentUser!!.uid
             db.collection("Word").document(uid).get().addOnCompleteListener { task ->
                 if(task.isSuccessful){
                     val document = task.result
 
                     if(document.data == null){
 
-                        Log.w("test","document null ")
-                        var wordHashMap = hashMapOf<String,Any>()
+                        val wordHashMap = hashMapOf<String,Any>()
                         val wordList = arrayListOf<Word>()
                         wordList.add(word)
                         wordHashMap.put("wordList",wordList)
@@ -85,8 +83,7 @@ class AddWordFragmentViewModel(var auth : FirebaseAuth,var db : FirebaseFirestor
                         }
                     }
                     else{
-                        Log.w("test","document null Deil ")
-                        var wordList = document.get("wordList") as ArrayList<Word>
+                        val wordList = document.get("wordList") as ArrayList<Word>
                         wordList.add(word)
                         db.collection("Word").document(uid).update("wordList",wordList)
                             .addOnCompleteListener { updateTask ->

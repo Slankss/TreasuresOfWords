@@ -11,6 +11,7 @@
         <item name="colorOnSecondary">@color/login_button_color</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/bottom_menu_bg_color</item>
+        <item name="android:windowLightStatusBar">true</item>
         <item name="android:fontFamily">@font/lato_bold</item>
         <!-- Customize your theme here. -->
     </style>
@@ -22,4 +23,10 @@
     <style name="BottomSheetDialogTheme" parent="Theme.Design.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
     </style>
+
+    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">#fff</item>
+        <item name="boxStrokeWidth">2dp</item>
+    </style>
+
 </resources>

@@ -5,5 +5,5 @@
     android:viewportHeight="163">
   <path
       android:pathData="M40,0L375,0A40,40 0,0 1,415 40L415,123A40,40 0,0 1,375 163L40,163A40,40 0,0 1,0 123L0,40A40,40 0,0 1,40 0z"
-      android:fillColor="@color/login_button_color"/>
+      android:fillColor="#00001F54"/>
 </vector>

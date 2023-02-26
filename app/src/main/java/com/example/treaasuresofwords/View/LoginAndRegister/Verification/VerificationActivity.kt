@@ -14,6 +14,7 @@ import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import com.example.treaasuresofwords.R
 import com.example.treaasuresofwords.View.LoginAndRegister.LoginAndRegisterActivity
+import com.example.treaasuresofwords.View.Main.MainActivity
 import com.example.treaasuresofwords.View.SelectLangues.SelectLanguesActivity
 import com.example.treaasuresofwords.databinding.ActivityVerificationBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -133,7 +134,7 @@ class VerificationActivity : AppCompatActivity()  {
                     it.reload()
                     if(it.isEmailVerified){
                         Toastoy.showSuccessToast(applicationContext,getString(R.string.verification_succesfull))
-                        startActivity(Intent(applicationContext,SelectLanguesActivity::class.java))
+                        startActivity(Intent(applicationContext,MainActivity::class.java))
                         finish()
                         cancel()
 

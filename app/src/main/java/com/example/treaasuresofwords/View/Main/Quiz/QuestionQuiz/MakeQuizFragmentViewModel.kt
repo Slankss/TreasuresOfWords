@@ -1,27 +1,25 @@
-package com.example.treaasuresofwords.View.Main.Word
+package com.example.treaasuresofwords.View.Main.Quiz.QuestionQuiz
 
-import android.content.Context
 import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.treaasuresofwords.Model.Question
 import com.example.treaasuresofwords.Model.User
 import com.example.treaasuresofwords.Model.Word
-import com.example.treaasuresofwords.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
-import com.muhammed.toastoy.Toastoy
 import java.time.LocalDate
+import java.time.ZoneId
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
 @RequiresApi(Build.VERSION_CODES.O)
-class WordFragmentViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore, var mContext : Context) : ViewModel() {
+class MakeQuizFragmentViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore) : ViewModel() {
 
-    var allWordList = arrayListOf<Word>()
     var wordList = MutableLiveData<ArrayList<Word>>()
     var userProfile = MutableLiveData<User>()
     var currentUser : FirebaseUser? = null
@@ -82,16 +80,47 @@ class WordFragmentViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore,
                             val word_name = it["word"].toString()
                             val translate = it["translate"].toString()
                             val repeatTime = it["repeatTime"].toString().toInt()
-                            val date = it["date"].toString()
+                            val dateString = it["date"].toString()
                             val quizTime = it["quizTime"].toString()
                             val quizTimeHour = it["quizTimeHour"].toString()
-                            val word = Word(word_name,translate,repeatTime,date,quizTime,quizTimeHour)
+                            val word = Word(word_name,translate,repeatTime,dateString,quizTime,quizTimeHour)
 
-                            wordListArray.add(word)
+                            val day = it["date"].toString().subSequence(0,2).toString()
+                            val month = it["date"].toString().subSequence(3,5).toString()
+                            val year = it["date"].toString().subSequence(6,10).toString()
+
+                            val localDate = LocalDate.now()
+                            val date = LocalDate.of(year.toInt(),month.toInt(),day.toInt())
+                            val diff : Long = converDate(localDate).time - converDate(date).time
+                            when(repeatTime){
+                                0 -> {
+                                    wordListArray.add(word)
+                                }
+                                1 -> {
+                                    if(diff >= 1){
+                                        wordListArray.add(word)
+                                    }
+                                }
+                                2 -> {
+                                    if(diff >= 4){
+                                        wordListArray.add(word)
+                                    }
+                                }
+                                3 -> {
+                                    if(diff >= 9){
+                                        wordListArray.add(word)
+                                    }
+                                }
+                                4 -> {
+                                    if(diff >= 16){
+                                        wordListArray.add(word)
+                                    }
+                                }
+                            }
+
                         }
                         wordListArray.reverse()
                     }
-                    allWordList = wordListArray.map { it } as ArrayList<Word>
                     wordList.value = wordListArray
                 }
             }
@@ -99,70 +128,10 @@ class WordFragmentViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore,
         }
     }
 
-
-
-    fun deleteWord(selectedWords : ArrayList<Word>){
-        currentUser?.let { current ->
-            val uid = current.uid
-            if(wordList.value != null){
-                val wordListArray = wordList.value
-            if (wordListArray!!.size == selectedWords.size) {
-                db.collection("Word").document(uid).delete()
-                    .addOnCompleteListener { deleteTask ->
-                        if (deleteTask.isSuccessful) {
-                            Toastoy.showInfoToast(mContext,mContext.getString(R.string.words_deleted))
-                        }
-                    }
-            }
-            else{
-                selectedWords.forEachIndexed { index, word ->
-                    if(wordListArray.contains(word)){
-                        wordListArray.remove(word)
-                    }
-                }
-
-                db.collection("Word").document(uid).update("wordList", wordListArray)
-                    .addOnCompleteListener { updateTask ->
-                        if (updateTask.isSuccessful) {
-                            var message = ""
-                            if(selectedWords.size > 1){
-                                message = mContext.getString(R.string.words_deleted)
-                            }
-                            else{
-                                message = mContext.getString(R.string.word_deleted)
-                            }
-                            Toastoy.showInfoToast(mContext,message)
-                        }
-                    }
-                }
-                allWordList.clear()
-                allWordList = wordListArray.map { it } as ArrayList<Word>
-            }
-        }
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun converDate(dateToConvert: LocalDate): Date {
+        return Date.from(dateToConvert.atStartOfDay(ZoneId.systemDefault()).toInstant())
     }
-
-    fun searchWord(searchedWord : String){
-
-        currentUser?.let {  current ->
-            var uid = current.uid
-            if(searchedWord.isNotEmpty()){
-                if(allWordList.isNotEmpty()){
-
-                    val searchedWordList = arrayListOf<Word>()
-                    allWordList.forEach { word ->
-                        if(word.word.startsWith(searchedWord)){
-                            searchedWordList.add(word)
-                        }
-                    }
-                    wordList.value!!.clear()
-                    wordList.value = searchedWordList
-
-                }
-            }
-        }
-    }
-
-
 
 
 }

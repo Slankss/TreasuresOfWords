@@ -6,16 +6,171 @@
     android:layout_height="match_parent"
     tools:context=".View.Main.Quiz.QuizFragment">
 
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/questionLinearLayout"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/menu_quiz"
-        android:textColor="@color/white"
-        android:textSize="20sp"
+        android:layout_marginStart="35dp"
+        android:layout_marginEnd="35dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="25dp"
+            android:layout_weight="2">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/btnTenQuestion"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_marginEnd="25dp"
+                android:layout_weight="1"
+                android:padding="10dp"
+                app:cardBackgroundColor="@color/login_background_color"
+                tools:ignore="NestedWeights">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ten_question_quiz"
+                        android:textColor="@color/white"
+                        android:layout_marginBottom="10dp"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txtTenQuestionError"
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/insufficient_word_10"
+                        android:textAlignment="center"
+                        android:textColor="#FF0000"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/btnTwelweQuestion"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:padding="10dp"
+                android:layout_weight="1"
+                >
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/twelwe_question_quiz"
+                        android:textColor="@color/black"
+                        android:layout_marginBottom="10dp"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txtTwelweQuestionError"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/insufficient_word_10"
+                        android:visibility="gone"
+                        android:textAlignment="center"
+                        android:textColor="#FF0000"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="2">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/btnMatching"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:padding="10dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="25dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/matching_quiz"
+                        android:textColor="@color/black"
+                        android:layout_marginBottom="10dp"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txtMatchingError"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/insufficient_word_10"
+                        android:visibility="gone"
+                        android:textAlignment="center"
+                        android:textColor="#FF0000"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:padding="10dp"
+                app:cardBackgroundColor="@color/login_background_color"
+                android:layout_weight="1"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:layout_gravity="center"
+                    android:text="QUIZ 4"/>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

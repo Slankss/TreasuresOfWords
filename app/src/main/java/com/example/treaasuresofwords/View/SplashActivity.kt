@@ -56,6 +56,8 @@ class SplashActivity : AppCompatActivity() {
             if(currentUser != null){
 
                 if(currentUser.isEmailVerified){
+                    goPage( Intent(applicationContext, MainActivity::class.java))
+                    /*
                     val uid = currentUser.uid
                     db.collection("User").document(uid).get().addOnCompleteListener { task ->
                         if(task.isSuccessful){
@@ -72,6 +74,7 @@ class SplashActivity : AppCompatActivity() {
                             }
                         }
                     }
+                     */
                 }
                 else{
                     goPage(Intent(applicationContext, LoginAndRegisterActivity::class.java))

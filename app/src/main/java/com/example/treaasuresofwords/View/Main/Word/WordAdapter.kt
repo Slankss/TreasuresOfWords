@@ -13,10 +13,11 @@ import com.example.treaasuresofwords.Model.Word
 import com.example.treaasuresofwords.R
 import com.example.treaasuresofwords.databinding.WordRowBinding
 
-class WordAdapter(private val wordList : ArrayList<Word>,private var mContext : Context) :
+class WordAdapter(private val wordList : ArrayList<Word>,private var mContext : Context,var show : Boolean) :
     RecyclerView.Adapter<WordAdapter.Holder>() {
 
     var selectWord = arrayListOf<Word>()
+    var allWordSelected : (Boolean) -> Unit = {}
 
     class Holder(val binding : WordRowBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -37,13 +38,18 @@ class WordAdapter(private val wordList : ArrayList<Word>,private var mContext : 
                 false -> false
             }
             if(position % 2 == 0){
-                wordLinearLayout.setBackgroundColor(mContext.getColor(R.color.word_row_second_color))
+                //wordLinearLayout.setBackgroundColor(mContext.getColor(R.color.word_row_second_color))
             }
             else{
-                wordLinearLayout.setBackgroundColor(mContext.getColor(R.color.word_row_first_color))
+                //wordLinearLayout.setBackgroundColor(mContext.getColor(R.color.word_row_first_color))
             }
+
             txtWord.setText(word.word)
-            txtTranlate.setText(word.translate)
+            val translate = when(show){
+                true -> word.translate
+                false -> "****"
+            }
+            txtTranlate.setText(translate)
 
             checkBoxWord.setOnCheckedChangeListener { buttonView, isChecked ->
                     if(isChecked){
@@ -54,7 +60,16 @@ class WordAdapter(private val wordList : ArrayList<Word>,private var mContext : 
                     else{
                         selectWord.remove(word)
                     }
+
+                    if(selectWord.size == wordList.size){
+                        allWordSelected(true)
+                    }
+                    else{
+                        allWordSelected(false)
+                    }
             }
+
+
         }
     }
 
@@ -69,6 +84,12 @@ class WordAdapter(private val wordList : ArrayList<Word>,private var mContext : 
             selectWord.addAll(wordList)
         }
 
+        notifyDataSetChanged()
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun changeShow(showValue : Boolean){
+        show = showValue
         notifyDataSetChanged()
     }
 

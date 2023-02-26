@@ -40,8 +40,8 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.editTextEmail.setText("okankukull@gmail.com")
-        binding.editTextPassword.setText("123456")
+        binding.editTextEmail.setText("dogunigar@hotmai.com")
+        binding.editTextPassword.setText("predatoor")
 
         loadingDialog = LoadingDialog(this.requireActivity())
 
@@ -85,7 +85,7 @@ class LoginFragment : Fragment() {
                     currentUser?.let { current ->
                         if(current.isEmailVerified){
                             // email verified go main page
-                            isFirstTime(it)
+                            startActivity(Intent(it.applicationContext,MainActivity::class.java))
                         }
                         else{
                             // email not verified go verification page
@@ -108,30 +108,7 @@ class LoginFragment : Fragment() {
 
     }
 
-    fun isFirstTime(mActivity : Activity){
 
-        auth.currentUser?.let {
-            val uid = it.uid
-
-            db.collection("User").document(uid).get().addOnCompleteListener { task ->
-                if(task.isSuccessful){
-                    val item = task.result
-
-                    val languages = item.get("languages") as ArrayList<*>
-                    if(languages.isEmpty()){
-                        startActivity(Intent(mActivity.applicationContext,SelectLanguesActivity::class.java))
-                        mActivity.finish()
-                    }
-                    else{
-                        startActivity(Intent(mActivity.applicationContext,MainActivity::class.java))
-                        mActivity.finish()
-                    }
-
-                }
-            }
-        }
-
-    }
 
     fun login(){
 

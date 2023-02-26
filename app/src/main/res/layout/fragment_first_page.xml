@@ -38,7 +38,6 @@
             android:layout_marginStart="25dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="25dp"
-            android:background="@drawable/login_background"
             android:orientation="horizontal">
 
             <Button
@@ -46,23 +45,25 @@
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:letterSpacing="0.15"
                 android:layout_weight="1"
-                android:background="@drawable/register_background"
+                android:background="@drawable/first_page_button_background"
                 android:text="@string/register"
                 android:textColor="@color/register_button_text_color"
                 android:textSize="16sp"
-                app:backgroundTint="@color/register_button_color"
                 tools:ignore="NestedWeights" />
 
             <Button
                 android:id="@+id/btnGoLogin"
+                android:layout_marginStart="10dp"
                 android:layout_width="match_parent"
+                android:letterSpacing="0.15"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/login_background"
+                android:background="@drawable/first_page_button_background"
                 android:text="@string/login"
                 android:textColor="@color/login_button_text_color"
-                app:backgroundTint="@color/login_button_color" />
+                />
 
         </LinearLayout>
 

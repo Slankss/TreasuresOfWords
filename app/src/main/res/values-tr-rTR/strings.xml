@@ -15,7 +15,7 @@ onun kelime dağarcığıdır.\n
     <string name="turkish">Türkçe</string>
     <string name="english">İngilizce</string>
     <string name="dont_have_an_account">Hesabın yok mu?</string>
-    <string name="sign_in">Giriş yap</string>
+    <string name="sign_in">Giriş  yap</string>
     <string name="hint_email">Eposta*</string>
     <string name="hint_password">Şifre*</string>
     <string name="hint_password_again">Tekrar Şifre*</string>
@@ -96,14 +96,25 @@ onun kelime dağarcığıdır.\n
     <string name="word_delete">Kelime silme</string>
 
     <string name="sign_in_text">Giriş Yap</string>
+    <string name="username">Kullanıcı adı</string>
+    <string name="phone">Telefon</string>
+    <string name="update">Güncelle</string>
+    <string name="profile_updated">Profil güncellendi</string>
+    <string name ="phone_length">Telefon numarası 10 karakter olmalıdır.</string>
+    <string name="new_password">Yeni parola</string>
+    <string name="change_password">Şifre değiştir</string>
+    <string name="change_password_message">Şifre değiştirildi</string>
+    <string name="change_password_character_error">Parola en az 6 karakter olmalıdır</string>
 
+    <string name="answer">Yanıtla</string>
+    <string name="quiz_preparing">Minik sınav hazırlanıyor.</string>
+    <string name="quiz_min_10_word">Minik sınav için en az 10 kelime eklemelisiniz.</string>
 
-
-
-
-
-
-
+    <string name="ten_question_quiz">10 Soru</string>
+    <string name="twelwe_question_quiz">20 Soru</string>
+    <string name="matching_quiz">Eşleştirme</string>
+    <string name="insufficient_word_10">Minimum 10 keline\nuygun değil</string>
+    <string name="insufficient_word_20">Minimum 20 keline\nuygun değil</string>
 
 
 </resources>

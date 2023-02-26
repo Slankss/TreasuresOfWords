@@ -9,7 +9,22 @@
         android:id="@+id/homeFragment"
         android:name="com.example.treaasuresofwords.View.Main.Home.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment"
+            app:enterAnim="@anim/anim_slide_in_left"
+            app:exitAnim="@anim/anim_slide_out_left"
+            app:popEnterAnim="@anim/anim_slide_in_right"
+            app:popExitAnim="@anim/anim_slide_out_right" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:enterAnim="@anim/anim_slide_in_left"
+            app:exitAnim="@anim/anim_slide_out_left"
+            app:popEnterAnim="@anim/anim_slide_in_right"
+            app:popExitAnim="@anim/anim_slide_out_right" />
+    </fragment>
     <fragment
         android:id="@+id/addWordFragment"
         android:name="com.example.treaasuresofwords.View.Main.AddWord.AddWordFragment"
@@ -45,5 +60,51 @@
         android:id="@+id/quizFragment"
         android:name="com.example.treaasuresofwords.View.Main.Quiz.QuizFragment"
         android:label="@string/menu_quiz"
-        tools:layout="@layout/fragment_quiz" />
+        tools:layout="@layout/fragment_quiz" >
+        <action
+            android:id="@+id/action_quizFragment_to_makeQuizFragment"
+            app:destination="@id/makeQuizFragment"
+            app:enterAnim="@anim/anim_slide_in_left"
+            app:exitAnim="@anim/anim_slide_out_left"
+            app:popEnterAnim="@anim/anim_slide_in_right"
+            app:popExitAnim="@anim/anim_slide_out_right" />
+        <action
+            android:id="@+id/action_quizFragment_to_matchingQuizFragment"
+            app:destination="@id/matchingQuizFragment"
+            app:enterAnim="@anim/anim_slide_in_left"
+            app:exitAnim="@anim/anim_slide_out_left"
+            app:popEnterAnim="@anim/anim_slide_in_right"
+            app:popExitAnim="@anim/anim_slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.treaasuresofwords.View.Main.Settings.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/makeQuizFragment"
+        android:name="com.example.treaasuresofwords.View.Main.Quiz.QuestionQuiz.MakeQuizFragment"
+        android:label="fragment_make_quiz"
+        tools:layout="@layout/fragment_make_quiz" >
+        <action
+            android:id="@+id/action_makeQuizFragment_to_quizFragment"
+            app:destination="@id/quizFragment"
+            app:enterAnim="@anim/anim_slide_in_right"
+            app:exitAnim="@anim/anim_slide_out_right"
+            app:popEnterAnim="@anim/anim_slide_in_left"
+            app:popExitAnim="@anim/anim_slide_out_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/matchingQuizFragment"
+        android:name="com.example.treaasuresofwords.View.Main.Quiz.MatchingQuiz.MatchingQuizFragment"
+        android:label="fragment_matching_quiz"
+        tools:layout="@layout/fragment_matching_quiz" >
+        <action
+            android:id="@+id/action_matchingQuizFragment_to_quizFragment"
+            app:destination="@id/quizFragment"
+            app:enterAnim="@anim/anim_slide_in_right"
+            app:exitAnim="@anim/anim_slide_out_right"
+            app:popEnterAnim="@anim/anim_slide_in_left"
+            app:popExitAnim="@anim/anim_slide_out_left" />
+    </fragment>
 </navigation>

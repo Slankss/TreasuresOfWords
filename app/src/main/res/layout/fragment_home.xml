@@ -13,7 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="50dp"
         app:layout_constraintEnd_toEndOf="@+id/radioGroup"
         app:layout_constraintStart_toStartOf="@+id/radioGroup"
@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="3000"
-            android:textColor="@color/register_button_color"
+            android:textColor="@color/progress_bar_all_color"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/circularProgressBar"
@@ -75,7 +75,7 @@
         android:translationZ="100dp"
         android:background="@drawable/top_menu_background"
         android:orientation="vertical"
-        android:padding="30dp"
+        android:padding="25dp"
         android:visibility="visible"
         app:layout_constraintStart_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnOpenTopMenu">
@@ -84,9 +84,10 @@
             android:id="@+id/btnGoProfile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:layout_marginBottom="10dp"
             android:text="@string/menu_profile"
-            android:textColor="@color/top_menu_text_color"
+            android:textColor="@color/black"
             android:textSize="16sp" />
 
         <TextView
@@ -95,16 +96,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:text="@string/settings"
-            android:textColor="@color/top_menu_text_color"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/btnGoHelp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="@string/help"
-            android:textColor="@color/top_menu_text_color"
+            android:textColor="@color/black"
             android:textSize="16sp" />
 
         <TextView
@@ -112,7 +104,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/log_out"
-            android:textColor="@color/top_menu_text_color"
+            android:textColor="@color/black"
             android:textSize="16sp" />
     </LinearLayout>
 
@@ -145,7 +137,7 @@
         android:id="@+id/radioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="80dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -157,10 +149,10 @@
             android:layout_height="wrap_content"
             android:background="@drawable/filter_radio_button"
             android:button="@color/transparant"
-            android:checked="true"
+            android:checked="false"
             android:padding="10dp"
             android:text="@string/this_week"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/words_filter_text_color"
             android:textSize="12sp"
             tools:ignore="TouchTargetSizeCheck" />
 
@@ -170,7 +162,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:background="@drawable/filter_radio_button"
-            android:button="@color/transparant"
+            android:button="@color/white"
             android:padding="10dp"
             android:text="@string/this_month"
             android:textColor="@color/words_filter_text_color"
@@ -197,13 +189,25 @@
             android:layout_marginStart="10dp"
             android:background="@drawable/filter_radio_button"
             android:button="@color/transparant"
+            android:checked="true"
             android:padding="10dp"
             android:text="@string/all_time"
-            android:textColor="@color/words_filter_text_color"
+            android:textColor="@color/white"
             android:textSize="12sp"
             tools:ignore="TouchTargetSizeCheck" />
     </RadioGroup>
 
+    <TextView
+        android:background="@drawable/email_card"
+        android:id="@+id/txtUserEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="okankukull@gmail.com" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

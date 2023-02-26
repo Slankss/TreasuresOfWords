@@ -1,24 +1,28 @@
 package com.example.treaasuresofwords.View.Main.Home
 
-import android.animation.AnimatorListenerAdapter
 import android.app.AlertDialog
-import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.TranslateAnimation
-import android.widget.TextView
-import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.treaasuresofwords.R
 import com.example.treaasuresofwords.View.LoginAndRegister.LoginAndRegisterActivity
 import com.example.treaasuresofwords.databinding.FragmentHomeBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.muhammed.toastoy.Toastoy
+import java.sql.Date
+import java.time.LocalDate
+import java.time.ZoneId
+import java.util.*
 
 
 class HomeFragment : Fragment() {
@@ -26,10 +30,9 @@ class HomeFragment : Fragment() {
     private var _binding : FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var auth : FirebaseAuth
-
-    private var allWordNumber = 3000
-    private var learningWordNumber = 2500
+    private lateinit var db : FirebaseFirestore
     private var isTopMenuOpen = false
+    private lateinit var viewModel : HomeFragmentViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,14 +40,19 @@ class HomeFragment : Fragment() {
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
 
+        val currentUser = auth.currentUser
+
+        currentUser?.let {
+            val email = it.email
+            binding.txtUserEmail.setText(email)
+        }
 
         binding.circularProgressBar.apply {
-            progressMax = allWordNumber.toFloat()
-            setProgressWithAnimation(learningWordNumber.toFloat(),2000)
             progressBarWidth = 20f
             backgroundProgressBarWidth = 20f
             roundBorder = true
@@ -53,12 +61,45 @@ class HomeFragment : Fragment() {
 
         }
 
+        viewModel.wordList.observe(viewLifecycleOwner){
+            it?.let {
+                binding.txtAllWord.setText(it.size.toString())
+
+
+                if(it.size > 0){
+                    binding.circularProgressBar.progressMax = it.size.toFloat()
+                }
+                else{
+                    binding
+                }
+
+            }
+        }
+
+        viewModel.learnedWord.observe(viewLifecycleOwner) {
+            if(it != null ){
+                binding.txtLearnedWords.setText(it.toString())
+                if(it > 0){
+                    binding.circularProgressBar.setProgressWithAnimation(it.toFloat(),1000)
+                }
+
+            }
+        }
+
+
+
         val activeText = ContextCompat.getColor(view.context,R.color.word_filter_active_text_color)
         var inActiveText = ContextCompat.getColor(view.context,R.color.words_filter_text_color)
 
         binding.radioBtnThisWeek.setOnCheckedChangeListener { buttonView, isChecked ->
             if(isChecked){
                 binding.radioBtnThisWeek.setTextColor(activeText)
+                var calendar = Calendar.getInstance()
+                calendar.add(Calendar.DAY_OF_YEAR,-7)
+                var date = calendar.time
+                val localDate = converDate(date)
+
+                viewModel.getWordList(localDate)
             }
             else{
                 binding.radioBtnThisWeek.setTextColor(inActiveText)
@@ -68,6 +109,12 @@ class HomeFragment : Fragment() {
         binding.radioBtnThisMonth.setOnCheckedChangeListener { buttonView, isChecked ->
             if(isChecked){
                 binding.radioBtnThisMonth.setTextColor(activeText)
+                var calendar = Calendar.getInstance()
+                calendar.add(Calendar.MONTH,-1)
+                var date = calendar.time
+                val localDate = converDate(date)
+
+                viewModel.getWordList(localDate)
             }
             else{
                 binding.radioBtnThisMonth.setTextColor(inActiveText)
@@ -77,6 +124,12 @@ class HomeFragment : Fragment() {
         binding.radioBtnThreeMonths.setOnCheckedChangeListener { buttonView, isChecked ->
             if(isChecked){
                 binding.radioBtnThreeMonths.setTextColor(activeText)
+                var calendar = Calendar.getInstance()
+                calendar.add(Calendar.MONTH,-3)
+                var date = calendar.time
+                val localDate = converDate(date)
+
+                viewModel.getWordList(localDate)
             }
             else{
                 binding.radioBtnThreeMonths.setTextColor(inActiveText)
@@ -86,6 +139,7 @@ class HomeFragment : Fragment() {
         binding.radioBtnAllTime.setOnCheckedChangeListener { buttonView, isChecked ->
             if(isChecked){
                 binding.radioBtnAllTime.setTextColor(activeText)
+                viewModel.getWordList(null)
             }
             else{
                 binding.radioBtnAllTime.setTextColor(inActiveText)
@@ -138,6 +192,16 @@ class HomeFragment : Fragment() {
             alert.show()
             }
         }
+
+        binding.btnGoSettings.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToSettingsFragment()
+            findNavController().navigate(action)
+        }
+
+        binding.btnGoProfile.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToProfileFragment()
+            findNavController().navigate(action)
+        }
     }
 
     fun changeRadioButtonClickable(state : Boolean){
@@ -147,13 +211,23 @@ class HomeFragment : Fragment() {
         binding.radioBtnAllTime.isClickable = state
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun converDate(dateToConvert: java.util.Date): LocalDate? {
+        return dateToConvert.toInstant()
+            .atZone(ZoneId.systemDefault())
+            .toLocalDate()
+    }
 
+
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
         auth = FirebaseAuth.getInstance()
+        db = FirebaseFirestore.getInstance()
+        viewModel = HomeFragmentViewModel(auth,db)
         _binding = FragmentHomeBinding.inflate(inflater,container,false)
         return binding.root
     }

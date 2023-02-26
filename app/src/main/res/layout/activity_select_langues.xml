@@ -65,7 +65,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:background="@drawable/custom_text_box">
+                    android:background="@drawable/radius_button">
 
                     <Spinner
                         android:id="@+id/spinnerLanguageToTranslated"
@@ -106,7 +106,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:background="@drawable/custom_text_box">
+                    android:background="@drawable/radius_button">
 
                     <Spinner
                         android:id="@+id/spinnerTranslatedLangue"
@@ -127,7 +127,6 @@
                 android:layout_gravity="right"
                 android:layout_marginStart="10dp"
                 android:background="@drawable/radius_button"
-                android:backgroundTint="@color/login_button_color"
                 android:text="@string/add_text"
                 android:textColor="@color/login_button_text_color"
                 android:textSize="16sp"
@@ -143,7 +142,6 @@
         android:layout_gravity="right"
         android:layout_marginBottom="25dp"
         android:background="@drawable/radius_button"
-        android:backgroundTint="@color/register_button_color"
         android:text="@string/continue_text"
         android:textColor="@color/register_button_text_color"
         android:textSize="16sp"

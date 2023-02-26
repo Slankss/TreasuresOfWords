@@ -11,12 +11,13 @@
         android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/top_shape"
         android:layout_marginStart="25dp"
         android:layout_marginEnd="25dp"
+        android:background="@drawable/top_shape"
         android:elevation="25dp"
         android:orientation="vertical"
         android:paddingBottom="10dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -40,10 +41,10 @@
             android:layout_marginStart="50dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="50dp"
-            android:paddingStart="25dp"
             android:layout_weight="2"
             android:background="@drawable/custom_text_box"
             android:gravity="end"
+            android:paddingStart="25dp"
             app:layout_constraintEnd_toEndOf="@+id/linearLayout3"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
@@ -61,10 +62,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
 
+        android:layout_marginBottom="100dp"
         android:elevation="25dp"
-        android:layout_marginBottom="25dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -91,7 +92,7 @@
             app:boxBackgroundColor="@color/transparant"
             app:boxCornerRadiusBottomEnd="14dp"
             app:boxCornerRadiusTopEnd="14dp"
-            app:boxStrokeColor="#FFFFFF"
+            app:boxStrokeColor="@color/login_background_color"
             app:boxStrokeErrorColor="#FF0000"
             app:endIconMode="clear_text"
             app:errorTextColor="#FF0000"
@@ -105,8 +106,8 @@
                 android:inputType="text"
                 android:paddingStart="20dp"
                 android:textAlignment="textStart"
-                android:textColor="@color/black"
-                android:textColorHighlight="#FF9800"
+                android:textColor="@color/white"
+                android:textColorHighlight="@color/login_background_color"
                 tools:ignore="RtlSymmetry" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -136,7 +137,7 @@
             app:boxBackgroundColor="@color/transparant"
             app:boxCornerRadiusBottomStart="14dp"
             app:boxCornerRadiusTopStart="14dp"
-            app:boxStrokeColor="#FFFFFF"
+            app:boxStrokeColor="@color/login_background_color"
             app:boxStrokeErrorColor="#FF0000"
             app:endIconMode="clear_text"
             app:errorTextColor="#FF0000"
@@ -150,8 +151,8 @@
                 android:inputType="text"
                 android:paddingStart="20dp"
                 android:textAlignment="textEnd"
-                android:textColor="@color/black"
-                android:textColorHighlight="#FF9800"
+                android:textColor="@color/white"
+                android:textColorHighlight="@color/login_background_color"
                 tools:ignore="RtlSymmetry" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -159,9 +160,9 @@
             android:id="@+id/btnWordAdd"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginEnd="100dp"
-            android:layout_marginStart="100dp"
             android:layout_gravity="center"
+            android:layout_marginStart="100dp"
+            android:layout_marginEnd="100dp"
             android:background="@drawable/radius_button"
             android:text="@string/add_text"
             android:textColor="@color/register_button_text_color" />
@@ -169,25 +170,15 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="25dp"
-        android:src="@drawable/ic_dictionary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <ImageView
         android:id="@+id/imageView4"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginStart="10dp"
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="25dp"
         android:src="@drawable/bookshelves"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
+        app:layout_constraintTop_toTopOf="@+id/linearLayout4" />
 </androidx.constraintlayout.widget.ConstraintLayout>
