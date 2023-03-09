@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import com.muhammed.toastoy.Toastoy
 import java.util.Date
 import java.time.LocalDate
 import java.time.ZoneId
@@ -19,6 +20,7 @@ import java.time.ZoneId
 @RequiresApi(Build.VERSION_CODES.O)
 class QuizFragmentViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore) : ViewModel() {
 
+    var allWordList = ArrayList<Word>()
     var wordList = MutableLiveData<ArrayList<Word>>()
     var userProfile = MutableLiveData<User>()
     var currentUser : FirebaseUser? = null
@@ -72,6 +74,7 @@ class QuizFragmentViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore)
                 else{
                     val document = value
                     val wordListArray = arrayListOf<Word>()
+                    allWordList.clear()
                     if(document != null && document.data != null && document.exists()){
 
                         val wordListInDb = document.get("wordList") as ArrayList<HashMap<String,Any>>
@@ -83,6 +86,8 @@ class QuizFragmentViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore)
                             val quizTime = it["quizTime"].toString()
                             val quizTimeHour = it["quizTimeHour"].toString()
                             val word = Word(word_name,translate,repeatTime,dateString,quizTime,quizTimeHour)
+
+                            allWordList.add(word)
 
                             val day = it["date"].toString().subSequence(0,2).toString()
                             val month = it["date"].toString().subSequence(3,5).toString()
@@ -130,6 +135,26 @@ class QuizFragmentViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore)
     @RequiresApi(Build.VERSION_CODES.O)
     fun converDate(dateToConvert: LocalDate): Date {
         return Date.from(dateToConvert.atStartOfDay(ZoneId.systemDefault()).toInstant())
+    }
+
+    fun reset(){
+
+        if(currentUser != null) {
+
+            var uid = currentUser!!.uid
+            allWordList.forEachIndexed { index, word ->
+                word.quizTime = ""
+                word.quizTimeHour = ""
+                word.repeatTime = 0
+            }
+
+            db.collection("Word").document(uid).update("wordList",allWordList).addOnCompleteListener { task ->
+                if(task.isSuccessful){
+
+                }
+            }
+
+        }
     }
 
 }

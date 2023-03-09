@@ -107,6 +107,12 @@
 
     <string name="insufficient_word_10">Minimum 10 word\nunavailable</string>
     <string name="insufficient_word_20">Minimum 20 word\nunavailable</string>
+    <string name="go_quiz_page">Go quiz page</string>
+    <string name="new_quiz">New quiz</string>
+    <string name="correct">True</string>
+    <string name="wrong">False</string>
+    <string name="quiz_brief">Quiz Brief</string>
+    <string name="level_up">level up</string>
 
 
 

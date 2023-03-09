@@ -130,4 +130,6 @@ class HomeFragmentViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore)
         }
     }
 
+
+
 }

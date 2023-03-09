@@ -6,13 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.treaasuresofwords.R
+import com.example.treaasuresofwords.View.Main.Quiz.MatchingQuiz.MatchingQuizFragmentViewModel
 import com.example.treaasuresofwords.databinding.FragmentMakeQuizBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 
 class MakeQuizFragment : Fragment() {
 
     private var _binding : FragmentMakeQuizBinding? = null
     private val binding get() = _binding!!
+    private lateinit var auth : FirebaseAuth
+    private lateinit var db : FirebaseFirestore
+    private lateinit var viewModel : MakeQuizFragmentViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

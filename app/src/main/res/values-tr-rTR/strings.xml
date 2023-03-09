@@ -115,6 +115,12 @@ onun kelime dağarcığıdır.\n
     <string name="matching_quiz">Eşleştirme</string>
     <string name="insufficient_word_10">Minimum 10 keline\nuygun değil</string>
     <string name="insufficient_word_20">Minimum 20 keline\nuygun değil</string>
+    <string name="go_quiz_page">Quiz sayfasına git</string>
+    <string name="new_quiz">Yeni minik sınav</string>
+    <string name="correct">Doğru</string>
+    <string name="wrong">Yanlış</string>
+    <string name="quiz_brief">Quiz Özet</string>
+    <string name="level_up">seviye atladı</string>
 
 
 </resources>

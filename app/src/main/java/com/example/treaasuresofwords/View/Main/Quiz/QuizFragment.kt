@@ -71,6 +71,15 @@ class QuizFragment : Fragment() {
 
         }
 
+        binding.btnTenQuestion.setOnClickListener {
+            val action = QuizFragmentDirections.actionQuizFragmentToMakeQuizFragment()
+            findNavController().navigate(action)
+        }
+
+        binding.btnReset.setOnClickListener {
+            viewModel.reset()
+        }
+
     }
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(

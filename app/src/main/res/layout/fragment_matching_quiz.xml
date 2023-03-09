@@ -14,60 +14,32 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="20dp"
+        android:layout_marginBottom="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:weightSum="2"
+        android:gravity="center"
         android:orientation="horizontal"
         >
 
-        <RadioGroup
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/translateRecyclerView"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="25dp"
-            >
+            android:layout_marginEnd="25dp" />
 
-            <RadioButton
-                android:padding="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/matching_card"
-                android:button="@color/transparant"
-                android:text="translate 1"/>
-            <RadioButton
-                android:padding="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/matching_card"
-                android:button="@color/transparant"
-                android:text="translate 2"/>
-
-        </RadioGroup>
-
-        <RadioGroup
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/translatedRecyclerView"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content">
 
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/matching_card"
-                android:button="@color/transparant"
-                android:layout_marginBottom="10dp"
-                android:text="translated 1"/>
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/matching_card"
-                android:button="@color/transparant"
-                android:text="translated 2"/>
 
 
-        </RadioGroup>
+        </androidx.recyclerview.widget.RecyclerView>
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>
