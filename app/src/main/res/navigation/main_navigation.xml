@@ -62,15 +62,15 @@
         android:label="@string/menu_quiz"
         tools:layout="@layout/fragment_quiz" >
         <action
-            android:id="@+id/action_quizFragment_to_makeQuizFragment"
-            app:destination="@id/makeQuizFragment"
+            android:id="@+id/action_quizFragment_to_matchingQuizFragment"
+            app:destination="@id/matchingQuizFragment"
             app:enterAnim="@anim/anim_slide_in_left"
             app:exitAnim="@anim/anim_slide_out_left"
             app:popEnterAnim="@anim/anim_slide_in_right"
             app:popExitAnim="@anim/anim_slide_out_right" />
         <action
-            android:id="@+id/action_quizFragment_to_matchingQuizFragment"
-            app:destination="@id/matchingQuizFragment"
+            android:id="@+id/action_quizFragment_to_makeQuizFragment"
+            app:destination="@id/makeQuizFragment"
             app:enterAnim="@anim/anim_slide_in_left"
             app:exitAnim="@anim/anim_slide_out_left"
             app:popEnterAnim="@anim/anim_slide_in_right"
@@ -93,6 +93,9 @@
             app:exitAnim="@anim/anim_slide_out_right"
             app:popEnterAnim="@anim/anim_slide_in_left"
             app:popExitAnim="@anim/anim_slide_out_left" />
+        <argument
+            android:name="questionLimit"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/matchingQuizFragment"

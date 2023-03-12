@@ -121,6 +121,7 @@ onun kelime dağarcığıdır.\n
     <string name="wrong">Yanlış</string>
     <string name="quiz_brief">Quiz Özet</string>
     <string name="level_up">seviye atladı</string>
+    <string name="question_header">Anlamı nedir?</string>
 
 
 </resources>

@@ -3,6 +3,7 @@ package com.example.treaasuresofwords.View.Main.Quiz.MatchingQuiz
 import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +18,6 @@ import com.example.treaasuresofwords.R
 import com.example.treaasuresofwords.databinding.FragmentMatchingQuizBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.muhammed.toastoy.Toastoy
 import kotlinx.coroutines.*
 
 
@@ -27,21 +27,19 @@ class MatchingQuizFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var auth : FirebaseAuth
     private lateinit var db : FirebaseFirestore
-    private lateinit var viewModel : MatchingQuizFragmentViewModel
+    private lateinit var viewModel : QuizViewModel
 
     private lateinit var translateAdapter : TranslateAdapter
     private lateinit var translatedAdapter : TranslatedAdapter
     private lateinit var quizBriefDialog: QuizBriefDialog
 
-    var wordList = arrayListOf<Word>()
+    var wordList = arrayListOf<HashMap<String,Any>>()
     var translateArrayList = arrayListOf<Question>()
     var translatedArrayList = arrayListOf<Question>()
     var quizState = false
 
     var currentTranslateIndex : Int? = null
     var currentTranslatedIndex : Int? = null
-    var resultList= ArrayList<HashMap<String,Any>>()
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,9 +59,12 @@ class MatchingQuizFragment : Fragment() {
                     var randomTranslate = ""
                     do {
                         val random = (0 until allWordList.size).random() // 0 and 10 included
-                        randomTranslate = wordList[random].word
-                        var level = wordList[random].repeatTime
-                        val randomTranslated = wordList[random].translate
+
+                        val word = wordList[random].get("word") as Word
+                        val position = wordList[random].get("position") as Int
+                        randomTranslate = word.word
+                        val level = word.repeatTime
+                        val randomTranslated = word.translate
 
                         var isContains = false
                         for(item in translateArrayList){
@@ -73,8 +74,8 @@ class MatchingQuizFragment : Fragment() {
                             }
                         }
                         if(!isContains){
-                            val question = Question(randomTranslate,randomTranslated,null,random,level)
-                            val question2 = Question(randomTranslate,randomTranslated,null,random,level)
+                            val question = Question(randomTranslate,randomTranslated,null,position,level)
+                            val question2 = Question(randomTranslate,randomTranslated,null,position,level)
                             translateArrayList.add(question)
                             translatedArrayList.add(question2)
                         }
@@ -107,9 +108,6 @@ class MatchingQuizFragment : Fragment() {
         }
     }
 
-    fun createAdapter(){
-
-    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("NotifyDataSetChanged")
@@ -165,7 +163,7 @@ class MatchingQuizFragment : Fragment() {
         _binding = FragmentMatchingQuizBinding.inflate(inflater,container,false)
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
-        viewModel = MatchingQuizFragmentViewModel(auth,db)
+        viewModel = QuizViewModel(auth,db)
 
         return binding.root
     }
@@ -206,7 +204,10 @@ class MatchingQuizFragment : Fragment() {
         }
 
         var wrongNumber = 10 - correctNumber
-        viewModel.update(updatedList)
+        if(correctNumber > 1){
+            viewModel.update(updatedList)
+        }
+
 
         createDialog(correctNumber,wrongNumber,updatedList)
     }

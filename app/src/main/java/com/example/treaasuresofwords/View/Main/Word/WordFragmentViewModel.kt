@@ -84,8 +84,8 @@ class WordFragmentViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore,
                             val repeatTime = it["repeatTime"].toString().toInt()
                             val date = it["date"].toString()
                             val quizTime = it["quizTime"].toString()
-                            val quizTimeHour = it["quizTimeHour"].toString()
-                            val word = Word(word_name,translate,repeatTime,date,quizTime,quizTimeHour)
+
+                            val word = Word(word_name,translate,repeatTime,date,quizTime)
 
                             wordListArray.add(word)
                         }

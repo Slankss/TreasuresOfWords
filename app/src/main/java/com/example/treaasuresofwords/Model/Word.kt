@@ -5,7 +5,7 @@ import java.sql.Timestamp
 class Word(
     //var languageToTranslated: String, var translatedLanguage: String,
     var word: String, var translate: String, var repeatTime: Int,
-    var date : String, var quizTime : String, var quizTimeHour : String
+    var date : String, var quizTime : String
 )
 {
 }

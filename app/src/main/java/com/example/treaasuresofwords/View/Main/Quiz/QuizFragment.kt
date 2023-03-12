@@ -38,28 +38,13 @@ class QuizFragment : Fragment() {
 
         viewModel.wordList.observe(viewLifecycleOwner) { wordList ->
             if(wordList.size < 10){
-                binding.btnMatching.isClickable = false
-                binding.txtMatchingError.visibility = View.VISIBLE
-                binding.btnTenQuestion.isClickable = false
-                binding.txtTenQuestionError.visibility = View.VISIBLE
-                binding.btnTwelweQuestion.isClickable = false
-                binding.txtTwelweQuestionError.visibility = View.VISIBLE
+              changeVisibility(false)
             }
             else if(wordList.size in 10..19){
-                binding.btnMatching.isClickable = true
-                binding.txtMatchingError.visibility = View.GONE
-                binding.btnTenQuestion.isClickable = true
-                binding.txtTenQuestionError.visibility = View.GONE
-                binding.btnTwelweQuestion.isClickable = false
-                binding.txtTwelweQuestionError.visibility = View.VISIBLE
+              changeVisibility(true)
             }
             else if (wordList.size > 20){
-                binding.btnMatching.isClickable = true
-                binding.txtMatchingError.visibility = View.GONE
-                binding.btnTenQuestion.isClickable = true
-                binding.txtTenQuestionError.visibility = View.GONE
-                binding.btnTwelweQuestion.isClickable = true
-                binding.txtTwelweQuestionError.visibility = View.GONE
+                changeVisibility(true)
             }
 
         }
@@ -72,7 +57,12 @@ class QuizFragment : Fragment() {
         }
 
         binding.btnTenQuestion.setOnClickListener {
-            val action = QuizFragmentDirections.actionQuizFragmentToMakeQuizFragment()
+            val action = QuizFragmentDirections.actionQuizFragmentToMakeQuizFragment(10)
+            findNavController().navigate(action)
+        }
+
+        binding.btnTwelweQuestion.setOnClickListener {
+            val action = QuizFragmentDirections.actionQuizFragmentToMakeQuizFragment(20)
             findNavController().navigate(action)
         }
 
@@ -92,6 +82,24 @@ class QuizFragment : Fragment() {
         db = FirebaseFirestore.getInstance()
         viewModel = QuizFragmentViewModel(auth,db)
         return binding.root
+    }
+
+    fun changeVisibility(state : Boolean){
+        binding.btnMatching.isClickable = state
+        binding.txtMatchingError.visibility = when(state){
+            true -> View.GONE
+            false -> View.VISIBLE
+        }
+        binding.btnTenQuestion.isClickable = state
+        binding.txtTenQuestionError.visibility = when(state){
+            true -> View.GONE
+            false -> View.VISIBLE
+        }
+        binding.btnTwelweQuestion.isClickable = state
+        binding.txtTwelweQuestionError.visibility = when(state){
+            true -> View.GONE
+            false -> View.VISIBLE
+        }
     }
 
     override fun onDestroy() {

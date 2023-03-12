@@ -15,6 +15,7 @@ import com.google.firebase.ktx.Firebase
 import com.muhammed.toastoy.Toastoy
 import java.util.Date
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.ZoneId
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -84,8 +85,7 @@ class QuizFragmentViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore)
                             val repeatTime = it["repeatTime"].toString().toInt()
                             val dateString = it["date"].toString()
                             val quizTime = it["quizTime"].toString()
-                            val quizTimeHour = it["quizTimeHour"].toString()
-                            val word = Word(word_name,translate,repeatTime,dateString,quizTime,quizTimeHour)
+                            val word = Word(word_name,translate,repeatTime,dateString,quizTime)
 
                             allWordList.add(word)
 
@@ -93,33 +93,25 @@ class QuizFragmentViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore)
                             val month = it["date"].toString().subSequence(3,5).toString()
                             val year = it["date"].toString().subSequence(6,10).toString()
 
-                            val localDate = LocalDate.now()
-                            val date = LocalDate.of(year.toInt(),month.toInt(),day.toInt())
-                            val diff : Long = converDate(localDate).time - converDate(date).time
+
+                            var diff : Long = 0
+                            if(quizTime.isNotEmpty()){
+                                val localDate = LocalDateTime.now()
+                                val date = Date(year.toInt(),month.toInt(),day.toInt())
+                                val currentDate = Date(localDate.year,localDate.monthValue,localDate.dayOfMonth)
+
+                                diff  = ( currentDate.time - date.time ) / 1000 / 60 / 60 // convert to hour
+                            }
+
                             when(repeatTime){
-                                0 -> {
-                                    wordListArray.add(word)
-                                }
-                                1 -> {
-                                    if(diff >= 1){
-                                        wordListArray.add(word)
-                                    }
-                                }
-                                2 -> {
-                                    if(diff >= 4){
-                                        wordListArray.add(word)
-                                    }
-                                }
                                 3 -> {
-                                    if(diff >= 9){
-                                        wordListArray.add(word)
-                                    }
+                                    if(diff >= 3600*24) wordListArray.add(word)
+
                                 }
                                 4 -> {
-                                    if(diff >= 16){
-                                        wordListArray.add(word)
-                                    }
+                                    if(diff >= 3600*48) wordListArray.add(word)
                                 }
+                                else -> { wordListArray.add(word) }
                             }
 
                         }
@@ -144,7 +136,6 @@ class QuizFragmentViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore)
             var uid = currentUser!!.uid
             allWordList.forEachIndexed { index, word ->
                 word.quizTime = ""
-                word.quizTimeHour = ""
                 word.repeatTime = 0
             }
 
