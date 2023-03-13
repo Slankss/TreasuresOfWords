@@ -111,7 +111,9 @@ class QuizFragmentViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore)
                                 4 -> {
                                     if(diff >= 3600*48) wordListArray.add(word)
                                 }
-                                else -> { wordListArray.add(word) }
+                                else -> {
+                                    if(repeatTime != 5) wordListArray.add(word)
+                                }
                             }
 
                         }

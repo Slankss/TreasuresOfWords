@@ -110,7 +110,9 @@ class QuizViewModel(private var auth : FirebaseAuth, private var db : FirebaseFi
                                     4 -> {
                                         if(diff >= 3600*48) wordListArray.add(hashMap)
                                     }
-                                    else -> { wordListArray.add(hashMap)}
+                                    else -> {
+                                        if(repeatTime != 5)  wordListArray.add(hashMap)
+                                    }
                                 }
                             }
                         }
