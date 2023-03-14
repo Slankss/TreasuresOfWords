@@ -3,28 +3,20 @@ package com.example.treaasuresofwords.View.Main.Settings
 import android.app.AlertDialog
 import android.content.Context
 import android.content.res.Configuration
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
+import android.widget.*
 import com.example.treaasuresofwords.R
-import com.example.treaasuresofwords.databinding.FragmentSettingsBinding
+import com.example.treaasuresofwords.databinding.ActivitySettingsBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.muhammed.toastoy.Toastoy
 import java.util.*
 
+class SettingsActivity : AppCompatActivity() {
 
-class SettingsFragment : Fragment() {
-
-    private var _binding : FragmentSettingsBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding : ActivitySettingsBinding
     private lateinit var auth : FirebaseAuth
     private lateinit var dialogBuilder : AlertDialog.Builder
     private lateinit var dialog : AlertDialog
@@ -35,14 +27,16 @@ class SettingsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-    }
+        try {
+            this.supportActionBar!!.hide()
+        } catch (e: NullPointerException) {
+        }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        binding = ActivitySettingsBinding.inflate(layoutInflater)
+        auth = FirebaseAuth.getInstance()
+        setContentView(binding.root)
 
-
-
-        fillSpinner(view.context)
+        fillSpinner()
         createPopup()
 
         binding.btnChangePassword.setOnClickListener {
@@ -51,24 +45,11 @@ class SettingsFragment : Fragment() {
 
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        // Inflate the layout for this fragment
-        _binding = FragmentSettingsBinding.inflate(inflater,container,false)
-        auth = FirebaseAuth.getInstance()
-
-        return binding.root
-    }
-
-    fun fillSpinner(mContext : Context){
+    fun fillSpinner(){
 
         val languageList = arrayListOf<String>()
 
-        activity?.let {
-
-            it.getSharedPreferences("User_Local_Data", Context.MODE_PRIVATE)
+            getSharedPreferences("User_Local_Data", Context.MODE_PRIVATE)
                 ?.let {
                     val current_language = it.getString("current_language","en")
                     current_language?.let { current ->
@@ -82,11 +63,11 @@ class SettingsFragment : Fragment() {
                         }
                     }
                 }
-        }
 
 
 
-        val arrayAdapter = ArrayAdapter<String>(mContext,android.R.layout.simple_spinner_dropdown_item,languageList)
+
+        val arrayAdapter = ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,languageList)
 
         binding.spinnerLanguage.adapter = arrayAdapter
         binding.spinnerLanguage.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
@@ -111,38 +92,32 @@ class SettingsFragment : Fragment() {
     }
 
     fun changeLanguage(language : String){
-        activity?.let {
+
             // ingilizce -> en
             // türkçe -> tr
             val locale = Locale(language)
             Locale.setDefault(locale)
             val configuration = Configuration()
             configuration.locale = locale
-            it.baseContext.resources.updateConfiguration(configuration,it.applicationContext.resources.displayMetrics)
+            baseContext.resources.updateConfiguration(configuration,this.applicationContext.resources.displayMetrics)
 
             binding.apply {
                 lblChangeLanguage.setText(getString(R.string.change_language))
-
+                btnChangePassword.setText(getString(R.string.change_language))
             }
 
-            val preferences = it.getSharedPreferences("User_Local_Data",Context.MODE_PRIVATE)
+            val preferences = getSharedPreferences("User_Local_Data", Context.MODE_PRIVATE)
             val editor = preferences.edit()
             editor.putString("current_language",language)
             editor.apply()
 
             // aldık dili bunu shared preferences ta tutabiliriz
 
-        }
-
     }
-
-
-
 
     fun createPopup()
     {
-        context?.let { mContext ->
-            dialogBuilder = AlertDialog.Builder(mContext)
+            dialogBuilder = AlertDialog.Builder(this)
             var contactPopup = getLayoutInflater().inflate(R.layout.password_change_popup,null)
 
             editTextNewPassword = contactPopup.findViewById(R.id.editTextNewPassword)
@@ -159,28 +134,26 @@ class SettingsFragment : Fragment() {
                 val password = editTextNewPassword.text.toString().trim()
                 var passwordConfirm = editTextNewPasswordAgain.text.toString().trim()
 
-
-
                 if(password.isNotEmpty() && passwordConfirm.isNotEmpty()){
                     if(password.length >= 6){
                         if(password == passwordConfirm){
                             updatePassword(password)
                         }
                         else{
-                            Toast.makeText(mContext,getString(R.string.passwords_not_match),Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this.applicationContext,getString(R.string.passwords_not_match), Toast.LENGTH_SHORT).show()
                         }
 
                     }
                     else{
-                        Toast.makeText(mContext,getString(R.string.change_password_character_error),Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this.applicationContext,getString(R.string.change_password_character_error),
+                            Toast.LENGTH_SHORT).show()
                     }
 
                 }
             }
-
             dialog.dismiss()
 
-        }
+
     }
 
     fun updatePassword(password : String){
@@ -189,28 +162,17 @@ class SettingsFragment : Fragment() {
         currentUser?.let { current ->
             current.updatePassword(password).addOnCompleteListener { taskComplete ->
                 if(taskComplete.isSuccessful){
-                    context?.let {
-                        Toastoy.showSuccessToast(it,getString(R.string.change_password_message))
-                        dialog.dismiss()
-                        editTextNewPassword.setText("")
-                        editTextNewPasswordAgain.setText("")
-                    }
+                    Toastoy.showSuccessToast(this,getString(R.string.change_password_message))
+                    dialog.dismiss()
+                    editTextNewPassword.setText("")
+                    editTextNewPasswordAgain.setText("")
                 }
             }.addOnFailureListener { exception ->
-                context?.let {
-                    Toast.makeText(it,exception.localizedMessage,Toast.LENGTH_SHORT).show()
-                    Log.w("aaa",exception.localizedMessage)
-                }
-
-
+                Toast.makeText(this,exception.localizedMessage, Toast.LENGTH_SHORT).show()
+                Log.w("aaa",exception.localizedMessage)
             }
         }
 
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 
 }

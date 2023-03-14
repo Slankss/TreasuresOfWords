@@ -10,7 +10,7 @@
         <item name="colorSecondaryVariant">@color/black</item>
         <item name="colorOnSecondary">@color/login_button_color</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/bottom_menu_bg_color</item>
+        <item name="android:statusBarColor">#000778FF</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:fontFamily">@font/lato_bold</item>
         <!-- Customize your theme here. -->

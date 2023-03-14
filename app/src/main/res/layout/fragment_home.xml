@@ -96,7 +96,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:text="@string/settings"
-            android:textColor="@color/black"
+            android:textColor="#FFFFFF"
             android:textSize="16sp" />
 
         <TextView
@@ -104,7 +104,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/log_out"
-            android:textColor="@color/black"
+            android:textColor="#FFFFFF"
             android:textSize="16sp" />
     </LinearLayout>
 
@@ -198,16 +198,16 @@
     </RadioGroup>
 
     <TextView
-        android:background="@drawable/email_card"
         android:id="@+id/txtUserEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:textColor="@color/black"
         android:layout_marginTop="20dp"
+        android:background="@drawable/email_card"
+        android:padding="10dp"
+        android:text="okankukull@gmail.com"
+        android:textColor="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="okankukull@gmail.com" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

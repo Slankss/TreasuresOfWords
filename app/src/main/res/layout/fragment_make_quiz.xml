@@ -29,52 +29,134 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Question"
-                    android:textColor="@color/login_button_text_color"
-                    android:textSize="20sp" />
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
 
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <RadioButton
-                    android:id="@+id/radioBtnAnswer1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:buttonTint="@color/white"
-                    android:text="RadioButton"
-                    android:textColor="@color/white" />
-                <RadioButton
-                    android:id="@+id/radioBtnAnswer2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:buttonTint="@color/white"
-                    android:text="RadioButton"
-                    android:textColor="@color/white" />
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="25dp">
-                <RadioButton
-                    android:id="@+id/radioBtnAnswer3"
+                android:weightSum="1"
+                >
+
+                <RadioGroup
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:buttonTint="@color/white"
-                    android:text="RadioButton"
-                    android:textColor="@color/white" />
+                    android:orientation="vertical">
+
+                    <RadioButton
+                        android:id="@+id/radioBtnAnswer1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:background="@drawable/matching_card"
+                        android:text=""
+                        android:paddingStart="20dp"
+                        android:button="@null"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:layout_marginBottom="20dp"
+                        />
+
+                    <RadioButton
+                        android:id="@+id/radioBtnAnswer2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:background="@drawable/matching_card"
+                        android:button="@null"
+                        android:paddingStart="20dp"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:layout_marginBottom="20dp"
+                        />
+
+                    <RadioButton
+                        android:id="@+id/radioBtnAnswer3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/matching_card"
+                        android:button="@null"
+                        android:padding="10dp"
+                        android:paddingStart="20dp"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <RadioButton
+                        android:id="@+id/radioBtnAnswer4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="20dp"
+                        android:padding="10dp"
+                        android:background="@drawable/matching_card"
+                        android:button="@null"
+                        android:text=""
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:layout_marginBottom="25dp"
+                        />
+
+                </RadioGroup>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:visibility="gone">
+
                 <RadioButton
-                    android:id="@+id/radioBtnAnswer4"
+                    android:id="@+id/radioBtnAnswer1_"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:buttonTint="@color/white"
+                    android:buttonTint="@color/black"
                     android:text="RadioButton"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <RadioButton
+                    android:id="@+id/radioBtnAnswer2_"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/black"
+                    android:text="RadioButton"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:visibility="gone">
+
+                <RadioButton
+                    android:id="@+id/radioBtnAnswer3_"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/black"
+                    android:text="RadioButton"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <RadioButton
+                    android:id="@+id/radioBtnAnswer4_"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/black"
+                    android:text="RadioButton"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
             </TableRow>
 
             <TableRow
@@ -85,7 +167,7 @@
                     android:id="@+id/btnAnswer"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/radius_button"
+                    android:background="@drawable/filled_radius_button"
                     android:layout_weight="1"
                     android:text="@string/answer"
                     android:textColor="@color/white" />

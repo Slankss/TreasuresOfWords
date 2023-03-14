@@ -10,11 +10,12 @@
         android:id="@+id/radioButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
         android:background="@drawable/matching_card"
-        android:textAlignment="center"
-        android:text="Translate 1"
-        android:layout_marginBottom="10dp"
+        android:button="@color/transparant"
         android:padding="10dp"
-        android:button="@color/transparant"/>
+        android:text="Translate 1"
+        android:textAlignment="center"
+        android:textSize="16sp" />
 
 </LinearLayout>

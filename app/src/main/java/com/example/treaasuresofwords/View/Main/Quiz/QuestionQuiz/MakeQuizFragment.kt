@@ -35,7 +35,6 @@ class MakeQuizFragment : Fragment() {
     private lateinit var db : FirebaseFirestore
     private lateinit var viewModel : QuizViewModel
     private lateinit var quizBriefDialog: QuizBriefDialog
-    private var lastClicked : RadioButton? = null
     var currentLanguage = "en"
 
     var wordList = arrayListOf<HashMap<String,Any>>()
@@ -82,7 +81,6 @@ class MakeQuizFragment : Fragment() {
                         val position = wordList[random].get("position") as Int
                         val answerList = arrayListOf<String>()
                         answerList.add(randomWord.translate)
-                        var level = randomWord.repeatTime
 
                         do{
                             val randomAnswer = (0 until allWordList.size).random()
@@ -111,28 +109,13 @@ class MakeQuizFragment : Fragment() {
         binding.apply {
             radioBtnAnswer1.setOnCheckedChangeListener { buttonView, isChecked ->
                 if(isChecked){
-                    if(lastClicked != null){
-                        lastClicked!!.isChecked = false
-                        lastClicked = radioBtnAnswer1
-                    }
-                    else{
-                        lastClicked = radioBtnAnswer1
-                    }
                     selectedAnswer = radioBtnAnswer1.text.toString()
-
                 }
             }
 
 
             radioBtnAnswer2.setOnCheckedChangeListener { buttonView, isChecked ->
                 if(isChecked){
-                    if(lastClicked != null){
-                        lastClicked!!.isChecked = false
-                        lastClicked = radioBtnAnswer2
-                    }
-                    else{
-                        lastClicked = radioBtnAnswer2
-                    }
                     selectedAnswer = radioBtnAnswer2.text.toString()
                 }
             }
@@ -140,13 +123,6 @@ class MakeQuizFragment : Fragment() {
 
             radioBtnAnswer3.setOnCheckedChangeListener { buttonView, isChecked ->
                 if(isChecked){
-                    if(lastClicked != null){
-                        lastClicked!!.isChecked = false
-                        lastClicked = radioBtnAnswer3
-                    }
-                    else{
-                        lastClicked = radioBtnAnswer3
-                    }
                     selectedAnswer = radioBtnAnswer3.text.toString()
                 }
             }
@@ -154,13 +130,6 @@ class MakeQuizFragment : Fragment() {
 
             radioBtnAnswer4.setOnCheckedChangeListener { buttonView, isChecked ->
                 if(isChecked){
-                    if(lastClicked != null){
-                        lastClicked!!.isChecked = false
-                        lastClicked = radioBtnAnswer4
-                    }
-                    else{
-                        lastClicked = radioBtnAnswer4
-                    }
                     selectedAnswer = radioBtnAnswer4.text.toString()
                 }
             }
@@ -222,7 +191,7 @@ class MakeQuizFragment : Fragment() {
             Log.w("tag",selectedAnswer)
 
             currentQuestionIndex++
-            lastClicked = null
+
             binding.apply {
                 radioBtnAnswer1.isChecked = false
                 radioBtnAnswer2.isChecked = false
@@ -230,14 +199,12 @@ class MakeQuizFragment : Fragment() {
                 radioBtnAnswer4.isChecked = false
             }
 
-
             if(currentQuestionIndex == questionLimit){
                 update()
             }
             else{
                 createQuestion()
             }
-
         }
     }
 

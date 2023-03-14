@@ -54,7 +54,7 @@ class AddWordFragmentViewModel(var auth : FirebaseAuth,var db : FirebaseFirestor
 
     }
 
-    fun addWord(word : Word){
+    fun addWord(new_word : Word){
 
         if(currentUser != null){
             val uid = currentUser!!.uid
@@ -66,7 +66,8 @@ class AddWordFragmentViewModel(var auth : FirebaseAuth,var db : FirebaseFirestor
 
                         val wordHashMap = hashMapOf<String,Any>()
                         val wordList = arrayListOf<Word>()
-                        wordList.add(word)
+                        wordList.add(new_word)
+
                         wordHashMap.put("wordList",wordList)
                         db.collection("Word").document(uid).set(wordHashMap).addOnCompleteListener { createTask ->
                             if(createTask.isSuccessful){
@@ -83,8 +84,10 @@ class AddWordFragmentViewModel(var auth : FirebaseAuth,var db : FirebaseFirestor
                         }
                     }
                     else{
+
                         val wordList = document.get("wordList") as ArrayList<Word>
-                        wordList.add(word)
+                        wordList.add(new_word)
+
                         db.collection("Word").document(uid).update("wordList",wordList)
                             .addOnCompleteListener { updateTask ->
                                 if(updateTask.isSuccessful){
@@ -99,6 +102,8 @@ class AddWordFragmentViewModel(var auth : FirebaseAuth,var db : FirebaseFirestor
                             }.addOnFailureListener { exception ->
                                 isComplete.value = true
                             }
+
+
                     }
                 }
             }

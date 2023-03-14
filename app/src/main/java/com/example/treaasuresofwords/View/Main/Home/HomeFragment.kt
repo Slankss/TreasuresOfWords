@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.treaasuresofwords.R
 import com.example.treaasuresofwords.View.LoginAndRegister.LoginAndRegisterActivity
+import com.example.treaasuresofwords.View.Main.Settings.SettingsActivity
 import com.example.treaasuresofwords.databinding.FragmentHomeBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -194,8 +195,10 @@ class HomeFragment : Fragment() {
         }
 
         binding.btnGoSettings.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeFragmentToSettingsFragment()
-            findNavController().navigate(action)
+            context?.let {
+                startActivity(Intent(it.applicationContext,SettingsActivity::class.java))
+            }
+
         }
 
         binding.btnGoProfile.setOnClickListener {

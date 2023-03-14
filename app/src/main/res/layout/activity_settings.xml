@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:background="@color/setting_background_color"
     android:layout_height="match_parent"
-    tools:context=".View.Main.Settings.SettingsFragment"
+    tools:context=".View.Main.Settings.SettingsActivity"
     >
 
     <TextView
@@ -15,21 +15,18 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:text="@string/change_language"
-        android:textColor="@color/text_color"
+        android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <RelativeLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="match_parent"
+        android:id="@+id/recyclerView2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="100dp"
         android:background="@drawable/custom_text_box"
-        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblChangeLanguage">
@@ -37,7 +34,7 @@
         <Spinner
             android:id="@+id/spinnerLanguage"
             style="@style/Widget.AppCompat.Spinner.DropDown"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
 
@@ -58,7 +55,7 @@
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

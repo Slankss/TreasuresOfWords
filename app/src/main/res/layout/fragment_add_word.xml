@@ -92,7 +92,7 @@
             app:boxBackgroundColor="@color/transparant"
             app:boxCornerRadiusBottomEnd="14dp"
             app:boxCornerRadiusTopEnd="14dp"
-            app:boxStrokeColor="@color/login_background_color"
+
             app:boxStrokeErrorColor="#FF0000"
             app:endIconMode="clear_text"
             app:errorTextColor="#FF0000"
@@ -106,7 +106,7 @@
                 android:inputType="text"
                 android:paddingStart="20dp"
                 android:textAlignment="textStart"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textColorHighlight="@color/login_background_color"
                 tools:ignore="RtlSymmetry" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -137,7 +137,6 @@
             app:boxBackgroundColor="@color/transparant"
             app:boxCornerRadiusBottomStart="14dp"
             app:boxCornerRadiusTopStart="14dp"
-            app:boxStrokeColor="@color/login_background_color"
             app:boxStrokeErrorColor="#FF0000"
             app:endIconMode="clear_text"
             app:errorTextColor="#FF0000"
@@ -151,7 +150,7 @@
                 android:inputType="text"
                 android:paddingStart="20dp"
                 android:textAlignment="textEnd"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textColorHighlight="@color/login_background_color"
                 tools:ignore="RtlSymmetry" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -163,7 +162,7 @@
             android:layout_gravity="center"
             android:layout_marginStart="100dp"
             android:layout_marginEnd="100dp"
-            android:background="@drawable/radius_button"
+            android:background="@drawable/filled_radius_button"
             android:text="@string/add_text"
             android:textColor="@color/register_button_text_color" />
 
