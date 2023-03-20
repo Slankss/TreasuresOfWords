@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".View.Main.Quiz.Repeat.RepeatQuizFragment">
+
+    <LinearLayout
+        android:id="@+id/questionTableLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginEnd="35dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/txtQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="gravity"
+            android:text="Question"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:layout_marginBottom="25dp"/>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/radioBtnAnswer1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="@drawable/matching_card"
+                android:text=""
+                android:paddingStart="20dp"
+                android:button="@null"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:layout_marginBottom="20dp"
+                />
+
+            <RadioButton
+                android:id="@+id/radioBtnAnswer2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="@drawable/matching_card"
+                android:button="@null"
+                android:paddingStart="20dp"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:layout_marginBottom="20dp"
+                />
+
+            <RadioButton
+                android:id="@+id/radioBtnAnswer3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/matching_card"
+                android:button="@null"
+                android:padding="10dp"
+                android:paddingStart="20dp"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <RadioButton
+                android:id="@+id/radioBtnAnswer4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="20dp"
+                android:padding="10dp"
+                android:background="@drawable/matching_card"
+                android:button="@null"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:layout_marginBottom="25dp"
+                />
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/btnAnswer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/filled_radius_button"
+            android:layout_weight="1"
+            android:text="@string/answer"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtQuestionNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/questionTableLayout"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

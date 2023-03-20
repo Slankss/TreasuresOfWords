@@ -98,7 +98,7 @@ class AddWordFragment : Fragment() {
                     }
                     val dateString = "$dayString-$monthString-$year"
 
-                    val word = Word(lower_word,lower_translate,0,dateString,"")
+                    val word = Word(lower_word,lower_translate,0,dateString,"",0)
 
                     viewModel.addWord(word)
                 }

@@ -37,14 +37,27 @@ class QuizFragment : Fragment() {
 
 
         viewModel.wordList.observe(viewLifecycleOwner) { wordList ->
-            if(wordList.size < 10){
+            if(wordList.size < 15){
               changeVisibility(false)
             }
-            else if(wordList.size in 10..19){
+            else if(wordList.size in 15..24){
               changeVisibility(true)
             }
-            else if (wordList.size > 20){
+            else if (wordList.size > 25){
                 changeVisibility(true)
+            }
+
+        }
+
+        viewModel.learnedWordList.observe(viewLifecycleOwner) { learnedWordList ->
+
+            if(learnedWordList.size < 15){
+                binding.btnRepeat.isClickable = false
+                binding.txtRepeatError.visibility = View.VISIBLE
+            }
+            else{
+                binding.btnRepeat.isClickable = true
+                binding.txtRepeatError.visibility = View.GONE
             }
 
         }
@@ -62,6 +75,11 @@ class QuizFragment : Fragment() {
         }
 
         binding.btnTwelweQuestion.setOnClickListener {
+            val action = QuizFragmentDirections.actionQuizFragmentToMakeQuizFragment(20)
+            findNavController().navigate(action)
+        }
+
+        binding.btnRepeat.setOnClickListener {
             val action = QuizFragmentDirections.actionQuizFragmentToMakeQuizFragment(20)
             findNavController().navigate(action)
         }

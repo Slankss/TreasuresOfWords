@@ -96,6 +96,10 @@
         <argument
             android:name="questionLimit"
             app:argType="integer" />
+        <argument
+            android:name="isRepeat"
+            app:argType="boolean"
+            android:defaultValue="false" />
     </fragment>
     <fragment
         android:id="@+id/matchingQuizFragment"

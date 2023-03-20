@@ -86,6 +86,7 @@ class AddWordFragmentViewModel(var auth : FirebaseAuth,var db : FirebaseFirestor
                     else{
 
                         val wordList = document.get("wordList") as ArrayList<Word>
+                        new_word.index = wordList.lastIndex +1
                         wordList.add(new_word)
 
                         db.collection("Word").document(uid).update("wordList",wordList)

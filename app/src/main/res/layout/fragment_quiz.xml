@@ -26,6 +26,7 @@
             android:layout_weight="2">
 
             <androidx.cardview.widget.CardView
+                app:cardCornerRadius="14dp"
                 android:id="@+id/btnTenQuestion"
                 android:layout_width="0dp"
                 android:layout_height="100dp"
@@ -72,7 +73,7 @@
                 android:layout_width="0dp"
                 android:layout_height="100dp"
                 app:cardBackgroundColor="@color/login_background_color"
-
+                app:cardCornerRadius="14dp"
                 android:padding="10dp"
                 android:layout_weight="1"
                 >
@@ -120,7 +121,7 @@
                 android:layout_height="100dp"
                 android:padding="10dp"
                 app:cardBackgroundColor="@color/login_background_color"
-
+                app:cardCornerRadius="14dp"
                 android:layout_weight="1"
                 android:layout_marginEnd="25dp">
 
@@ -129,7 +130,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:orientation="vertical"
-                    android:gravity="center_horizontal"
+                    android:gravity="center"
 
                     >
                     <TextView
@@ -155,19 +156,41 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/btnRepeat"
                 android:layout_width="0dp"
                 android:layout_height="100dp"
                 android:padding="10dp"
                 app:cardBackgroundColor="@color/login_background_color"
+                app:cardCornerRadius="14dp"
                 android:layout_weight="1"
                 >
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
                     android:layout_gravity="center"
-                    android:text="QUIZ 4"/>
+                    android:orientation="vertical"
+                    android:gravity="center"
+
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/repeat_quiz"
+                        android:textColor="@color/white"
+                        android:layout_marginBottom="10dp"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txtRepeatError"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/insufficient_word_10"
+                        android:visibility="gone"
+                        android:textAlignment="center"
+                        android:textColor="#FF0000"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 

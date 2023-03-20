@@ -108,13 +108,13 @@ onun kelime dağarcığıdır.\n
 
     <string name="answer">Yanıtla</string>
     <string name="quiz_preparing">Minik sınav hazırlanıyor.</string>
-    <string name="quiz_min_10_word">Minik sınav için en az 10 kelime eklemelisiniz.</string>
+    <string name="quiz_min_10_word">Minik sınav için en az 15 kelime eklemelisiniz.</string>
 
     <string name="ten_question_quiz">10 Soru</string>
     <string name="twelwe_question_quiz">20 Soru</string>
     <string name="matching_quiz">Eşleştirme</string>
-    <string name="insufficient_word_10">Minimum 10 keline\nuygun değil</string>
-    <string name="insufficient_word_20">Minimum 20 keline\nuygun değil</string>
+    <string name="insufficient_word_10">Minimum 15 kelime</string>
+    <string name="insufficient_word_20">Minimum 25 kelime</string>
     <string name="go_quiz_page">Quiz sayfasına git</string>
     <string name="new_quiz">Yeni minik sınav</string>
     <string name="correct">Doğru</string>
@@ -122,6 +122,14 @@ onun kelime dağarcığıdır.\n
     <string name="quiz_brief">Quiz Özet</string>
     <string name="level_up">seviye atladı</string>
     <string name="question_header">Anlamı nedir?</string>
+
+    <string name="zero_level">0 Level \nKelimeler</string>
+    <string name="one_level">1 Level \nKelimeler</string>
+    <string name="two_level">2 Level \nKelimeler</string>
+    <string name="three_level">3 Level \nKelimeler</string>
+    <string name="four_level">4 Level \nKelimeler</string>
+    <string name="five_level">5 Level \nKelimeler</string>
+    <string name="repeat_quiz">Tekrar</string>
 
 
 </resources>

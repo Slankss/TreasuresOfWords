@@ -99,14 +99,14 @@
 
     <string name="answer">Answer</string>
     <string name="quiz_preparing">Quiz is preparing.</string>
-    <string name="quiz_min_10_word">You must add at least 10 words for the quiz.</string>
+    <string name="quiz_min_10_word">You must add at least 15 words for the quiz.</string>
 
     <string name="ten_question_quiz">10 Questions</string>
     <string name="twelwe_question_quiz">20 Questions</string>
     <string name="matching_quiz">Matching</string>
 
-    <string name="insufficient_word_10">Minimum 10 word\nunavailable</string>
-    <string name="insufficient_word_20">Minimum 20 word\nunavailable</string>
+    <string name="insufficient_word_10">Minimum 15 word</string>
+    <string name="insufficient_word_20">Minimum 25 word</string>
     <string name="go_quiz_page">Go quiz page</string>
     <string name="new_quiz">New quiz</string>
     <string name="correct">True</string>
@@ -114,6 +114,15 @@
     <string name="quiz_brief">Quiz Brief</string>
     <string name="level_up">level up</string>
     <string name="question_header">What is the meaning of</string>
+
+    <string name="zero_level">0 Level \nWords</string>
+    <string name="one_level">1 Level \nWords</string>
+    <string name="two_level">2 Level \nWords</string>
+    <string name="three_level">3 Level \nWords</string>
+    <string name="four_level">4 Level \nWords</string>
+    <string name="five_level">5 Level \nWords</string>
+    <string name="repeat_quiz">Repeat</string>
+
 
 
 </resources>

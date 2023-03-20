@@ -22,6 +22,7 @@ class HomeFragmentViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore)
     var allWordList = arrayListOf<Word>()
     var userProfile = MutableLiveData<User>()
     var wordList = MutableLiveData<ArrayList<Word>>()
+    var levelNumbers  = MutableLiveData<HashMap<String,Int>>()
 
 
     init {
@@ -74,7 +75,14 @@ class HomeFragmentViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore)
                 else{
                     val document = value
                     val wordListArray = arrayListOf<Word>()
+                    val levelHashMap = HashMap<String,Int>()
+                    var zeroLevel = 0
+                    var oneLevel = 0
+                    var twoLevel = 0
+                    var threeLevel = 0
+                    var fourLevel = 0
                     wordList.value?.clear()
+                    levelNumbers.value?.clear()
                     learnedWord.value = 0
                     var learned = 0
                     if(document != null && document.data != null && document.exists()){
@@ -86,7 +94,16 @@ class HomeFragmentViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore)
                             val date = it["date"].toString()
                             val quizTime = it["quizTime"].toString()
 
+
                             val word = Word(word_name,translate,repeatTime,date,quizTime)
+
+                            when(repeatTime){
+                                0 -> zeroLevel++
+                                1 -> oneLevel++
+                                2 -> twoLevel++
+                                3 -> threeLevel++
+                                4 -> fourLevel++
+                            }
 
 
                             if(filterDate == null){
@@ -120,6 +137,12 @@ class HomeFragmentViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore)
                         wordListArray.reverse()
 
                     }
+                    levelHashMap["zeroLevel"] = zeroLevel
+                    levelHashMap["oneLevel"] = oneLevel
+                    levelHashMap["twoLevel"] = twoLevel
+                    levelHashMap["threeLevel"] = threeLevel
+                    levelHashMap["fourLevel"] = fourLevel
+                    levelNumbers.value = levelHashMap
                     allWordList = wordListArray.map { it } as ArrayList<Word>
                     wordList.value = wordListArray.map { it } as ArrayList<Word>
 

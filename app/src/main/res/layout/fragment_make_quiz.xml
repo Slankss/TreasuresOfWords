@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".View.Main.Quiz.QuestionQuiz.MakeQuizFragment">
 
-        <TableLayout
+        <LinearLayout
             android:id="@+id/questionTableLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -17,31 +17,21 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TableRow
+            app:layout_constraintTop_toTopOf="parent"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:id="@+id/txtQuestion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="25dp">
+                android:textAlignment="gravity"
+                android:text="Question"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:layout_marginBottom="25dp"/>
 
-                <TextView
-                    android:id="@+id/txtQuestion"
+            <RadioGroup
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Question"
-                    android:textColor="@color/black"
-                    android:textSize="24sp" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="1"
-                >
-
-                <RadioGroup
-                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical">
@@ -103,86 +93,22 @@
 
                 </RadioGroup>
 
-            </TableRow>
-
-            <TableRow
+            <Button
+                android:id="@+id/btnAnswer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="25dp"
-                android:visibility="gone">
-
-                <RadioButton
-                    android:id="@+id/radioBtnAnswer1_"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:buttonTint="@color/black"
-                    android:text="RadioButton"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
-
-                <RadioButton
-                    android:id="@+id/radioBtnAnswer2_"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:buttonTint="@color/black"
-                    android:text="RadioButton"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="25dp"
-                android:visibility="gone">
-
-                <RadioButton
-                    android:id="@+id/radioBtnAnswer3_"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:buttonTint="@color/black"
-                    android:text="RadioButton"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
-
-                <RadioButton
-                    android:id="@+id/radioBtnAnswer4_"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:buttonTint="@color/black"
-                    android:text="RadioButton"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-                <Button
-                    android:id="@+id/btnAnswer"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/filled_radius_button"
-                    android:layout_weight="1"
-                    android:text="@string/answer"
-                    android:textColor="@color/white" />
-            </TableRow>
-
-
-
-        </TableLayout>
+                android:background="@drawable/filled_radius_button"
+                android:layout_weight="1"
+                android:text="@string/answer"
+                android:textColor="@color/white" />
+        </LinearLayout>
 
     <TextView
         android:id="@+id/txtQuestionNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/questionTableLayout"
         app:layout_constraintTop_toTopOf="parent" />

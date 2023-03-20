@@ -23,6 +23,7 @@ class QuizFragmentViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore)
 
     var allWordList = ArrayList<Word>()
     var wordList = MutableLiveData<ArrayList<Word>>()
+    var learnedWordList = MutableLiveData<ArrayList<Word>>()
     var userProfile = MutableLiveData<User>()
     var currentUser : FirebaseUser? = null
 
@@ -75,6 +76,7 @@ class QuizFragmentViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore)
                 else{
                     val document = value
                     val wordListArray = arrayListOf<Word>()
+                    val learnedWordListArray = arrayListOf<Word>()
                     allWordList.clear()
                     if(document != null && document.data != null && document.exists()){
 
@@ -85,7 +87,8 @@ class QuizFragmentViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore)
                             val repeatTime = it["repeatTime"].toString().toInt()
                             val dateString = it["date"].toString()
                             val quizTime = it["quizTime"].toString()
-                            val word = Word(word_name,translate,repeatTime,dateString,quizTime)
+                            var index = it["index"].toString().toInt()
+                            val word = Word(word_name,translate,repeatTime,dateString,quizTime,index)
 
                             allWordList.add(word)
 
@@ -112,13 +115,16 @@ class QuizFragmentViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore)
                                     if(diff >= 3600*48) wordListArray.add(word)
                                 }
                                 else -> {
-                                    if(repeatTime != 5) wordListArray.add(word)
+                                    if(repeatTime == 5) learnedWordListArray.add(word)
+                                    else wordListArray.add(word)
+
                                 }
                             }
 
                         }
                         wordListArray.reverse()
                     }
+                    learnedWordList.value = learnedWordListArray
                     wordList.value = wordListArray
                 }
             }

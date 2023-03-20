@@ -66,7 +66,6 @@ class HomeFragment : Fragment() {
             it?.let {
                 binding.txtAllWord.setText(it.size.toString())
 
-
                 if(it.size > 0){
                     binding.circularProgressBar.progressMax = it.size.toFloat()
                 }
@@ -74,6 +73,16 @@ class HomeFragment : Fragment() {
                     binding
                 }
 
+            }
+        }
+
+        viewModel.levelNumbers.observe(viewLifecycleOwner){
+            binding.apply {
+                zeroLevel.text = it["zeroLevel"].toString()
+                oneLevel.text = it["oneLevel"].toString()
+                twoLevel.text = it["twoLevel"].toString()
+                threeLevel.text = it["threeLevel"].toString()
+                fourLevel.text = it["fourLevel"].toString()
             }
         }
 
@@ -238,6 +247,32 @@ class HomeFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        binding.apply {
+            radioBtnAllTime.text = getString(R.string.all_time)
+            radioBtnThisMonth.text = getString(R.string.this_month)
+            radioBtnThisWeek.text = getString(R.string.this_week)
+            radioBtnThreeMonths.text = getString(R.string.three_months)
+
+            lblAllWord.text = getString(R.string.all_words)
+            lblLearnedWords.text = getString(R.string.learned_words)
+
+            lblZeroLevel.text = getString(R.string.zero_level)
+            lblOneLevel.text = getString(R.string.one_level)
+            lblTwoLevel.text = getString(R.string.two_level)
+            lblThreeLevel.text = getString(R.string.three_level)
+            lblFourLevel.text = getString(R.string.four_level)
+            lblFiveLevel.text = getString(R.string.five_level)
+
+            btnGoSettings.text = getString(R.string.settings)
+            btnLogout.text = getString(R.string.log_out)
+
+        }
+
     }
 
 

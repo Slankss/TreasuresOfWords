@@ -81,8 +81,9 @@ class QuizViewModel(private var auth : FirebaseAuth, private var db : FirebaseFi
                                 val repeatTime = it["repeatTime"].toString().toInt()
                                 val dateString = it["date"].toString()
                                 val quizTime = it["quizTime"].toString()
+                                val index = it["index"].toString().toInt()
 
-                                val word = Word(word_name,translate,repeatTime,dateString,quizTime)
+                                val word = Word(word_name,translate,repeatTime,dateString,quizTime,index)
 
                                 allWordList.add(word)
 
@@ -132,7 +133,6 @@ class QuizViewModel(private var auth : FirebaseAuth, private var db : FirebaseFi
         val month = currentDate.monthValue.toString()
         val year = currentDate.year.toString()
 
-
         val dayString = when(day.length){
             1 -> "0$day"
             else -> { day}
@@ -164,6 +164,51 @@ class QuizViewModel(private var auth : FirebaseAuth, private var db : FirebaseFi
                 }
 
         }
+
+    }
+
+    fun updateRepeatQuiz(updatedList : ArrayList<Question>){
+
+        val currentDate = LocalDateTime.now()
+        val day = currentDate.dayOfMonth.toString()
+        val month = currentDate.monthValue.toString()
+        val year = currentDate.year.toString()
+
+        val dayString = when(day.length){
+            1 -> "0$day"
+            else -> { day}
+        }
+        val monthString = when(month.length){
+            1 -> "0$month"
+            else -> { month}
+        }
+        val dateString = "$dayString-$monthString-$year"
+
+        updatedList.forEachIndexed { index, question ->
+            allWordList[question.index].repeatTime -=1
+            allWordList[question.index].quizTime = dateString
+
+
+
+        }
+
+
+        if(currentUser != null){
+
+            var uid = currentUser!!.uid
+            db.collection("Word").document(uid).update("wordList",allWordList)
+                .addOnCompleteListener { task ->
+                    if(task.isSuccessful)
+                    {
+
+                    }
+                }
+                .addOnFailureListener {  exception ->
+                    Log.e("errorMsg",exception.localizedMessage)
+                }
+
+        }
+
 
     }
 
