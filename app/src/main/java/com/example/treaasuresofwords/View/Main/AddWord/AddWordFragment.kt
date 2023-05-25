@@ -110,6 +110,7 @@ class AddWordFragment : Fragment() {
             if(isSuccesfull){
                 binding.editTextWord.setText("")
                 binding.editTextTranslate.setText("")
+                binding.editTextWord.requestFocus()
             }
         }
 

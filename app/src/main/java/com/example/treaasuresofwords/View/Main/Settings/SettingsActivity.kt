@@ -1,17 +1,27 @@
 package com.example.treaasuresofwords.View.Main.Settings
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.view.View
 import android.widget.*
+import com.example.treaasuresofwords.Model.Roles
+import com.example.treaasuresofwords.Model.User
 import com.example.treaasuresofwords.R
+import com.example.treaasuresofwords.View.Main.AdminPanel.AdminPanelActivity
+import com.example.treaasuresofwords.View.Main.MainActivity
 import com.example.treaasuresofwords.databinding.ActivitySettingsBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.muhammed.toastoy.Toastoy
+import kotlinx.coroutines.MainScope
 import java.util.*
 
 class SettingsActivity : AppCompatActivity() {
@@ -23,6 +33,7 @@ class SettingsActivity : AppCompatActivity() {
     private lateinit var editTextNewPassword : EditText
     private lateinit var editTextNewPasswordAgain : EditText
     private lateinit var btnUpdatePassword : Button
+    private lateinit var db  :FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,18 +44,25 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         binding = ActivitySettingsBinding.inflate(layoutInflater)
+        db = FirebaseFirestore.getInstance()
         auth = FirebaseAuth.getInstance()
         setContentView(binding.root)
 
         fillSpinner()
         createPopup()
+        getRole()
 
         binding.btnChangePassword.setOnClickListener {
             dialog.show()
         }
 
+        binding.btnGoAdminPanel.setOnClickListener {
+            startActivity(Intent(applicationContext,AdminPanelActivity::class.java))
+        }
+
     }
 
+    @SuppressLint("SuspiciousIndentation")
     fun fillSpinner(){
 
         val languageList = arrayListOf<String>()
@@ -103,13 +121,14 @@ class SettingsActivity : AppCompatActivity() {
 
             binding.apply {
                 lblChangeLanguage.setText(getString(R.string.change_language))
-                btnChangePassword.setText(getString(R.string.change_language))
+                btnChangePassword.setText(getString(R.string.change_password))
             }
 
             val preferences = getSharedPreferences("User_Local_Data", Context.MODE_PRIVATE)
             val editor = preferences.edit()
             editor.putString("current_language",language)
             editor.apply()
+
 
             // aldık dili bunu shared preferences ta tutabiliriz
 
@@ -172,6 +191,43 @@ class SettingsActivity : AppCompatActivity() {
                 Log.w("aaa",exception.localizedMessage)
             }
         }
+
+    }
+
+    override fun onBackPressed() {
+
+        startActivity(Intent(applicationContext,MainActivity::class.java))
+        this.finish()
+
+    }
+
+    fun getRole(){
+
+        auth.currentUser?.let {
+            val uuid = it.uid
+
+            db.collection("User").document(uuid).get().addOnCompleteListener { task ->
+                if(task.isSuccessful){
+                    val document = task.result
+
+                    if(document != null){
+                        var email = document.getString("email") as String
+                        var number = document.getString("number") as String
+                        var pageLanguage = document.getString("pageLanguage") as String
+                        var role = document.getString("role") as String
+                        var selectedLanguageState = document.getBoolean("selectedLanguageState") as Boolean
+                        var username = document.getString("username") as String
+
+                        var user = User(username,email,number,selectedLanguageState,pageLanguage,role)
+
+                        if(user.role == Roles.admin.name){
+                            binding.btnGoAdminPanel.visibility = View.VISIBLE
+                        }
+                    }
+                }
+            }
+        }
+
 
     }
 

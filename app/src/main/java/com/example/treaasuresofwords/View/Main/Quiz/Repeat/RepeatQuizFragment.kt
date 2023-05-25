@@ -186,10 +186,7 @@ class RepeatQuizFragment : Fragment() {
             currentQuestionIndex++
 
             binding.apply {
-                radioBtnAnswer1.isChecked = false
-                radioBtnAnswer2.isChecked = false
-                radioBtnAnswer3.isChecked = false
-                radioBtnAnswer4.isChecked = false
+                radioGroup.clearCheck()
             }
 
             if(currentQuestionIndex == questionLimit){

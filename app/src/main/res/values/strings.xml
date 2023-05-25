@@ -46,8 +46,8 @@
     <string name="forgot_password">Forgot password?</string>
 
     <string name="email_is_empty">Please, enter Email address.</string>
-    <string name="language_to_translated">Language to be translated</string>
-    <string name="translated_language">Translated language</string>
+    <string name="language_to_translated">Word to be translated</string>
+    <string name="translated_language">Translated word</string>
 
     <string name="add_text">Add</string>
     <string name="continue_text">Continue</string>
@@ -122,7 +122,11 @@
     <string name="four_level">4 Level \nWords</string>
     <string name="five_level">5 Level \nWords</string>
     <string name="repeat_quiz">Repeat</string>
+    <string name="quiz">Quiz</string>
 
+    <string name="notification_title">Quiz Time</string>
+    <string name="notification_content">Lets, continue to learn word</string>
+    <string name="title_activity_admin_panel">AdminPanelActivity</string>
 
 
 </resources>

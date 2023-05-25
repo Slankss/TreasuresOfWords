@@ -83,6 +83,7 @@ class HomeFragment : Fragment() {
                 twoLevel.text = it["twoLevel"].toString()
                 threeLevel.text = it["threeLevel"].toString()
                 fourLevel.text = it["fourLevel"].toString()
+                fiveLevel.text = it["fiveLevel"].toString()
             }
         }
 
@@ -204,8 +205,9 @@ class HomeFragment : Fragment() {
         }
 
         binding.btnGoSettings.setOnClickListener {
-            context?.let {
+            activity?.let {
                 startActivity(Intent(it.applicationContext,SettingsActivity::class.java))
+                it.finish()
             }
 
         }

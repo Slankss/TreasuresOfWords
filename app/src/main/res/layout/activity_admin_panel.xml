@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".View.Main.AdminPanel.AdminPanelActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="24dp"
+            android:layout_margin="25dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kelime level sıfırlama"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+
+                    android:padding="10dp"/>
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp"
+                    >
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="3"
+                        android:layout_marginBottom="15dp"
+                        >
+                        <Button
+                            android:id="@+id/btnSetZeroLevel"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/filled_radius_button"
+                            android:text="0 level"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="10dp"
+                            android:textSize="16sp"
+                            android:textColor="@color/white"
+                            />
+
+                        <Button
+                            android:id="@+id/btnSetOneLevel"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/filled_radius_button"
+                            android:text="1 level"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:textSize="16sp"
+                            android:textColor="@color/white"
+                            />
+
+                        <Button
+                            android:id="@+id/btnSetSecondLevel"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/filled_radius_button"
+                            android:text="2 level"
+                            android:layout_weight="1"
+
+                            android:textSize="16sp"
+                            android:textColor="@color/white"
+                            />
+
+                    </TableRow>
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="3"
+                        >
+
+
+                        <Button
+                            android:id="@+id/btnSetThirdLevel"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/filled_radius_button"
+                            android:text="3 level"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="10dp"
+                            android:textSize="16sp"
+                            android:textColor="@color/white"
+                            />
+
+                        <Button
+                            android:id="@+id/btnSetFourthLevel"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/filled_radius_button"
+                            android:text="4 level"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="10dp"
+                            android:textSize="16sp"
+                            android:textColor="@color/white"
+                            />
+
+                        <Button
+                            android:id="@+id/btnSetFifthLevel"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/filled_radius_button"
+                            android:text="5 level"
+
+                            android:layout_weight="1"
+                            android:textSize="16sp"
+                            android:textColor="@color/white"
+                            />
+
+                    </TableRow>
+
+
+                </TableLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

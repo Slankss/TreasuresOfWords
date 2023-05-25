@@ -46,8 +46,9 @@ class WordFragmentViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore,
                         val number = document.getString("number") as String
                         val selectedLanguageState = document.getBoolean("selectedLanguageState") as Boolean
                         val pageLanguage = document.getString("pageLanguage") as String
+                        val role = document.getString("role") as String
 
-                        val user = User(username,email,number,selectedLanguageState,pageLanguage)
+                        val user = User(username,email,number,selectedLanguageState,pageLanguage,role)
 
                         userProfile.value = user
 

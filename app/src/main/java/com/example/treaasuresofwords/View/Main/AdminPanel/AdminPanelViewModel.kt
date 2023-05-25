@@ -1,29 +1,23 @@
-package com.example.treaasuresofwords.View.Main.Quiz
+package com.example.treaasuresofwords.View.Main.AdminPanel
 
+import android.content.Context
 import android.os.Build
 import android.util.Log
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.treaasuresofwords.Model.Question
 import com.example.treaasuresofwords.Model.User
 import com.example.treaasuresofwords.Model.Word
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
-import com.muhammed.toastoy.Toastoy
-import java.util.Date
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.ZoneId
 
 @RequiresApi(Build.VERSION_CODES.O)
-class QuizFragmentViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore) : ViewModel() {
+class AdminPanelViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore, var mContext : Context) : ViewModel() {
 
-    var allWordList = ArrayList<Word>()
+    var allWordList = arrayListOf<Word>()
     var wordList = MutableLiveData<ArrayList<Word>>()
-    var learnedWordList = MutableLiveData<ArrayList<Word>>()
     var userProfile = MutableLiveData<User>()
     var currentUser : FirebaseUser? = null
 
@@ -64,7 +58,6 @@ class QuizFragmentViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore)
 
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     fun getWordList(){
 
         if(currentUser != null){
@@ -77,8 +70,6 @@ class QuizFragmentViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore)
                 else{
                     val document = value
                     val wordListArray = arrayListOf<Word>()
-                    val learnedWordListArray = arrayListOf<Word>()
-                    allWordList.clear()
                     if(document != null && document.data != null && document.exists()){
 
                         val wordListInDb = document.get("wordList") as ArrayList<HashMap<String,Any>>
@@ -86,46 +77,16 @@ class QuizFragmentViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore)
                             val word_name = it["word"].toString()
                             val translate = it["translate"].toString()
                             val repeatTime = it["repeatTime"].toString().toInt()
-                            val dateString = it["date"].toString()
+                            val date = it["date"].toString()
                             val quizTime = it["quizTime"].toString()
-                            var index = it["index"].toString().toInt()
-                            val word = Word(word_name,translate,repeatTime,dateString,quizTime,index)
 
-                            allWordList.add(word)
+                            val word = Word(word_name,translate,repeatTime,date,quizTime)
 
-                            var diff : Int = 0
-                            var diffLong : Long = 0
-                            if(quizTime.isNotEmpty()){
-
-                                val day = it["quizTime"].toString().subSequence(0,2).toString()
-                                val month = it["quizTime"].toString().subSequence(3,5).toString()
-                                val year = it["quizTime"].toString().subSequence(6,10).toString()
-
-                                val localDate = LocalDateTime.now()
-                                val date = Date(year.toInt(),month.toInt(),day.toInt())
-                                val currentDate = Date(localDate.year,localDate.monthValue,localDate.dayOfMonth)
-
-                                diff  = (( currentDate.time - date.time ) / 3600000 / 24).toInt() // convert to hour
-                            }
-
-                            when(repeatTime){
-                                3 -> {
-                                    if(diff >= 1) wordListArray.add(word)
-
-                                }
-                                4 -> {
-                                    if(diff >= 2) wordListArray.add(word)
-                                }
-                                else -> {
-                                    if(repeatTime == 5) learnedWordListArray.add(word)
-                                    else wordListArray.add(word)
-                                }
-                            }
-
+                            wordListArray.add(word)
                         }
                         wordListArray.reverse()
                     }
-                    learnedWordList.value = learnedWordListArray
+                    allWordList = wordListArray.map { it } as ArrayList<Word>
                     wordList.value = wordListArray
                 }
             }
@@ -133,28 +94,24 @@ class QuizFragmentViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore)
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun converDate(dateToConvert: LocalDate): Date {
-        return Date.from(dateToConvert.atStartOfDay(ZoneId.systemDefault()).toInstant())
-    }
+    fun setWorlLevel(wordLevel : Int){
 
-    fun reset(){
+        val uuid = currentUser!!.uid
 
-        if(currentUser != null) {
+        allWordList.forEachIndexed { index, word ->
 
-            var uid = currentUser!!.uid
-            allWordList.forEachIndexed { index, word ->
-                word.quizTime = ""
-                word.repeatTime = 0
-            }
-
-            db.collection("Word").document(uid).update("wordList",allWordList).addOnCompleteListener { task ->
-                if(task.isSuccessful){
-
-                }
-            }
+            word.repeatTime = wordLevel
 
         }
+
+        db.collection("Word").document(uuid).update("wordList",allWordList).addOnCompleteListener { task ->
+            if(task.isSuccessful){
+                Toast.makeText(mContext,"Tüm Kelimeler $wordLevel oldu",Toast.LENGTH_SHORT).show()
+            }
+        }
+
     }
+
+
 
 }

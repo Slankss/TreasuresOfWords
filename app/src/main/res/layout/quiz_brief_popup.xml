@@ -10,8 +10,8 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="25dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,12 +22,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="25dp"
             android:text="@string/quiz_brief"
             android:textColor="@color/black"
             android:textSize="20sp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="25dp"
-            android:textStyle="italic"/>
+            android:textStyle="italic" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,28 +40,28 @@
                 android:id="@+id/txtCorrectNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="4 Doğru"
-                android:textSize="16sp"
                 android:layout_marginRight="10dp"
-                android:textColor="#4CAF50"/>
+                android:text="4 Doğru"
+                android:textColor="#4CAF50"
+                android:textSize="16sp" />
+
             <TextView
                 android:id="@+id/txtWrongNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="6 Yanlış"
-                android:textSize="18sp"
-                android:textColor="#FF0000"/>
+                android:textColor="#FF0000"
+                android:textSize="18sp" />
 
         </LinearLayout>
 
         <ListView
             android:id="@+id/levelUpWordsListView"
             android:layout_width="match_parent"
-            android:divider="@color/transparant"
-            android:dividerHeight="10.0sp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="25dp"
-            />
+            android:divider="@color/transparant"
+            android:dividerHeight="10.0sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -73,24 +73,21 @@
                 android:id="@+id/btnBackQuizPage"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/go_quiz_page"
                 android:layout_weight="1"
-                android:textColor="@color/white"
-                android:backgroundTint="#2196F3"/>
+                android:backgroundTint="#2196F3"
+                android:text="@string/go_quiz_page"
+                android:textColor="@color/white" />
 
             <Button
                 android:id="@+id/btnNewQuiz"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/new_quiz"
                 android:layout_weight="1"
-                android:textColor="@color/white"
-                android:backgroundTint="#4CAF50"/>
+                android:backgroundTint="#4CAF50"
+                android:text="@string/new_quiz"
+                android:textColor="@color/white" />
 
         </LinearLayout>
-
-
-
 
 
     </LinearLayout>

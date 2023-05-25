@@ -35,17 +35,15 @@ class QuizFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        var stateMathing = false
+        var stateTenQuestion = false
+        var stateTwelweQuestion = false
 
         viewModel.wordList.observe(viewLifecycleOwner) { wordList ->
-            if(wordList.size < 15){
-              changeVisibility(false)
-            }
-            else if(wordList.size in 15..24){
-              changeVisibility(true)
-            }
-            else if (wordList.size > 25){
-                changeVisibility(true)
-            }
+            stateMathing = wordList.size >= 15
+            stateTenQuestion = wordList.size in 15..24
+            stateTwelweQuestion = wordList.size >= 25
+            changeVisibility(stateMathing,stateTenQuestion,stateTwelweQuestion)
 
         }
 
@@ -102,19 +100,19 @@ class QuizFragment : Fragment() {
         return binding.root
     }
 
-    fun changeVisibility(state : Boolean){
-        binding.btnMatching.isClickable = state
-        binding.txtMatchingError.visibility = when(state){
+    fun changeVisibility(stateMathing : Boolean,stateTenQuestion : Boolean,stateTwelweQuestion : Boolean){
+        binding.btnMatching.isClickable = stateMathing
+        binding.txtMatchingError.visibility = when(stateMathing){
             true -> View.GONE
             false -> View.VISIBLE
         }
-        binding.btnTenQuestion.isClickable = state
-        binding.txtTenQuestionError.visibility = when(state){
+        binding.btnTenQuestion.isClickable = stateTenQuestion
+        binding.txtTenQuestionError.visibility = when(stateTenQuestion){
             true -> View.GONE
             false -> View.VISIBLE
         }
-        binding.btnTwelweQuestion.isClickable = state
-        binding.txtTwelweQuestionError.visibility = when(state){
+        binding.btnTwelweQuestion.isClickable = stateTwelweQuestion
+        binding.txtTwelweQuestionError.visibility = when(stateTwelweQuestion){
             true -> View.GONE
             false -> View.VISIBLE
         }

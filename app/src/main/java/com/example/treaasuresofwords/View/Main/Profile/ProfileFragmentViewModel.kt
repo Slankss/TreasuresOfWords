@@ -31,14 +31,15 @@ class ProfileFragmentViewModel(var auth : FirebaseAuth,var db : FirebaseFirestor
             db.collection("User").document(uid).get().addOnCompleteListener { completeTask ->
                 if(completeTask.isComplete){
                     if(completeTask.isSuccessful){
-                        var document = completeTask.result
-                        var username = document.getString("username") as String
-                        var email = document.getString("email") as String
-                        var number = document.getString("number") as String
-                        var selectedLanguageState = document.getBoolean("selectedLanguageState") as Boolean
-                        var pageLanguage = document.getString("pageLanguage") as String
+                        val document = completeTask.result
+                        val username = document.getString("username") as String
+                        val email = document.getString("email") as String
+                        val number = document.getString("number") as String
+                        val selectedLanguageState = document.getBoolean("selectedLanguageState") as Boolean
+                        val pageLanguage = document.getString("pageLanguage") as String
+                        val role = document.getString("role") as String
 
-                        user.value = User(username,email,number,selectedLanguageState,pageLanguage)
+                        user.value = User(username,email,number,selectedLanguageState,pageLanguage,role)
                     }
                 }
             }.addOnFailureListener { exception ->

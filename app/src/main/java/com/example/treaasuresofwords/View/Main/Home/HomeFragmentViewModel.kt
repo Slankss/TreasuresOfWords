@@ -46,8 +46,9 @@ class HomeFragmentViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore)
                         val number = document.getString("number") as String
                         val selectedLanguageState = document.getBoolean("selectedLanguageState") as Boolean
                         val pageLanguage = document.getString("pageLanguage") as String
+                        val role = document.getString("role") as String
 
-                        val user = User(username,email,number,selectedLanguageState,pageLanguage)
+                        val user = User(username,email,number,selectedLanguageState,pageLanguage,role)
 
                         userProfile.value = user
 
@@ -81,6 +82,7 @@ class HomeFragmentViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore)
                     var twoLevel = 0
                     var threeLevel = 0
                     var fourLevel = 0
+                    var fiveLevel = 0
                     wordList.value?.clear()
                     levelNumbers.value?.clear()
                     learnedWord.value = 0
@@ -103,6 +105,7 @@ class HomeFragmentViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore)
                                 2 -> twoLevel++
                                 3 -> threeLevel++
                                 4 -> fourLevel++
+                                5 -> fiveLevel++
                             }
 
 
@@ -142,6 +145,7 @@ class HomeFragmentViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore)
                     levelHashMap["twoLevel"] = twoLevel
                     levelHashMap["threeLevel"] = threeLevel
                     levelHashMap["fourLevel"] = fourLevel
+                    levelHashMap["fiveLevel"] = fiveLevel
                     levelNumbers.value = levelHashMap
                     allWordList = wordListArray.map { it } as ArrayList<Word>
                     wordList.value = wordListArray.map { it } as ArrayList<Word>

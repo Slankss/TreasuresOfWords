@@ -40,7 +40,7 @@ onun kelime dağarcığıdır.\n
 
     <string name="menu_home">Ana Sayfa</string>
     <string name="menu_word">Kelimelerim</string>
-    <string name="menu_quiz">Mini sınav</string>
+    <string name="menu_quiz">Quiz</string>
     <string name="menu_profile">Profil</string>
     <string name="menu_settings">Ayarlar</string>
 
@@ -55,8 +55,8 @@ onun kelime dağarcığıdır.\n
     <string name="forgot_password">Parolanızı mı unuttunuz?</string>
 
     <string name="email_is_empty">Lütfen, eposta adresinizi giriniz.</string>
-    <string name="language_to_translated">Çevrilecek dil</string>
-    <string name="translated_language">Çevrilen dil</string>
+    <string name="language_to_translated">Çevrilecek kelime</string>
+    <string name="translated_language">Çevrilen kelime</string>
 
     <string name="add_text">Ekle</string>
     <string name="continue_text">Devam et</string>
@@ -107,16 +107,16 @@ onun kelime dağarcığıdır.\n
     <string name="change_password_character_error">Parola en az 6 karakter olmalıdır</string>
 
     <string name="answer">Yanıtla</string>
-    <string name="quiz_preparing">Minik sınav hazırlanıyor.</string>
-    <string name="quiz_min_10_word">Minik sınav için en az 15 kelime eklemelisiniz.</string>
+    <string name="quiz_preparing">Quiz hazırlanıyor.</string>
+    <string name="quiz_min_10_word">Quiz için en az 15 kelime eklemelisiniz.</string>
 
     <string name="ten_question_quiz">10 Soru</string>
     <string name="twelwe_question_quiz">20 Soru</string>
     <string name="matching_quiz">Eşleştirme</string>
     <string name="insufficient_word_10">Minimum 15 kelime</string>
     <string name="insufficient_word_20">Minimum 25 kelime</string>
-    <string name="go_quiz_page">Quiz sayfasına git</string>
-    <string name="new_quiz">Yeni minik sınav</string>
+    <string name="go_quiz_page">Quiz sayfası</string>
+    <string name="new_quiz">Yeni Quiz</string>
     <string name="correct">Doğru</string>
     <string name="wrong">Yanlış</string>
     <string name="quiz_brief">Quiz Özet</string>
@@ -130,6 +130,10 @@ onun kelime dağarcığıdır.\n
     <string name="four_level">4 Level \nKelimeler</string>
     <string name="five_level">5 Level \nKelimeler</string>
     <string name="repeat_quiz">Tekrar</string>
+    <string name="quiz">Quiz</string>
+
+    <string name="notification_title">Quiz Zamanı</string>
+    <string name="notification_content">Haydi, kelime öğrenmeye devam et</string>
 
 
 </resources>

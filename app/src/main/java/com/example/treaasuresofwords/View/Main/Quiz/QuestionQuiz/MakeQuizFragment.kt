@@ -173,7 +173,7 @@ class MakeQuizFragment : Fragment() {
                 radioBtnAnswer2.text = question.answerList[1]
                 radioBtnAnswer3.text = question.answerList[2]
                 radioBtnAnswer4.text = question.answerList[3]
-                txtQuestionNumber.text = "$currentQuestionIndex/$questionLimit"
+                txtQuestionNumber.text = "${currentQuestionIndex + 1}/$questionLimit"
             }
     }
 
@@ -193,10 +193,7 @@ class MakeQuizFragment : Fragment() {
             currentQuestionIndex++
 
             binding.apply {
-                radioBtnAnswer1.isChecked = false
-                radioBtnAnswer2.isChecked = false
-                radioBtnAnswer3.isChecked = false
-                radioBtnAnswer4.isChecked = false
+                radioGroup.clearCheck()
             }
 
             if(currentQuestionIndex == questionLimit){
@@ -205,6 +202,7 @@ class MakeQuizFragment : Fragment() {
             else{
                 createQuestion()
             }
+            selectedAnswer = ""
         }
     }
 

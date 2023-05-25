@@ -127,7 +127,7 @@ class RegisterFragment : Fragment() {
             if(result){
                 loadingDialog.startLoadingDialog()
                 btnRegister.isClickable = false
-                var user = User("",email,"",false,current_language)
+                val user = User("",email,"",false,current_language,"user")
                 viewModel.register(user,password)
             }
 
