@@ -19,10 +19,10 @@
         <activity
             android:name=".View.Main.AdminPanel.AdminPanelActivity"
             android:exported="false"
-            android:label="@string/title_activity_admin_panel"
+            android:label="admin panel"
             android:theme="@style/Theme.TreaasuresOfWords" />
 
-        <service android:name=".View.Main.Service.NotificationService" />
+
 
         <activity
             android:name=".View.Main.Settings.SettingsActivity"

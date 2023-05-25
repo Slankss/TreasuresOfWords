@@ -23,6 +23,7 @@ class AdminPanelViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore, v
 
     init {
         getCurrentUser()
+
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -79,12 +80,13 @@ class AdminPanelViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore, v
                             val repeatTime = it["repeatTime"].toString().toInt()
                             val date = it["date"].toString()
                             val quizTime = it["quizTime"].toString()
+                            val index = it["index"].toString().toInt()
 
-                            val word = Word(word_name,translate,repeatTime,date,quizTime)
+
+                            val word = Word(word_name,translate,repeatTime,date,quizTime,index)
 
                             wordListArray.add(word)
                         }
-                        wordListArray.reverse()
                     }
                     allWordList = wordListArray.map { it } as ArrayList<Word>
                     wordList.value = wordListArray

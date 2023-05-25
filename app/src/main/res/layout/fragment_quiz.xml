@@ -138,7 +138,7 @@
                     android:id="@+id/txtTwelweQuestionError"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/insufficient_word_10"
+                    android:text="@string/insufficient_word_20"
                     android:textAlignment="center"
                     android:textColor="#FF0000"
                     android:textSize="14sp"
