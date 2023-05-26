@@ -41,12 +41,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var NavigationView : BottomNavigationView
     private var PERMISSION_NOTIFICATİON = Manifest.permission.POST_NOTIFICATIONS
 
-
-    val constraints = Constraints.Builder()
-        .setRequiredNetworkType(NetworkType.UNMETERED)
-        .setRequiresCharging(true)
-        .build()
-
     val data = Data.Builder().putInt("intKey",1).build()
 
     private val childFragmentList = arrayOf(
@@ -66,19 +60,17 @@ class MainActivity : AppCompatActivity() {
         } catch (e: NullPointerException) {
         }
 
-        saveVisitedTime()
+        //saveVisitedTime()
 
-        askForNotificationPermission()
+        //askForNotificationPermission()
 
         // Optional
-        val workManager = WorkManager.getInstance(this)
-        workManager.cancelAllWorkByTag("notificationWork")
+        //val workManager = WorkManager.getInstance(this)
+        //workManager.cancelAllWorkByTag("notificationWork")
 
-        createWorkListener()
-
+        //createWorkListener()
 
         createBottomMenu()
-
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -95,7 +87,6 @@ class MainActivity : AppCompatActivity() {
         editor.apply()
     }
 
-
     fun askForNotificationPermission(){
 
         if(ContextCompat.checkSelfPermission(this,PERMISSION_NOTIFICATİON) != PackageManager.PERMISSION_GRANTED){
@@ -108,8 +99,13 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-
     fun createWorkListener(){
+
+        val constraints = Constraints.Builder()
+            .setRequiredNetworkType(NetworkType.UNMETERED)
+            .setRequiresCharging(true)
+            .build()
+
         val myPeriodicWorkRequest : PeriodicWorkRequest =
             PeriodicWorkRequestBuilder<NotificationListener>(15,TimeUnit.MINUTES)
                 //.setConstraints(constraints)
@@ -169,18 +165,9 @@ class MainActivity : AppCompatActivity() {
             val alert = dialogBuilder.create()
             alert.setTitle(R.string.log_out)
             alert.show()
-
-        }
-
-    }
-
-    override fun onStop() {
-        super.onStop()
-
-        if(isFinishing){
-            //createWorkListener()
         }
     }
+
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -196,7 +183,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
     }
 
 }

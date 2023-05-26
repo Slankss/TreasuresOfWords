@@ -41,7 +41,7 @@ class QuizFragment : Fragment() {
 
         viewModel.wordList.observe(viewLifecycleOwner) { wordList ->
             stateMathing = wordList.size >= 15
-            stateTenQuestion = wordList.size in 15..24
+            stateTenQuestion = wordList.size >= 15
             stateTwelweQuestion = wordList.size >= 25
             changeVisibility(stateMathing,stateTenQuestion,stateTwelweQuestion)
 

@@ -261,7 +261,7 @@
                         android:text="0"
                         android:textAlignment="center"
                         android:textColor="@color/login_background_color"
-                        android:textSize="16sp" />
+                        android:textSize="18sp" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -300,7 +300,7 @@
                         android:text="0"
                         android:textAlignment="center"
                         android:textColor="@color/login_background_color"
-                        android:textSize="16sp" />
+                        android:textSize="18sp" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -337,7 +337,7 @@
                         android:text="0"
                         android:textAlignment="center"
                         android:textColor="@color/login_background_color"
-                        android:textSize="16sp" />
+                        android:textSize="18sp" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -381,7 +381,7 @@
                         android:text="0"
                         android:textAlignment="center"
                         android:textColor="@color/login_background_color"
-                        android:textSize="16sp" />
+                        android:textSize="18sp" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -420,7 +420,7 @@
                         android:text="0"
                         android:textAlignment="center"
                         android:textColor="@color/login_background_color"
-                        android:textSize="16sp" />
+                        android:textSize="18sp" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -457,7 +457,7 @@
                         android:text="0"
                         android:textAlignment="center"
                         android:textColor="@color/login_background_color"
-                        android:textSize="16sp" />
+                        android:textSize="18sp" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
