@@ -26,8 +26,7 @@
             android:layout_marginBottom="25dp"
             android:text="@string/quiz_brief"
             android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="italic" />
+            android:textSize="20sp" />
 
         <LinearLayout
             android:layout_width="match_parent"

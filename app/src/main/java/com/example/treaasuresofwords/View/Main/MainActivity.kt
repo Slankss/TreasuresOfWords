@@ -11,10 +11,14 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.MenuItemCompat
 import androidx.core.view.get
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -29,6 +33,7 @@ import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import com.example.treaasuresofwords.R
 import com.example.treaasuresofwords.View.Main.WorkManager.NotificationListener
+import com.example.treaasuresofwords.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -37,6 +42,7 @@ import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding : ActivityMainBinding
     private lateinit var navController: NavController
     private lateinit var NavigationView : BottomNavigationView
     private var PERMISSION_NOTIFICATİON = Manifest.permission.POST_NOTIFICATIONS
@@ -53,8 +59,9 @@ class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        // R.layout.activity_main
         try {
             this.supportActionBar!!.hide()
         } catch (e: NullPointerException) {
@@ -69,8 +76,9 @@ class MainActivity : AppCompatActivity() {
         //workManager.cancelAllWorkByTag("notificationWork")
 
         //createWorkListener()
-
         createBottomMenu()
+
+
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -131,12 +139,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
         return when(item.itemId){
             android.R.id.home ->{
                 navController.navigateUp()
                 true
             }
-            else -> super.onOptionsItemSelected(item)
+            else -> {
+                super.onOptionsItemSelected(item)
+            }
+
         }
     }
 
