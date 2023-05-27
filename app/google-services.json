@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:829254516989:android:f2bd3abb24fb758ad1be94",
+        "mobilesdk_app_id": "1:829254516989:android:605763ee535827fbd1be94",
         "android_client_info": {
-          "package_name": "com.dogunigar.tow"
+          "package_name": "com.example.treaasuresofwords"
         }
       },
       "oauth_client": [
@@ -37,9 +37,9 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:829254516989:android:605763ee535827fbd1be94",
+        "mobilesdk_app_id": "1:829254516989:android:ff3e938ac37f8dcfd1be94",
         "android_client_info": {
-          "package_name": "com.example.treaasuresofwords"
+          "package_name": "com.okankkl.treasuresofwords"
         }
       },
       "oauth_client": [

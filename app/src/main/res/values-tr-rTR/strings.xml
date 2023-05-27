@@ -134,6 +134,7 @@ onun kelime dağarcığıdır.\n
 
     <string name="notification_title">Quiz Zamanı</string>
     <string name="notification_content">Haydi, kelime öğrenmeye devam et</string>
+    <string name="level_dropped">level düştü</string>
 
 
 </resources>

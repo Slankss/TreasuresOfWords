@@ -8,11 +8,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.treaasuresofwords'
+    namespace 'com.okankkl.treasuresofwords'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.treaasuresofwords"
+        applicationId "com.okankkl.treasuresofwords"
         minSdk 24
         targetSdk 33
         versionCode 1

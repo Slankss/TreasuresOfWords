@@ -28,14 +28,15 @@
         android:text="1 -> 2"/>
 
     <TextView
+        android:id="@+id/txtLevelUp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:layout_weight="2.5"
         android:text="seviye atladı"
         android:textColor="#0FD116"
-        android:textStyle="bold"
-        android:layout_marginStart="10dp"
-        android:textSize="16sp"/>
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
 
 

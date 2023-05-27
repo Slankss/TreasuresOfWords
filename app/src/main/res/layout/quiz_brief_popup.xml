@@ -84,7 +84,8 @@
                 android:layout_weight="1"
                 android:backgroundTint="#4CAF50"
                 android:text="@string/new_quiz"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:visibility="gone" />
 
         </LinearLayout>
 

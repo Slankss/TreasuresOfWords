@@ -126,6 +126,7 @@
 
     <string name="notification_title">Quiz Time</string>
     <string name="notification_content">Lets, continue to learn word</string>
+    <string name="level_dropped">level dropped</string>
 
 
 
