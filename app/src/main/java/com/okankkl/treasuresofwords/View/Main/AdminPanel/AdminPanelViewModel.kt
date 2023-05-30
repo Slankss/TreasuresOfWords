@@ -114,6 +114,22 @@ class AdminPanelViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore, v
 
     }
 
+    fun setWordIndex(){
+
+        val uuid = currentUser!!.uid
+
+        wordList.value?.forEachIndexed { index, word ->
+            word.index = index
+        }
+
+        db.collection("Word").document(uuid).update("wordList",wordList.value).addOnCompleteListener { task ->
+            if(task.isSuccessful){
+                Toast.makeText(mContext,"Kelime index'leri fixlendi",Toast.LENGTH_SHORT).show()
+            }
+        }
+
+    }
+
 
 
 }

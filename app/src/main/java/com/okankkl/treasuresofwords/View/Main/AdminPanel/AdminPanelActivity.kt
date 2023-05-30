@@ -33,6 +33,10 @@ class AdminPanelActivity : AppCompatActivity() {
 
         setWordLevel()
 
+        binding.btnWordIndexFix.setOnClickListener {
+            viewModel.setWordIndex()
+        }
+
 
     }
 

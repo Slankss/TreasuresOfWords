@@ -4,10 +4,12 @@ package com.okankkl.treasuresofwords.View.Main.AddWord
 import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.okankkl.treasuresofwords.Model.LoadingDialog
 import com.okankkl.treasuresofwords.Model.User
@@ -16,6 +18,10 @@ import com.okankkl.treasuresofwords.R
 import com.okankkl.treasuresofwords.databinding.FragmentAddWordBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ml.naturallanguage.FirebaseNaturalLanguage
+import com.google.firebase.ml.naturallanguage.translate.FirebaseTranslateLanguage
+import com.google.firebase.ml.naturallanguage.translate.FirebaseTranslator
+import com.google.firebase.ml.naturallanguage.translate.FirebaseTranslatorOptions
 import java.time.LocalDateTime
 import java.util.*
 
@@ -29,6 +35,9 @@ class AddWordFragment : Fragment() {
     private lateinit var viewModel : AddWordFragmentViewModel
     private var currentUser : User? = null
     private lateinit var loadingDialog : LoadingDialog
+    private var languageModelsDowloaded = false
+    private var options : FirebaseTranslatorOptions? = null
+    private var englishTurkishTranslator : FirebaseTranslator? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,7 +50,50 @@ class AddWordFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         loadingDialog = LoadingDialog(this.requireActivity())
+
+        /*
+        options = FirebaseTranslatorOptions.Builder()
+            .setSourceLanguage(FirebaseTranslateLanguage.EN)
+            .setTargetLanguage(FirebaseTranslateLanguage.TR)
+            .build()
+
+        options?.let {
+            englishTurkishTranslator  = FirebaseNaturalLanguage.getInstance().getTranslator(it)
+        }
+
+         */
+
+        englishTurkishTranslator?.let {
+            it.downloadModelIfNeeded()
+                .addOnCompleteListener { task->
+                    if(task.isSuccessful){
+                        languageModelsDowloaded = true
+                    }
+                }
+                .addOnFailureListener {
+
+                }
+        }
+
+        /*
+        binding.btnTranslate.setOnClickListener {
+            var word = binding.editTextWord.text.toString()
+            if(languageModelsDowloaded){
+                if(word.isNotBlank()){
+                    translate(word)
+                }
+            }
+            else{
+                var errorMsg = getString(R.string.models_not_ready)
+                Toast.makeText(context,errorMsg,Toast.LENGTH_SHORT).show()
+            }
+
+        }
+
+         */
+
 
         binding.apply {
 
@@ -143,6 +195,30 @@ class AddWordFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
+
+    /*
+    fun translate(translate: String){
+
+        if(englishTurkishTranslator != null && options != null){
+            binding.translateProgressBar.visibility = View.VISIBLE
+            binding.btnTranslate.isClickable = false
+            englishTurkishTranslator!!.translate(translate).addOnSuccessListener { translatedText ->
+                binding.editTextTranslate.setText(translatedText)
+                binding.translateProgressBar.visibility = View.GONE
+                binding.btnTranslate.isClickable = true
+            }.addOnFailureListener { e ->
+                Log.w("ARABAM",e.localizedMessage)
+            }
+        }
+        else{
+            var errorMsg = getString(R.string.models_not_ready)
+            Toast.makeText(context,errorMsg,Toast.LENGTH_SHORT).show()
+        }
+
+
+    }
+
+     */
 
 
 }

@@ -10,6 +10,9 @@ import com.okankkl.treasuresofwords.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ml.naturallanguage.FirebaseNaturalLanguage
+import com.google.firebase.ml.naturallanguage.translate.FirebaseTranslateLanguage
+import com.google.firebase.ml.naturallanguage.translate.FirebaseTranslatorOptions
 import com.muhammed.toastoy.Toastoy
 
 class AddWordFragmentViewModel(var auth : FirebaseAuth,var db : FirebaseFirestore,var mContext : Context) : ViewModel() {
@@ -19,10 +22,13 @@ class AddWordFragmentViewModel(var auth : FirebaseAuth,var db : FirebaseFirestor
     var isComplete = MutableLiveData<Boolean>()
     var isSuccesfull = MutableLiveData<Boolean>()
 
+
+
     init {
         isSuccesfull.value = false
         isComplete.value = false
         getCurrentUser()
+        translateWord("book")
     }
 
     fun getCurrentUser(){
@@ -110,6 +116,20 @@ class AddWordFragmentViewModel(var auth : FirebaseAuth,var db : FirebaseFirestor
                 }
             }
         }
+    }
+
+
+    fun translateWord(translate : String){
+
+        /*
+        englishTurkishTranslator.translate(translate).addOnSuccessListener { translatedText ->
+            Log.w("ARABAM","$translate : $translatedText")
+        }.addOnFailureListener { e ->
+            Log.w("ARABAM",e.localizedMessage)
+        }
+
+         */
+
     }
 
 }

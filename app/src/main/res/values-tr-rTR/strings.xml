@@ -136,5 +136,9 @@ onun kelime dağarcığıdır.\n
     <string name="notification_content">Haydi, kelime öğrenmeye devam et</string>
     <string name="level_dropped">level düştü</string>
 
+    <string name="models_not_ready">Dil modelleri hazır değil</string>
+    <string name="delete_profile">Hesabı Sil</string>
+    <string name="delete_profile_message">Emin misiniz? hesabınızı silmek tüm verilerinizin silinmesine yol açıcaktır</string>
+
 
 </resources>

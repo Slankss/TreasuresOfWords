@@ -127,6 +127,10 @@
     <string name="notification_title">Quiz Time</string>
     <string name="notification_content">Lets, continue to learn word</string>
     <string name="level_dropped">level dropped</string>
+    <string name="models_not_ready">Language model not ready</string>
+    <string name="delete_profile">Delete Account</string>
+
+    <string name="delete_profile_message">Are you sure? Deleting your account will result in the deletion of all your data.</string>
 
 
 

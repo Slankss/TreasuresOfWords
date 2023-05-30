@@ -14,18 +14,17 @@
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginStart="35dp"
-        android:layout_marginTop="25dp"
         android:layout_marginEnd="35dp"
         android:background="@drawable/filled_radius_button"
         android:text="Admin Panel"
         android:textColor="@color/white"
-
+        android:layout_marginTop="25dp"
         android:textSize="16sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnChangePassword" />
+        app:layout_constraintTop_toBottomOf="@+id/btnDeleteProfile" />
 
     <TextView
         android:id="@+id/lblChangeLanguage"
@@ -74,6 +73,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerView2" />
+
+    <Button
+        android:id="@+id/btnDeleteProfile"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginEnd="35dp"
+        android:background="@drawable/filled_radius_button"
+        android:text="@string/delete_profile"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:backgroundTint="@color/progress_bar_all_color"
+        android:layout_marginTop="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnChangePassword" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,6 +19,8 @@ import com.okankkl.treasuresofwords.databinding.ActivitySettingsBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.muhammed.toastoy.Toastoy
+import com.okankkl.treasuresofwords.Model.LoadingDialog
+import com.okankkl.treasuresofwords.View.LoginAndRegister.LoginAndRegisterActivity
 import java.util.*
 
 class SettingsActivity : AppCompatActivity() {
@@ -31,6 +33,7 @@ class SettingsActivity : AppCompatActivity() {
     private lateinit var editTextNewPasswordAgain : EditText
     private lateinit var btnUpdatePassword : Button
     private lateinit var db  :FirebaseFirestore
+    private lateinit var loadingDialog : LoadingDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +42,9 @@ class SettingsActivity : AppCompatActivity() {
             this.supportActionBar!!.hide()
         } catch (e: NullPointerException) {
         }
+
+
+        loadingDialog = LoadingDialog(this)
 
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         db = FirebaseFirestore.getInstance()
@@ -57,7 +63,38 @@ class SettingsActivity : AppCompatActivity() {
             startActivity(Intent(applicationContext,AdminPanelActivity::class.java))
         }
 
+        binding.btnDeleteProfile.setOnClickListener {
+            showAlertDialog()
+        }
+
     }
+
+    fun showAlertDialog(){
+        val alertDialogBuilder = AlertDialog.Builder(this)
+
+        // Set the dialog title and message
+        alertDialogBuilder.setTitle(getString(R.string.delete_profile))
+        alertDialogBuilder.setMessage(getString(R.string.delete_profile_message))
+
+        // Set a positive button and its click listener
+        alertDialogBuilder.setPositiveButton(getString(R.string.yes)) { dialog, which ->
+            // Delete the account and handle the action
+            deleteAccount()
+        }
+
+        // Set a negative button and its click listener
+        alertDialogBuilder.setNegativeButton(getString(R.string.no)) { dialog, which ->
+            // Dismiss the dialog
+            dialog.dismiss()
+        }
+
+        // Create and show the alert dialog
+        val alertDialog = alertDialogBuilder.create()
+        alertDialog.show()
+    }
+
+
+
 
     @SuppressLint("SuspiciousIndentation")
     fun fillSpinner(){
@@ -225,6 +262,36 @@ class SettingsActivity : AppCompatActivity() {
             }
         }
 
+
+    }
+
+    fun deleteAccount(){
+
+        val preferences = getSharedPreferences("User_Verification_Time", Context.MODE_PRIVATE)
+        var currentUser = auth.currentUser
+        var isComplete = false
+        loadingDialog.startLoadingDialog()
+
+        currentUser?.let {
+            db.collection("User").document(it.uid).delete().addOnCompleteListener { task2 ->
+                if(task2.isSuccessful){
+                    db.collection("Word").document(it.uid).delete().addOnCompleteListener { task3->
+                        if(task3.isSuccessful){
+                            it.delete().addOnCompleteListener { task ->
+                                if(task.isSuccessful){
+                                    loadingDialog.dismissDialog()
+                                    val editor = preferences.edit()
+                                    editor.putInt("total_second",0)
+                                    editor.apply()
+                                    startActivity(Intent(this,LoginAndRegisterActivity::class.java))
+                                    finish()
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
     }
 
