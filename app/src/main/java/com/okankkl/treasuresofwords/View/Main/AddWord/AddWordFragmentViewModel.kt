@@ -2,6 +2,7 @@ package com.okankkl.treasuresofwords.View.Main.AddWord
 
 import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.okankkl.treasuresofwords.Model.User
@@ -12,8 +13,10 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ml.naturallanguage.FirebaseNaturalLanguage
 import com.google.firebase.ml.naturallanguage.translate.FirebaseTranslateLanguage
+import com.google.firebase.ml.naturallanguage.translate.FirebaseTranslator
 import com.google.firebase.ml.naturallanguage.translate.FirebaseTranslatorOptions
 import com.muhammed.toastoy.Toastoy
+import com.okankkl.treasuresofwords.Model.Roles
 
 class AddWordFragmentViewModel(var auth : FirebaseAuth,var db : FirebaseFirestore,var mContext : Context) : ViewModel() {
 
@@ -21,14 +24,22 @@ class AddWordFragmentViewModel(var auth : FirebaseAuth,var db : FirebaseFirestor
     var currentUser : FirebaseUser? = null
     var isComplete = MutableLiveData<Boolean>()
     var isSuccesfull = MutableLiveData<Boolean>()
+    var user_role = MutableLiveData<String>()
+    private var languageModelsDowloaded = false
+    private var options : FirebaseTranslatorOptions? = null
+    private var englishTurkishTranslator : FirebaseTranslator? = null
+    var isTranslateCompleted = MutableLiveData<Boolean>()
+
+    var translatedWord = ""
 
 
 
     init {
+        user_role.value = Roles.user.name
+        isTranslateCompleted.postValue(false)
         isSuccesfull.value = false
         isComplete.value = false
         getCurrentUser()
-        translateWord("book")
     }
 
     fun getCurrentUser(){
@@ -49,6 +60,12 @@ class AddWordFragmentViewModel(var auth : FirebaseAuth,var db : FirebaseFirestor
                         val role = document.getString("role") as String
 
                         val user = User(username,email,number,selectedLanguageState,pageLanguage,role)
+
+                        user_role.value = role
+                        if(user_role.value.equals(Roles.admin.name.trim()))
+                        {
+                            setupLanguageModel()
+                        }
 
                         userProfile.value = user
                     }
@@ -118,18 +135,43 @@ class AddWordFragmentViewModel(var auth : FirebaseAuth,var db : FirebaseFirestor
         }
     }
 
+    fun setupLanguageModel(){
+        options = FirebaseTranslatorOptions.Builder()
+            .setSourceLanguage(FirebaseTranslateLanguage.EN)
+            .setTargetLanguage(FirebaseTranslateLanguage.TR)
+            .build()
 
-    fun translateWord(translate : String){
-
-        /*
-        englishTurkishTranslator.translate(translate).addOnSuccessListener { translatedText ->
-            Log.w("ARABAM","$translate : $translatedText")
-        }.addOnFailureListener { e ->
-            Log.w("ARABAM",e.localizedMessage)
+        options?.let {
+            englishTurkishTranslator  = FirebaseNaturalLanguage.getInstance().getTranslator(it)
         }
 
-         */
+        englishTurkishTranslator?.let {
+            it.downloadModelIfNeeded()
+                .addOnCompleteListener { task->
+                    if(task.isSuccessful){
+                        languageModelsDowloaded = true
+                    }
+                }
+                .addOnFailureListener {
 
+                }
+        }
+    }
+
+    fun translateWord(translate : String) {
+
+        if(englishTurkishTranslator != null && options != null){
+            englishTurkishTranslator!!.translate(translate).addOnSuccessListener { translatedText ->
+               translatedWord = translatedText
+               isTranslateCompleted.value = true
+            }.addOnFailureListener { e ->
+                Log.w("ARABAM",e.localizedMessage)
+            }
+        }
+        else{
+            var errorMsg = mContext.getString(R.string.models_not_ready)
+            Toast.makeText(mContext,errorMsg,Toast.LENGTH_SHORT).show()
+        }
     }
 
 }

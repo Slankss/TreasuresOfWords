@@ -22,6 +22,7 @@ import com.google.firebase.ml.naturallanguage.FirebaseNaturalLanguage
 import com.google.firebase.ml.naturallanguage.translate.FirebaseTranslateLanguage
 import com.google.firebase.ml.naturallanguage.translate.FirebaseTranslator
 import com.google.firebase.ml.naturallanguage.translate.FirebaseTranslatorOptions
+import com.okankkl.treasuresofwords.Model.Roles
 import java.time.LocalDateTime
 import java.util.*
 
@@ -33,11 +34,9 @@ class AddWordFragment : Fragment() {
     private lateinit var auth : FirebaseAuth
     private lateinit var db : FirebaseFirestore
     private lateinit var viewModel : AddWordFragmentViewModel
-    private var currentUser : User? = null
     private lateinit var loadingDialog : LoadingDialog
     private var languageModelsDowloaded = false
-    private var options : FirebaseTranslatorOptions? = null
-    private var englishTurkishTranslator : FirebaseTranslator? = null
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,56 +49,61 @@ class AddWordFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         loadingDialog = LoadingDialog(this.requireActivity())
 
+        observes()
+        clickEvents()
 
-        /*
-        options = FirebaseTranslatorOptions.Builder()
-            .setSourceLanguage(FirebaseTranslateLanguage.EN)
-            .setTargetLanguage(FirebaseTranslateLanguage.TR)
-            .build()
+    }
 
-        options?.let {
-            englishTurkishTranslator  = FirebaseNaturalLanguage.getInstance().getTranslator(it)
+    fun observes(){
+
+        viewModel.isTranslateCompleted.observe(viewLifecycleOwner){
+            if(it){
+                binding.translateProgressBar.visibility = View.GONE
+                binding.btnTranslate.isClickable = true
+                binding.editTextTranslate.setText(viewModel.translatedWord)
+                viewModel.isTranslateCompleted.postValue(false)
+            }
         }
 
-
-
-        englishTurkishTranslator?.let {
-            it.downloadModelIfNeeded()
-                .addOnCompleteListener { task->
-                    if(task.isSuccessful){
-                        languageModelsDowloaded = true
-                    }
-                }
-                .addOnFailureListener {
-
-                }
-        }
-
-
-
-        binding.btnTranslate.setOnClickListener {
-            var word = binding.editTextWord.text.toString()
-            if(languageModelsDowloaded){
-                if(word.isNotBlank()){
-                    translate(word)
-                }
+        viewModel.user_role.observe(viewLifecycleOwner){
+            if(it == Roles.admin.name){
+                binding.btnTranslate.visibility = View.VISIBLE
             }
             else{
-                var errorMsg = getString(R.string.models_not_ready)
-                Toast.makeText(context,errorMsg,Toast.LENGTH_SHORT).show()
+                binding.btnTranslate.visibility = View.GONE
             }
-
         }
 
+        viewModel.isSuccesfull.observe(viewLifecycleOwner) { isSuccesfull ->
+            if(isSuccesfull){
+                binding.editTextWord.setText("")
+                binding.editTextTranslate.setText("")
+                binding.editTextWord.requestFocus()
+            }
+        }
 
-         */
+        viewModel.isComplete.observe(viewLifecycleOwner){ isComplete ->
+            if(isComplete){
+                loadingDialog.dismissDialog()
+            }
+        }
+    }
 
-
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun clickEvents(){
 
         binding.apply {
+
+            btnTranslate.setOnClickListener {
+                var word = binding.editTextWord.text.toString()
+                if(word.isNotBlank()){
+                    binding.translateProgressBar.visibility = View.VISIBLE
+                    binding.btnTranslate.isClickable = false
+                    viewModel.translateWord(word)
+                }
+            }
 
             editTextWord.setOnFocusChangeListener { v, hasFocus ->
                 if(hasFocus){
@@ -113,12 +117,9 @@ class AddWordFragment : Fragment() {
                 }
             }
 
-
-
-
             btnWordAdd.setOnClickListener {
-            val word = binding.editTextWord.text.toString().trim()
-            val translate = binding.editTextTranslate.text.toString().trim()
+                val word = binding.editTextWord.text.toString().trim()
+                val translate = binding.editTextTranslate.text.toString().trim()
 
                 if(check(word,translate)){
                     val lower_word = word.lowercase()
@@ -147,20 +148,6 @@ class AddWordFragment : Fragment() {
                 }
             }
 
-        }
-
-        viewModel.isSuccesfull.observe(viewLifecycleOwner) { isSuccesfull ->
-            if(isSuccesfull){
-                binding.editTextWord.setText("")
-                binding.editTextTranslate.setText("")
-                binding.editTextWord.requestFocus()
-            }
-        }
-
-        viewModel.isComplete.observe(viewLifecycleOwner){ isComplete ->
-            if(isComplete){
-                loadingDialog.dismissDialog()
-            }
         }
     }
 
@@ -199,33 +186,6 @@ class AddWordFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
-
-
-    /*
-    fun translate(translate: String){
-
-        if(englishTurkishTranslator != null && options != null){
-            binding.translateProgressBar.visibility = View.VISIBLE
-            binding.btnTranslate.isClickable = false
-            englishTurkishTranslator!!.translate(translate).addOnSuccessListener { translatedText ->
-                binding.editTextTranslate.setText(translatedText)
-                binding.translateProgressBar.visibility = View.GONE
-                binding.btnTranslate.isClickable = true
-            }.addOnFailureListener { e ->
-                Log.w("ARABAM",e.localizedMessage)
-            }
-        }
-        else{
-            var errorMsg = getString(R.string.models_not_ready)
-            Toast.makeText(context,errorMsg,Toast.LENGTH_SHORT).show()
-        }
-
-
-    }
-
-
-
-     */
 
 
 }

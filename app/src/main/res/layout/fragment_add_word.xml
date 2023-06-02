@@ -61,7 +61,6 @@
         android:id="@+id/linearLayout5"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-
         android:layout_marginBottom="50dp"
         android:elevation="25dp"
         android:orientation="vertical"
@@ -90,7 +89,6 @@
             android:translationX="-10dp"
             app:boxBackgroundColor="@color/transparant"
             app:boxCornerRadiusBottomEnd="14dp"
-
             app:boxCornerRadiusTopEnd="14dp"
             app:boxStrokeErrorColor="#FF0000"
             app:endIconMode="clear_text"
@@ -103,7 +101,6 @@
                 android:layout_width="match_parent"
                 android:contentDescription="word"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="50dp"
                 android:inputType="text"
                 android:paddingStart="20dp"
                 android:textAlignment="textStart"
@@ -118,7 +115,6 @@
             android:layout_height="35dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="50dp"
             android:backgroundTint="@color/login_background_color"
             android:visibility="gone"
             app:cardCornerRadius="14dp">
@@ -156,6 +152,7 @@
             android:layout_gravity="end"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="10dp"
+            android:layout_marginTop="25dp"
             android:text="@string/translated_language"
             android:textColor="@color/text_color"
             android:textSize="18sp"
