@@ -11,8 +11,8 @@
         android:id="@+id/linearLayout2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="50dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,7 +27,7 @@
             android:text="@string/verification_message"
             android:textAlignment="center"
             android:textColor="@color/text_color"
-            android:textSize="34sp" />
+            android:textSize="28sp" />
 
         <TextView
             android:id="@+id/txtSendTime"
@@ -40,8 +40,9 @@
 
         <Button
             android:id="@+id/btnSendVerificationMail"
+            android:minHeight="48dp"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/radius_button"
             android:text="@string/send_verification_message"
             android:textColor="@color/login_button_text_color"
@@ -52,7 +53,8 @@
     <Button
         android:id="@+id/btnSignInDifferentLanguage"
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
         android:layout_marginBottom="50dp"
         android:background="@drawable/radius_button"
         android:text="@string/sign_in_different_account"

@@ -37,7 +37,6 @@ class LoginFragment : Fragment() {
 
         loadingDialog = LoadingDialog(this.requireActivity())
 
-
         binding.btnBack.setOnClickListener {
 
             val action = LoginFragmentDirections.actionLoginFragmentToFirstPageFragment()

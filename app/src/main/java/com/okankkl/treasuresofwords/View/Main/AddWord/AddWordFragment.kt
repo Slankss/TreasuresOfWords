@@ -53,6 +53,7 @@ class AddWordFragment : Fragment() {
 
         loadingDialog = LoadingDialog(this.requireActivity())
 
+
         /*
         options = FirebaseTranslatorOptions.Builder()
             .setSourceLanguage(FirebaseTranslateLanguage.EN)
@@ -63,7 +64,7 @@ class AddWordFragment : Fragment() {
             englishTurkishTranslator  = FirebaseNaturalLanguage.getInstance().getTranslator(it)
         }
 
-         */
+
 
         englishTurkishTranslator?.let {
             it.downloadModelIfNeeded()
@@ -77,7 +78,8 @@ class AddWordFragment : Fragment() {
                 }
         }
 
-        /*
+
+
         binding.btnTranslate.setOnClickListener {
             var word = binding.editTextWord.text.toString()
             if(languageModelsDowloaded){
@@ -92,7 +94,9 @@ class AddWordFragment : Fragment() {
 
         }
 
+
          */
+
 
 
         binding.apply {
@@ -196,6 +200,7 @@ class AddWordFragment : Fragment() {
         _binding = null
     }
 
+
     /*
     fun translate(translate: String){
 
@@ -217,6 +222,8 @@ class AddWordFragment : Fragment() {
 
 
     }
+
+
 
      */
 

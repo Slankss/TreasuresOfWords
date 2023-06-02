@@ -23,7 +23,7 @@
         android:id="@+id/radioButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:minHeight="48dp"
         android:background="@drawable/matching_card"
         android:button="@color/transparant"
         android:padding="10dp"

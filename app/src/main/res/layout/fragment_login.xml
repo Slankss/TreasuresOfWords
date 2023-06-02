@@ -35,7 +35,7 @@
             android:id="@+id/textEmailInputLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="25dp"
             android:hint="@string/hint_email"
             android:textColorHint="@color/white"
@@ -68,7 +68,7 @@
             android:id="@+id/passwordInputLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             android:hint="@string/hint_password"
             android:textColorHint="@color/white"
             app:boxBackgroundColor="@color/transparant"
@@ -132,7 +132,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_weight="1"
                 android:text="@string/register"
-                android:textSize="16sp"
+
                 android:textStyle="bold"
                 android:textColor="@color/login_button_color" />
 
@@ -141,7 +141,7 @@
         <Button
             android:id="@+id/btnSignIn"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="48dp"
             android:letterSpacing="0.15"
             android:background="@drawable/radius_button"
             android:text="@string/sign_in"

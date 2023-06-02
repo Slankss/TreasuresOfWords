@@ -51,24 +51,6 @@ class SplashActivity : AppCompatActivity() {
 
                 if(currentUser.isEmailVerified){
                     goPage( Intent(applicationContext, MainActivity::class.java))
-                    /*
-                    val uid = currentUser.uid
-                    db.collection("User").document(uid).get().addOnCompleteListener { task ->
-                        if(task.isSuccessful){
-                            val item = task.result
-
-                            if(item != null){
-                                val languages = item.get("languages") as ArrayList<*>
-                                if(languages.isEmpty()){
-                                    goPage(Intent(applicationContext, SelectLanguesActivity::class.java))
-                                }
-                                else{
-                                    goPage( Intent(applicationContext, MainActivity::class.java))
-                                }
-                            }
-                        }
-                    }
-                     */
                 }
                 else{
                     goPage(Intent(applicationContext, LoginAndRegisterActivity::class.java))

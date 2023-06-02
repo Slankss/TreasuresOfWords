@@ -87,7 +87,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="100dp"
-            android:layout_marginBottom="50dp"
             android:translationX="-10dp"
             app:boxBackgroundColor="@color/transparant"
             app:boxCornerRadiusBottomEnd="14dp"
@@ -102,7 +101,9 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_text_word"
                 android:layout_width="match_parent"
+                android:contentDescription="word"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp"
                 android:inputType="text"
                 android:paddingStart="20dp"
                 android:textAlignment="textStart"
@@ -183,6 +184,7 @@
                 android:id="@+id/edit_text_translate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:contentDescription="translate"
                 android:inputType="text"
                 android:paddingStart="20dp"
                 android:textAlignment="textEnd"
@@ -194,7 +196,8 @@
         <Button
             android:id="@+id/btnWordAdd"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
             android:layout_gravity="center"
             android:layout_marginStart="100dp"
             android:layout_marginTop="25dp"
@@ -202,7 +205,6 @@
             android:background="@drawable/filled_radius_button"
             android:text="@string/add_text"
             android:textColor="@color/register_button_text_color" />
-
 
 
     </LinearLayout>
@@ -213,7 +215,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="50dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginBottom="50dp"
         android:src="@drawable/bookshelves"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
         app:layout_constraintEnd_toEndOf="parent"

@@ -156,6 +156,7 @@ class SettingsActivity : AppCompatActivity() {
             binding.apply {
                 lblChangeLanguage.setText(getString(R.string.change_language))
                 btnChangePassword.setText(getString(R.string.change_password))
+                binding.btnDeleteProfile.setText(getString(R.string.delete_profile))
             }
 
             val preferences = getSharedPreferences("User_Local_Data", Context.MODE_PRIVATE)

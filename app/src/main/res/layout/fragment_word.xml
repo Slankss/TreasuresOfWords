@@ -12,29 +12,31 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="25dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_weight="1"
+        android:contentDescription="word search"
         android:paddingStart="10dp"
         android:paddingEnd="1dp"
         android:paddingBottom="10dp"
         android:textAlignment="center"
-        app:boxStrokeWidth="2dp"
         app:boxCornerRadiusBottomEnd="7dp"
         app:boxCornerRadiusBottomStart="7dp"
         app:boxCornerRadiusTopEnd="7dp"
         app:boxCornerRadiusTopStart="7dp"
+        app:boxStrokeWidth="2dp"
         app:endIconMode="custom"
         app:hintTextColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6">
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextSearch"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:hint="@string/search"
             android:inputType="text"
             android:textAlignment="center"
             android:textColor="@color/black"
@@ -44,47 +46,45 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="5dp"
-        android:text="@string/search"
-        android:textColor="@color/text_color"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnChaneVisibility">
+        app:layout_constraintTop_toBottomOf="@+id/searchInputLayout">
+
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/headerLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/login_background_color"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/btnChaneVisibility"
+                android:layout_width="48dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="10dp"
+                android:contentDescription="word translate visibility"
+                android:src="@drawable/ic_visibility_on"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <CheckBox
                 android:id="@+id/checkBoxAllWords"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:buttonTint="@color/white"
                 android:clickable="false"
-                android:layout_marginStart="10dp"
+                android:minHeight="48dp"
                 android:visibility="visible"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -95,7 +95,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:orientation="horizontal"
-                android:weightSum="3"
+                android:weightSum="5"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/checkBoxAllWords"
@@ -106,7 +106,7 @@
                     android:id="@+id/txtWord"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:text="@string/word"
                     android:textColor="@color/white"
                     android:textSize="18sp"
@@ -117,7 +117,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_weight="2"
+                    android:layout_weight="3"
                     android:text="@string/translate"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
@@ -130,8 +130,6 @@
             android:id="@+id/recyclerView"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
             app:layout_constraintBottom_toTopOf="@+id/btnDelete"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -141,10 +139,10 @@
             android:id="@+id/btnGoAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:layout_marginEnd="25dp"
             android:backgroundTint="@color/word_add_btn_color"
             android:clickable="true"
+            android:contentDescription="word add"
             android:focusable="true"
             android:src="@drawable/ic_baseline_add_24"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -157,19 +155,13 @@
             android:layout_marginStart="25dp"
             android:backgroundTint="@color/bottom_menu_bg_color"
             android:clickable="true"
+            android:contentDescription="Word delete"
             android:elevation="0dp"
             android:focusable="true"
             android:src="@drawable/ic_delete"
+            app:borderWidth="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <ImageView
-        android:id="@+id/btnChaneVisibility"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_visibility_on"
-        app:layout_constraintEnd_toEndOf="@+id/searchInputLayout"
-        app:layout_constraintTop_toBottomOf="@+id/searchInputLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

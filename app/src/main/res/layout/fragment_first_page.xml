@@ -4,16 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg"
     tools:context=".View.LoginAndRegister.FirstPageFragment">
 
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="75dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="10dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,10 +24,11 @@
             android:id="@+id/txt_beginning_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:elegantTextHeight="false"
             android:text="@string/beginning_text"
-            android:textColor="@color/white"
             android:textAlignment="center"
+            android:textColor="@color/white"
             android:textSize="18sp"
             app:autoSizeTextType="none"
             app:lineHeight="25dp" />
@@ -35,9 +36,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginStart="25dp"
             android:layout_marginTop="20dp"
-            android:layout_marginEnd="25dp"
             android:orientation="horizontal">
 
             <Button
@@ -45,9 +44,9 @@
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:letterSpacing="0.15"
                 android:layout_weight="1"
                 android:background="@drawable/first_page_button_background"
+                android:letterSpacing="0.15"
                 android:text="@string/register"
                 android:textColor="@color/register_button_text_color"
                 android:textSize="16sp"
@@ -55,15 +54,14 @@
 
             <Button
                 android:id="@+id/btnGoLogin"
-                android:layout_marginStart="10dp"
                 android:layout_width="match_parent"
-                android:letterSpacing="0.15"
                 android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/first_page_button_background"
+                android:letterSpacing="0.15"
                 android:text="@string/login"
-                android:textColor="@color/login_button_text_color"
-                />
+                android:textColor="@color/login_button_text_color" />
 
         </LinearLayout>
 
