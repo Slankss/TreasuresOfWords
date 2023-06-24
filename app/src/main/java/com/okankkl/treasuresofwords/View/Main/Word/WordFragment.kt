@@ -17,6 +17,7 @@ import com.okankkl.treasuresofwords.R
 import com.okankkl.treasuresofwords.databinding.FragmentWordBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.okankkl.treasuresofwords.Model.Word
 
 
 class WordFragment : Fragment() {
@@ -31,6 +32,7 @@ class WordFragment : Fragment() {
     private var languageToTranslated : String? = null
     private var translatedLanguage : String? = null
     private var show = false
+    private var wordList = ArrayList<Word>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +42,12 @@ class WordFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val layoutManager = LinearLayoutManager(view.context)
+        binding.recyclerView.layoutManager = layoutManager
+        adapter= WordAdapter(view.context,show)
+        adapter.setData(wordList)
+        binding.recyclerView.adapter = adapter
 
         binding.btnChaneVisibility.setOnClickListener {
             show = !show
@@ -57,11 +65,9 @@ class WordFragment : Fragment() {
             findNavController().navigate(action)
         }
 
-        viewModel.wordList.observe(viewLifecycleOwner) { wordList ->
-            val layoutManager = LinearLayoutManager(view.context)
-            binding.recyclerView.layoutManager = layoutManager
-            adapter= WordAdapter(wordList,view.context,show)
-            binding.recyclerView.adapter = adapter
+        viewModel.wordList.observe(viewLifecycleOwner) { observedWordList ->
+            adapter.setData(observedWordList)
+            adapter.notifyDataSetChanged()
 
             adapter.allWordSelected = { isAllWordSelected ->
                 binding.checkBoxAllWords.isChecked = when(isAllWordSelected){

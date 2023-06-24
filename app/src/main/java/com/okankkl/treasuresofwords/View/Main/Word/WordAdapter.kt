@@ -8,14 +8,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.okankkl.treasuresofwords.Model.Word
 import com.okankkl.treasuresofwords.databinding.WordRowBinding
 
-class WordAdapter(private val wordList : ArrayList<Word>,private var mContext : Context,var show : Boolean) :
+class WordAdapter(private var mContext : Context,var show : Boolean) :
     RecyclerView.Adapter<WordAdapter.Holder>() {
 
+    var wordList = ArrayList<Word>()
     var selectWord = arrayListOf<Word>()
     var allWordSelected : (Boolean) -> Unit = {}
 
-    class Holder(val binding : WordRowBinding) : RecyclerView.ViewHolder(binding.root) {
+    class Holder(val binding : WordRowBinding) : RecyclerView.ViewHolder(binding.root)
 
+    fun setData(wordList : ArrayList<Word>){
+        this.wordList = wordList
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -31,12 +34,6 @@ class WordAdapter(private val wordList : ArrayList<Word>,private var mContext : 
             checkBoxWord.isChecked = when(selectWord.contains(word)){
                 true -> true
                 false -> false
-            }
-            if(position % 2 == 0){
-                //wordLinearLayout.setBackgroundColor(mContext.getColor(R.color.word_row_second_color))
-            }
-            else{
-                //wordLinearLayout.setBackgroundColor(mContext.getColor(R.color.word_row_first_color))
             }
 
             txtWord.setText(word.word)
@@ -63,8 +60,6 @@ class WordAdapter(private val wordList : ArrayList<Word>,private var mContext : 
                         allWordSelected(false)
                     }
             }
-
-
         }
     }
 
