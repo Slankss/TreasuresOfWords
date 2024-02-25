@@ -160,7 +160,6 @@ class QuizViewModel(private var auth : FirebaseAuth, private var db : FirebaseFi
         val dateString = "$dayString-$monthString-$year"
 
         updatedList.forEachIndexed { index, question ->
-            Log.w("ARABAM3","word = ${allWordList[question.index].word} level = ${allWordList[question.index].repeatTime} ")
             allWordList[question.index].repeatTime +=1
             allWordList[question.index].quizTime = dateString
             }

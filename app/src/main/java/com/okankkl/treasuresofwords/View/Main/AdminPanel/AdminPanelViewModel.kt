@@ -103,6 +103,8 @@ class AdminPanelViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore, v
         allWordList.forEachIndexed { index, word ->
 
             word.repeatTime = wordLevel
+            if(wordLevel == 0)
+                word.quizTime = ""
 
         }
 

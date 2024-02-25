@@ -91,8 +91,10 @@ class MakeQuizFragment : Fragment() {
                             ,randomWord.repeatTime,answerList)
 
 
-                        questionList.add(question)
-                        wordList.removeAt(random)
+                        questionList.find { it.index == question.index }.let {
+                            if(it == null)
+                                questionList.add(question)
+                        }
 
                     }while( questionList.size < questionLimit)
 

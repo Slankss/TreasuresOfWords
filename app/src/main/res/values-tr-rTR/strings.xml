@@ -110,9 +110,9 @@ onun kelime dağarcığıdır.\n
     <string name="quiz_preparing">Quiz hazırlanıyor.</string>
     <string name="quiz_min_10_word">Quiz için en az 15 kelime eklemelisiniz.</string>
 
-    <string name="ten_question_quiz">10 Soru</string>
-    <string name="twelwe_question_quiz">20 Soru</string>
-    <string name="matching_quiz">Eşleştirme</string>
+    <string name="ten_question_quiz">Çoktan Seçmeli Sorular(10)</string>
+    <string name="twelwe_question_quiz">Çoktan Seçmeli Sorular(20)</string>
+    <string name="matching_quiz">Kelime Eşleştirme</string>
     <string name="insufficient_word_10">Minimum 15 kelime</string>
     <string name="insufficient_word_20">Minimum 25 kelime</string>
     <string name="go_quiz_page">Quiz sayfası</string>

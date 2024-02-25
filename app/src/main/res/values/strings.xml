@@ -101,9 +101,9 @@
     <string name="quiz_preparing">Quiz is preparing.</string>
     <string name="quiz_min_10_word">You must add at least 15 words for the quiz.</string>
 
-    <string name="ten_question_quiz">10 Questions</string>
-    <string name="twelwe_question_quiz">20 Questions</string>
-    <string name="matching_quiz">Matching</string>
+    <string name="ten_question_quiz">Multiple Choice Questions(10)</string>
+    <string name="twelwe_question_quiz">Multiple Choice Questions(20)</string>
+    <string name="matching_quiz">Word Matching</string>
 
     <string name="insufficient_word_10">Minimum 15 word</string>
     <string name="insufficient_word_20">Minimum 25 word</string>

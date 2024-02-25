@@ -67,14 +67,9 @@ class MatchingQuizFragment : Fragment() {
                         val level = word.repeatTime
                         val randomTranslated = word.translate
 
-                        var isContains = false
-                        for(item in translateArrayList){
-                            if(item.translate == randomTranslate){
-                                isContains = true
-                                break
-                            }
-                        }
-                        if(!isContains){
+                        var isContains = translateArrayList.find { it.index == word.index }
+
+                        if(isContains == null){
                             val question = Question(randomTranslate,randomTranslated,null,position,level)
                             val question2 = Question(randomTranslate,randomTranslated,null,position,level)
                             translateArrayList.add(question)

@@ -53,6 +53,11 @@
     <color name="main_background">#FFFFFF</color>
     <color name="setting_background_color">#9EAEB9</color>
 
+    <color name="quiz_color_1">#bb4430</color>
+    <color name="quiz_color_2">#7ebdc2</color>
+    <color name="quiz_color_3">#f3dfa2</color>
+    <color name="quiz_color_4">#231f20</color>
+
 
 
 </resources>

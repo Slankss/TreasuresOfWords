@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.okankkl.treasuresofwords.databinding.FragmentQuizBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.okankkl.treasuresofwords.R
 
 
 class QuizFragment : Fragment() {
@@ -36,6 +37,7 @@ class QuizFragment : Fragment() {
         var stateMathing = false
         var stateTenQuestion = false
         var stateTwelweQuestion = false
+
 
         viewModel.wordList.observe(viewLifecycleOwner) { wordList ->
             stateMathing = wordList.size >= 15
