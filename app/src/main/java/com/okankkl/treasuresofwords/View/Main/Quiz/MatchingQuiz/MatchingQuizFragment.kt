@@ -69,7 +69,7 @@ class MatchingQuizFragment : Fragment() {
 
                         var isContains = translateArrayList.find { it.index == word.index }
 
-                        if(isContains == null){
+                        if(isContains == null && word.repeatTime < 5){
                             val question = Question(randomTranslate,randomTranslated,null,position,level)
                             val question2 = Question(randomTranslate,randomTranslated,null,position,level)
                             translateArrayList.add(question)

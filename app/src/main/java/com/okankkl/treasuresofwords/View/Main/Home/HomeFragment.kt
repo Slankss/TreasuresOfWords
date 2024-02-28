@@ -5,6 +5,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +19,8 @@ import com.okankkl.treasuresofwords.View.Main.Settings.SettingsActivity
 import com.okankkl.treasuresofwords.databinding.FragmentHomeBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.okankkl.treasuresofwords.Model.Word
+import com.okankkl.treasuresofwords.Model.WordLevelDialog
 import java.time.LocalDate
 import java.time.ZoneId
 import java.util.*
@@ -31,6 +34,8 @@ class HomeFragment : Fragment() {
     private lateinit var db : FirebaseFirestore
     private var isTopMenuOpen = false
     private lateinit var viewModel : HomeFragmentViewModel
+    private lateinit var wordLevelDialog : WordLevelDialog
+    private var wordList = arrayListOf<Word>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,13 +47,15 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         val currentUser = auth.currentUser
-
         currentUser?.let {
             val email = it.email
             binding.txtUserEmail.setText(email)
         }
+
+        wordLevelDialog = WordLevelDialog(this.requireActivity())
+
+        wordLevelEvent()
 
         binding.circularProgressBar.apply {
             progressBarWidth = 20f
@@ -65,11 +72,8 @@ class HomeFragment : Fragment() {
 
                 if(it.size > 0){
                     binding.circularProgressBar.progressMax = it.size.toFloat()
+                    wordList = it
                 }
-                else{
-                    binding
-                }
-
             }
         }
 
@@ -212,6 +216,49 @@ class HomeFragment : Fragment() {
         binding.btnGoProfile.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToProfileFragment()
             findNavController().navigate(action)
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun wordLevelEvent() {
+
+        binding.apply {
+            cardZeroLvl.setOnClickListener {
+                wordList.filter { it.repeatTime == 0 }.let { list ->
+                    if(list.isNotEmpty())
+                        wordLevelDialog.startDialog(list)
+                }
+            }
+            cardOneLvl.setOnClickListener {
+                wordList.filter { it.repeatTime == 1 }.let { list ->
+                    if(list.isNotEmpty())
+                        wordLevelDialog.startDialog(list)
+                }
+            }
+            cardTwoLvl.setOnClickListener {
+                wordList.filter { it.repeatTime == 2 }.let { list ->
+                    if(list.isNotEmpty())
+                        wordLevelDialog.startDialog(list)
+                }
+            }
+            cardThreeLvl.setOnClickListener {
+                wordList.filter { it.repeatTime == 3 }.let { list ->
+                    if(list.isNotEmpty())
+                        wordLevelDialog.startDialog(list)
+                }
+            }
+            cardFourLvl.setOnClickListener {
+                wordList.filter { it.repeatTime == 4 }.let { list ->
+                    if(list.isNotEmpty())
+                        wordLevelDialog.startDialog(list)
+                }
+            }
+            cardFiveLvl.setOnClickListener {
+                wordList.filter { it.repeatTime == 5 }.let { list ->
+                    if(list.isNotEmpty())
+                        wordLevelDialog.startDialog(list)
+                }
+            }
         }
     }
 

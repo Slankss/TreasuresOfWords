@@ -37,7 +37,6 @@ class LevelUpWordsAdapter(private val context : Activity, private val arrayList 
         }
 
 
-
         return view
     }
 

@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
 import com.okankkl.treasuresofwords.R
 
-class QuizBriefDialog(var activity : FragmentActivity) {
+class QuizBriefDialog(val activity : FragmentActivity) {
 
     var backQuizPageClick : () -> Unit = {}
     var newQuizClick : () -> Unit = {}

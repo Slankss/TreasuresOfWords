@@ -35,7 +35,7 @@ class HomeFragmentViewModel(var auth : FirebaseAuth, var db : FirebaseFirestore)
         currentUser = auth.currentUser
 
         currentUser?.let {
-            var uid = it.uid
+            val uid = it.uid
             db.collection("User").document(uid).get().addOnCompleteListener { task ->
                 if(task.isSuccessful){
                     val document = task.result
